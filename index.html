@@ -1,0 +1,446 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, orientation=portrait">
+  <meta http-equiv="refresh" content="3600">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <style>
+    @viewport {
+      orientation: portrait;
+    }
+
+    body {
+      background: #ffffff;
+      color: #222222;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 18px;
+      margin: 0;
+    }
+
+    header {
+      background: #0b4f71;
+      color: #ffffff;
+      padding: 18px 24px;
+    }
+
+    header a {
+      color: #ffffff;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 12px 0 0;
+      padding: 0;
+    }
+
+    nav li {
+      display: inline-block;
+      margin-right: 18px;
+    }
+
+    .contenedor {
+      margin: 0 auto;
+      max-width: 1100px;
+      padding: 20px;
+    }
+
+    .columna {
+      display: inline-block;
+      margin-right: 18px;
+      vertical-align: top;
+      width: 31%;
+    }
+
+    .tarjeta {
+      border: 1px solid #b8c5d1;
+      margin-bottom: 18px;
+      padding: 14px;
+    }
+
+    .texto-bajo-contraste {
+      background: #ffffff;
+      color: #c7c7c7;
+    }
+
+    .texto-contraste-reforzado {
+      background: #ffffff;
+      color: #767676;
+    }
+
+    .enlace-solo-color {
+      color: #555555;
+      text-decoration: none;
+    }
+
+    .texto-con-enlace {
+      color: #444444;
+    }
+
+    .texto-con-blink-css {
+      text-decoration: blink;
+    }
+
+    .texto-espaciado-fijo {
+      letter-spacing: 1px;
+      line-height: 16px;
+    }
+
+    .caja-transformada {
+      background: #eef2ff;
+      border: 1px solid #64748b;
+      padding: 8px;
+      transform: scale(0.85);
+      transform-origin: left top;
+    }
+
+    a:focus,
+    button:focus,
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+    }
+
+    .barra-fija {
+      background: #7c2d12;
+      bottom: 0;
+      color: #ffffff;
+      left: 0;
+      padding: 10px;
+      position: fixed;
+      right: 0;
+      z-index: 5;
+    }
+
+    .boton-vacio,
+    .enlace-vacio {
+      display: inline-block;
+      height: 42px;
+      min-width: 42px;
+    }
+
+    .objetivo-pequeno {
+      display: inline-block;
+      font-size: 10px;
+      height: 14px;
+      line-height: 14px;
+      margin-right: 2px;
+      text-align: center;
+      text-decoration: none;
+      width: 14px;
+    }
+
+    .zona-scroll {
+      border: 1px solid #64748b;
+      height: 58px;
+      overflow: auto;
+      padding: 6px;
+      width: 240px;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 12px 0;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid #475569;
+      padding: 6px;
+      text-align: left;
+    }
+
+    .tabla-maquetacion td,
+    .tabla-maquetacion th {
+      border: 0;
+    }
+
+    .widget {
+      border: 1px solid #94a3b8;
+      height: 110px;
+      width: 100%;
+    }
+
+    .zona-arrastre {
+      background: #fef3c7;
+      border: 1px dashed #92400e;
+      cursor: move;
+      padding: 10px;
+      width: 220px;
+    }
+
+    .correcto {
+      background: #eef8f1;
+      border: 2px solid #166534;
+      padding: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Portal de Pruebas</h2>
+    <p>Escenarios ficticios, formularios demo y avisos simulados para validacion.</p>
+    <nav>
+      <ul>
+        <li><a href="#noticias">Avisos demo</a></li>
+        <li><a href="#tramites">Pruebas</a></li>
+        <li><a id="e-2-4-4-a" class="enlace-vacio" href="#agenda"></a></li>
+        <li><a accesskey="a" href="#contacto">Soporte ficticio</a></li>
+        <li><a accesskey="a" href="#agenda">Calendario demo</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="contenedor" id="contenido">
+    <section id="portada">
+      <h2>Bienvenida</h2>
+      <h4>Modulos destacados con salto de nivel</h4>
+      <h3>Actividad simulada</h3><h3>Calendario sin texto intermedio</h3>
+      <h2></h2>
+
+      <p class="texto-con-enlace">
+        Consulte el <a id="e-1-4-1" class="enlace-solo-color" href="#agenda">calendario de pruebas</a>
+        para revisar eventos simulados.
+      </p>
+      <p id="e-1-4-3" class="texto-bajo-contraste">Aviso con contraste muy bajo sobre fondo blanco.</p>
+      <p id="e-1-4-6" class="texto-contraste-reforzado">Texto que no alcanza el contraste reforzado.</p>
+      <blink id="e-2-2-2-a">Aviso demo presentado con etiqueta blink.</blink>
+      <marquee id="e-2-2-2-b">El escenario ficticio de inscripcion termina esta semana.</marquee>
+      <p class="texto-con-blink-css">Este aviso usa decoracion de texto con parpadeo.</p>
+      <p id="e-1-4-12" class="texto-espaciado-fijo">Este parrafo tiene interlineado y espaciado de letras fijados en CSS.</p>
+      <div id="e-1-4-10-b" class="caja-transformada">Caja transformada que puede romper el reajuste del contenido.</div>
+    </section>
+
+    <section id="imagenes">
+      <h2>Imagenes y mapas</h2>
+      <div class="columna">
+        <img id="e-1-1-1-a" width="310" height="160"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='310' height='160'%3E%3Crect width='310' height='160' fill='%230b4f71'/%3E%3C/svg%3E">
+        <p>Imagen principal del entorno demo sin texto alternativo.</p>
+      </div>
+      <div class="columna">
+        <img id="e-1-1-1-b" alt="" width="310" height="160"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='310' height='160'%3E%3Crect width='310' height='160' fill='%23f97316'/%3E%3C/svg%3E">
+        <p>Imagen informativa con alt vacio.</p>
+      </div>
+      <div class="columna">
+        <img id="e-1-1-1-c" alt="" title="Modulo ficticio de servicios demo" width="310" height="160"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='310' height='160'%3E%3Crect width='310' height='160' fill='%23166534'/%3E%3C/svg%3E">
+        <p>Imagen aparentemente decorativa, pero con title.</p>
+      </div>
+
+      <p>
+        <img id="e-1-1-1-d" alt="Imagen panoramica muy detallada del laboratorio ficticio, sus paneles, sus tarjetas, sus controles de prueba, varias personas simuladas y todos los elementos decorativos descritos en una sola alternativa textual demasiado larga para un uso comodo" width="260" height="120"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='120'%3E%3Crect width='260' height='120' fill='%237c3aed'/%3E%3C/svg%3E">
+      </p>
+      <p>
+        <img id="e-1-1-1-e" alt="foto-final-2026.jpg" width="160" height="90"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='90'%3E%3Crect width='160' height='90' fill='%230f766e'/%3E%3C/svg%3E">
+      </p>
+      <p>
+        <img id="e-1-1-1-f" alt="Infografia de datos ficticios" width="720" height="340"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='720' height='340'%3E%3Crect width='720' height='340' fill='%23e0f2fe'/%3E%3Ctext x='30' y='60' font-size='28'%3EInfografia ficticia compleja%3C/text%3E%3C/svg%3E">
+      </p>
+      <p>
+        <a href="#turismo"><img alt="Modulo demo" width="90" height="60"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='60'%3E%3Crect width='90' height='60' fill='%23facc15'/%3E%3C/svg%3E"></a>
+        <a id="e-1-1-1-n" href="#turismo">Modulo demo</a>
+      </p>
+
+      <h3>Mapa ficticio de zonas demo</h3>
+      <img alt="Mapa esquematico de zonas ficticias" width="420" height="160" usemap="#mapa-barrios"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='160'%3E%3Crect width='210' height='160' fill='%23bfdbfe'/%3E%3Crect x='210' width='210' height='160' fill='%23bbf7d0'/%3E%3C/svg%3E">
+      <map name="mapa-barrios">
+        <area id="e-1-1-1-h" shape="rect" coords="0,0,210,160" href="#tramites">
+        <area shape="rect" coords="210,0,420,160" href="#agenda" alt="Zona este">
+      </map>
+
+      <object id="e-1-1-1-k" data="about:blank" type="text/html" width="220" height="80"></object>
+      <input id="e-1-1-1-l" type="image" width="44" height="44"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Crect width='44' height='44' fill='%230b4f71'/%3E%3C/svg%3E">
+    </section>
+
+    <section id="multimedia">
+      <h2>Multimedia</h2>
+      <audio id="e-1-2-1" controls src="audio-aviso-demo.mp3"></audio>
+      <audio id="e-1-4-2" controls autoplay src="audio-alerta.mp3"></audio>
+      <video id="e-1-2-2-a" controls width="360" height="200" src="video-pleno.mp4"></video>
+      <video id="e-1-2-2-b" controls width="360" height="200" src="video-taller.mp4">
+        <track kind="metadata" src="datos-video.vtt" srclang="es" label="Datos">
+      </video>
+    </section>
+
+    <section id="formularios">
+      <h2>Formularios y solicitudes</h2>
+      <form id="e-3-2-2-a" action="#contacto">
+        <p>
+          <input id="e-1-3-1-j" name="consulta" type="text" placeholder="Escriba su consulta">
+        </p>
+        <p>
+          <label><input type="radio" name="turno" value="manana"> Manana</label>
+          <label><input type="radio" name="turno" value="tarde"> Tarde</label>
+        </p>
+        <p>
+          <select id="e-1-3-1-d" name="servicio">
+            <option>Area ficticia alfa</option>
+            <option>Escenario demo beta</option>
+            <option>Modulo simulado gamma</option>
+            <option>Solicitud ficticia delta</option>
+          </select>
+        </p>
+        <p>
+          <select id="e-3-2-2-b" name="redirigir" onchange="location.href=this.value">
+            <option value="#contacto">Seleccione destino</option>
+            <option value="#agenda">Calendario demo</option>
+          </select>
+        </p>
+        <p>
+          <label for="campo-inexistente">Telefono de contacto</label>
+          <input id="telefono-real" name="telefono" type="tel">
+        </p>
+        <p>
+          <label for="e-1-3-5-a">Nombre completo</label>
+          <input id="e-1-3-5-a" name="nombre" type="text" autocomplete="nombrecompleto">
+        </p>
+        <p>
+          <input id="e-1-4-1-b" name="color-favorito" type="color">
+        </p>
+        <p>
+          <label for="e-3-3-1-a">Codigo de expediente</label>
+          <input id="e-3-3-1-a" name="expediente" aria-invalid="true">
+        </p>
+        <p>
+          <label for="captcha">CAPTCHA: escriba las letras de la imagen</label>
+          <img alt="captcha" width="130" height="42"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='42'%3E%3Crect width='130' height='42' fill='%23e5e7eb'/%3E%3Ctext x='15' y='28' font-size='22'%3EX7Q2%3C/text%3E%3C/svg%3E">
+          <input id="captcha" name="captcha" type="text">
+        </p>
+        <button type="button">Guardar borrador</button>
+      </form>
+
+      <p>
+        <button id="e-4-1-2-b" class="boton-vacio" type="button"></button>
+        <input id="e-4-1-2-b2" class="boton-vacio" type="button" value="">
+        <button id="e-2-5-3-a" aria-label="Enviar solicitud">Guardar</button>
+      </p>
+    </section>
+
+    <section id="listas">
+      <h2>Listas y estructura</h2>
+      <p>1. Solicitar cita<br>2. Preparar documentacion<br>3. Acudir a la oficina</p>
+      <p>- Aviso de modulo alfa<br>- Aviso de modulo beta<br>- Aviso de modulo gamma</p>
+      <ul id="e-1-3-1-q"></ul>
+      <center>Avisos destacados de prueba presentados con una etiqueta de presentacion.</center>
+      <div id="e-1-3-1-i" align="center">Texto centrado con atributo de presentacion.</div>
+    </section>
+
+    <section id="tablas">
+      <h2>Tablas</h2>
+      <table id="e-1-3-1-e">
+        <tr><th>Servicio</th><th>Horario</th></tr>
+        <tr><td>Recurso demo</td><td>9:00 a 20:00</td></tr>
+      </table>
+
+      <table id="e-1-3-1-g">
+        <tr><td>Curso de verano</td><td>12 plazas</td></tr>
+        <tr><td>Taller de empleo</td><td>8 plazas</td></tr>
+      </table>
+
+      <table id="e-1-3-1-k" class="tabla-maquetacion" summary="Tabla usada para colocar columnas visuales">
+        <tr>
+          <th>Columna visual izquierda</th>
+          <td>Contenido colocado con tabla de maquetacion.</td>
+        </tr>
+      </table>
+    </section>
+
+    <section id="enlaces">
+      <h2>Enlaces y navegacion</h2>
+      <p><a href="#noticias">Leer mas</a></p>
+      <p><a href="#tramites">Leer mas</a></p>
+      <p><a href="#documento-largo">Este enlace contiene un texto excesivamente largo para una navegacion comoda porque intenta explicar demasiadas cosas a la vez y supera claramente los cien caracteres indicados por la comprobacion</a></p>
+      <p><a id="e-3-2-1-d" target="_blank" href="https://example.com">Portal ficticio externo</a></p>
+      <p><a id="e-2-5-8-a" class="objetivo-pequeno" href="#agenda">A</a><a class="objetivo-pequeno" href="#agenda">B</a></p>
+      <p><a tabindex="4" href="#contacto">Enlace con tabindex positivo</a></p>
+    </section>
+
+    <section id="interaccion">
+      <h2>Interaccion</h2>
+      <div id="e-2-1-1-a" onclick="alert('Solo raton')" class="tarjeta">Tarjeta clicable solo con raton.</div>
+      <div id="e-2-5-7-a" class="zona-arrastre" draggable="true">Arrastre esta tarjeta para ordenar el aviso ficticio.</div>
+      <div id="estado-dinamico">Estado inicial de la solicitud.</div>
+      <div class="zona-scroll">
+        Linea 1 del tablon.<br>
+        Linea 2 del tablon.<br>
+        Linea 3 del tablon.<br>
+        Linea 4 del tablon.<br>
+        Linea 5 del tablon.
+      </div>
+    </section>
+
+    <section id="widgets">
+      <h2>Widgets incrustados</h2>
+      <iframe id="e-4-1-2-a" class="widget"
+        srcdoc="&lt;!doctype html&gt;&lt;html lang='es'&gt;&lt;head&gt;&lt;title&gt;Widget demo&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Contenido ficticio incrustado.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"></iframe>
+
+      <iframe class="widget" title="Documento con titulo vacio"
+        srcdoc="&lt;!doctype html&gt;&lt;html lang='es'&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Documento interno con titulo vacio.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"></iframe>
+
+      <iframe class="widget" title="Documento con titulo por defecto"
+        srcdoc="&lt;!doctype html&gt;&lt;html lang='es'&gt;&lt;head&gt;&lt;title&gt;Untitled&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Documento interno con titulo generico.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"></iframe>
+
+      <iframe class="widget" title="Documento con idioma invalido"
+        srcdoc="&lt;!doctype html&gt;&lt;html lang='zz-invalido'&gt;&lt;head&gt;&lt;title&gt;Idioma invalido&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Documento interno.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"></iframe>
+
+      <iframe class="widget" title="Documento con refresh inmediato"
+        srcdoc="&lt;!doctype html&gt;&lt;html lang='es'&gt;&lt;head&gt;&lt;meta http-equiv='refresh' content='0;url=about:blank'&gt;&lt;title&gt;Refresh inmediato&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Documento interno con refresh cero.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"></iframe>
+    </section>
+
+    <section id="correcto" class="correcto">
+      <h2>Contenido correcto de control</h2>
+      <p>Estos elementos estan incluidos para comprobar que no se marcan nodos correctos.</p>
+      <p><img alt="Marca azul del portal de pruebas" width="90" height="50"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='50'%3E%3Crect width='90' height='50' fill='%230b4f71'/%3E%3C/svg%3E"></p>
+      <p><a href="#contacto">Enlace descriptivo y subrayado</a></p>
+      <ol>
+        <li>Primer paso real de una lista ordenada.</li>
+        <li>Segundo paso real de una lista ordenada.</li>
+      </ol>
+      <table>
+        <caption>Tabla correcta de horarios</caption>
+        <tr><th scope="col">Servicio</th><th scope="col">Horario</th></tr>
+        <tr><td>Recurso demo</td><td>9:00 a 20:00</td></tr>
+      </table>
+      <p>
+        <label for="email-correcto">Correo electronico</label>
+        <input id="email-correcto" type="email" autocomplete="email">
+      </p>
+      <button type="button">Boton con texto visible</button>
+    </section>
+  </div>
+
+  <footer id="contacto">
+    <p>Entidad Ficticia de Pruebas. Direccion simulada, 000.</p>
+  </footer>
+
+  <div class="barra-fija">Aviso fijo que puede tapar el foco visible en la parte inferior de la pagina.</div>
+
+  <script>
+    document.getElementById("estado-dinamico").textContent = "Solicitud actualizada sin region aria-live.";
+
+    function revisarOrientacion() {
+      if (window.DeviceOrientationEvent || window.screen.orientation) {
+        return "orientacion detectada";
+      }
+      return "orientacion no disponible";
+    }
+
+    revisarOrientacion();
+  </script>
+</body>
+</html>

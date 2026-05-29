@@ -1,0 +1,326 @@
+Archivo analizado para generar esta prueba:
+C:\Users\jorge.alvarez\Downloads\wcag22 (1).json
+
+Archivo de prueba:
+index.html
+
+Resumen:
+Se han introducido 76 errores intencionados, uno por cada comprobacion del JSON nuevo. El HTML esta planteado como una web tradicional: cabecera, navegacion, secciones de noticias, imagenes, multimedia, formularios, tablas, enlaces, widgets y pie.
+
+Nota sobre errores incompatibles:
+Algunas comprobaciones de documento completo no pueden coexistir en el mismo documento principal. Por ejemplo, una pagina no puede tener a la vez "sin title", "title vacio" y "title por defecto"; tampoco puede estar a la vez sin lang y con lang invalido. Para mantener un unico index.html, esos casos incompatibles se han metido en iframes con srcdoc. Si vuestro validador no entra dentro de iframes, esos casos concretos deberan probarse aparte.
+
+Errores introducidos:
+
+E01 - 1.1.1.a - Imagenes sin atributo alt.
+Ubicacion: #e-1-1-1-a.
+Explicacion: imagen principal sin atributo alt.
+
+E02 - 1.1.1.f - Imagenes que pueden requerir descripcion larga.
+Ubicacion: #e-1-1-1-f.
+Explicacion: infografia grande y compleja con alternativa corta y sin descripcion larga.
+
+E03 - 1.1.1.b - Imagenes con atributo alt vacio, verificar si es decorativa.
+Ubicacion: #e-1-1-1-b.
+Explicacion: imagen informativa con alt="".
+
+E04 - 1.1.1.c - Imagen decorativa con atributo title.
+Ubicacion: #e-1-1-1-c.
+Explicacion: imagen con alt vacio pero title informativo.
+
+E05 - 1.1.1.d - Texto alternativo excesivamente largo.
+Ubicacion: #e-1-1-1-d.
+Explicacion: atributo alt superior a 100 caracteres.
+
+E06 - 1.1.1.e - Texto alternativo sospechoso.
+Ubicacion: #e-1-1-1-e.
+Explicacion: el alt parece un nombre de fichero: foto-final-2026.jpg.
+
+E07 - 1.1.1.h - Elemento area sin texto alternativo.
+Ubicacion: #e-1-1-1-h.
+Explicacion: area de mapa de imagen sin alt.
+
+E08 - 1.1.1.k - Objeto sin nombre accesible.
+Ubicacion: #e-1-1-1-k.
+Explicacion: object sin aria-label, aria-labelledby ni texto alternativo.
+
+E09 - 1.1.1.l - Boton de tipo imagen sin atributo alt.
+Ubicacion: #e-1-1-1-l.
+Explicacion: input type=image sin alt.
+
+E10 - 1.1.1.n - Imagen y enlace adyacentes apuntan al mismo destino.
+Ubicacion: enlace junto a #e-1-1-1-n.
+Explicacion: una imagen enlazada y un enlace de texto contiguo apuntan a #turismo.
+
+E11 - 1.2.1 - Elemento audio o video detectado.
+Ubicacion: #e-1-2-1.
+Explicacion: audio informativo que debe revisarse para comprobar alternativa o transcripcion.
+
+E12 - 1.3.1.a - La pagina no tiene ningun elemento h1.
+Ubicacion: documento principal.
+Explicacion: se usan h2/h3/h4, pero no h1.
+
+E13 - 1.3.1.v - Dos encabezados del mismo nivel seguidos sin contenido entre ellos.
+Ubicacion: h3 "Actividad simulada" seguido de h3 "Calendario sin texto intermedio".
+Explicacion: no hay contenido entre ambos encabezados del mismo nivel.
+
+E14 - 1.3.1.b - Salto de nivel en la jerarquia de encabezados.
+Ubicacion: h2 "Bienvenida" seguido de h4 "Modulos destacados con salto de nivel".
+Explicacion: se salta de h2 a h4.
+
+E15 - 1.3.1.c - Grupo de radio/checkbox no envuelto en fieldset+legend.
+Ubicacion: radios name="turno" dentro de #e-3-2-2-a.
+Explicacion: controles relacionados sin fieldset ni legend.
+
+E16 - 1.3.1.d - Select con multiples grupos sin optgroup.
+Ubicacion: #e-1-3-1-d.
+Explicacion: opciones de varias categorias dentro de un select sin optgroup.
+
+E17 - 1.3.1.e - Tabla sin caption ni aria-describedby.
+Ubicacion: #e-1-3-1-e.
+Explicacion: tabla de datos sin caption ni descripcion asociada.
+
+E18 - 1.3.1.g - Tabla de datos sin elementos th ni atributos scope.
+Ubicacion: #e-1-3-1-g.
+Explicacion: tabla construida solo con celdas td.
+
+E19 - 1.3.1.h - Uso de etiqueta de presentacion para definir estructura.
+Ubicacion: elemento center en la seccion de listas.
+Explicacion: se usa una etiqueta de presentacion para contenido estructural.
+
+E20 - 1.3.1.i - Uso de atributo de presentacion en elemento no-tabla.
+Ubicacion: #e-1-3-1-i.
+Explicacion: div con align="center".
+
+E21 - 1.3.1.j - Control de formulario sin etiqueta ni nombre accesible.
+Ubicacion: #e-1-3-1-j.
+Explicacion: input de consulta sin label, title, aria-label ni aria-labelledby.
+
+E22 - 1.3.1.k - Tabla de maquetacion usando elementos de tabla de datos.
+Ubicacion: #e-1-3-1-k.
+Explicacion: tabla usada para maquetar con summary y th.
+
+E23 - 1.3.1.o - Lista ordenada simulada con numeros en texto.
+Ubicacion: parrafo "1. Solicitar cita...".
+Explicacion: se simula una lista ordenada con texto plano.
+
+E24 - 1.3.1.p - Lista no ordenada simulada con guiones en texto.
+Ubicacion: parrafo "- Aviso de modulo alfa...".
+Explicacion: se simula una lista de vinetas con texto plano.
+
+E25 - 1.3.1.q - Elemento de lista vacio sin li.
+Ubicacion: #e-1-3-1-q.
+Explicacion: ul vacio.
+
+E26 - 1.3.1.u - Encabezado vacio.
+Ubicacion: h2 vacio en la seccion de portada.
+Explicacion: encabezado sin texto.
+
+E27 - 1.3.5.a - Autocomplete no valido.
+Ubicacion: #e-1-3-5-a.
+Explicacion: autocomplete="nombrecompleto" no es token valido.
+
+E28 - 1.4.2 - Audio con reproduccion automatica.
+Ubicacion: #e-1-4-2.
+Explicacion: audio con atributo autoplay.
+
+E29 - 1.4.4.a - CSS con unidades absolutas para font-size.
+Ubicacion: regla body en CSS.
+Explicacion: font-size: 16px.
+
+E30 - 1.4.10.a - Sin media queries, flexbox ni grid detectados.
+Ubicacion: CSS global.
+Explicacion: el diseno usa bloques, inline-block y anchos fijos; no hay media queries, flexbox ni grid.
+
+E31 - 1.4.10.b - CSS transform que puede impedir reajuste.
+Ubicacion: #e-1-4-10-b.
+Explicacion: caja con transform: scale(0.85).
+
+E32 - 1.4.12.a - Line-height o letter-spacing fijos.
+Ubicacion: #e-1-4-12.
+Explicacion: line-height y letter-spacing fijos en CSS.
+
+E33 - 2.1.1.a - Manejador solo para raton sin equivalente de teclado.
+Ubicacion: #e-2-1-1-a.
+Explicacion: div con onclick y sin onkeydown ni control nativo.
+
+E34 - 2.2.1.a - Meta refresh con retardo 0.
+Ubicacion: iframe "Documento con refresh inmediato".
+Explicacion: documento interno con meta refresh content="0;url=about:blank".
+
+E35 - 2.2.1.b - Meta refresh con retardo no nulo.
+Ubicacion: head del documento principal.
+Explicacion: meta refresh content="3600".
+
+E36 - 2.2.2.a - Uso del elemento blink.
+Ubicacion: #e-2-2-2-a.
+Explicacion: se usa la etiqueta blink.
+
+E37 - 2.2.2.b - Uso del elemento marquee.
+Ubicacion: #e-2-2-2-b.
+Explicacion: se usa la etiqueta marquee.
+
+E38 - 2.2.2.c - CSS text-decoration: blink.
+Ubicacion: .texto-con-blink-css.
+Explicacion: regla CSS usa text-decoration: blink.
+
+E39 - 2.3.1.b - Viewport deshabilita zoom.
+Ubicacion: meta viewport.
+Explicacion: usa maximum-scale=1 y user-scalable=no.
+
+E40 - 2.4.2.a - Pagina sin title.
+Ubicacion: head del documento principal.
+Explicacion: no hay elemento title en index.html.
+
+E41 - 2.4.2.b - Titulo vacio.
+Ubicacion: iframe "Documento con titulo vacio".
+Explicacion: documento interno con title vacio.
+
+E42 - 2.4.2.c - Titulo marcador o por defecto.
+Ubicacion: iframe "Documento con titulo por defecto".
+Explicacion: documento interno con title "Untitled".
+
+E43 - 2.4.1.a - Sin mecanismo de salto de navegacion.
+Ubicacion: documento principal.
+Explicacion: no hay skip link, no hay main y no hay region ARIA principal.
+
+E44 - 2.4.4.a - Enlace sin contenido accesible.
+Ubicacion: #e-2-4-4-a.
+Explicacion: enlace vacio en la navegacion.
+
+E45 - 2.4.4.b - Mismo texto de enlace apunta a diferentes URLs.
+Ubicacion: dos enlaces "Leer mas".
+Explicacion: el mismo texto enlaza a #noticias y #tramites.
+
+E46 - 2.4.4.d - Texto de enlace demasiado largo.
+Ubicacion: enlace hacia #documento-largo.
+Explicacion: texto superior a 100 caracteres.
+
+E47 - 2.4.7.css - CSS elimina contorno de foco.
+Ubicacion: reglas :focus.
+Explicacion: se establece outline: none en enlaces, botones e inputs.
+
+E48 - 2.5.3.a - aria-label no contiene texto visible.
+Ubicacion: #e-2-5-3-a.
+Explicacion: boton visible "Guardar" con aria-label "Enviar solicitud".
+
+E49 - 2.5.8.a - Elemento interactivo menor de 24x24 px.
+Ubicacion: #e-2-5-8-a.
+Explicacion: enlace de 14x14 px.
+
+E50 - 3.1.1.a - html sin lang.
+Ubicacion: elemento html del documento principal.
+Explicacion: <html> no tiene atributo lang.
+
+E51 - 3.1.1.b - lang no valido.
+Ubicacion: iframe "Documento con idioma invalido".
+Explicacion: documento interno con lang="zz-invalido".
+
+E52 - 3.2.1.d - Enlace target=_blank.
+Ubicacion: #e-3-2-1-d.
+Explicacion: enlace externo abre nueva pestana.
+
+E53 - 3.2.2.a - Formulario sin boton de envio estandar.
+Ubicacion: #e-3-2-2-a.
+Explicacion: el formulario solo tiene boton type="button".
+
+E54 - 3.2.2.b - Select con onchange.
+Ubicacion: #e-3-2-2-b.
+Explicacion: el select cambia location.href en onchange.
+
+E55 - 3.2.5.a - Uso de meta refresh.
+Ubicacion: meta refresh del documento principal.
+Explicacion: cambio automatico no iniciado por el usuario.
+
+E56 - 3.2.5.c - target=_blank sin aviso.
+Ubicacion: #e-3-2-1-d.
+Explicacion: el texto "Portal ficticio externo" no avisa de nueva pestana.
+
+E57 - 3.3.2.a - Control de formulario sin etiqueta.
+Ubicacion: #e-1-3-1-j.
+Explicacion: input sin etiqueta visible ni programatica.
+
+E58 - 3.3.2.b - Label for apunta a id inexistente.
+Ubicacion: label for="campo-inexistente".
+Explicacion: el id referenciado por el label no existe.
+
+E59 - 4.1.2.a - Iframe sin title ni aria-label.
+Ubicacion: #e-4-1-2-a.
+Explicacion: iframe sin nombre accesible.
+
+E60 - 4.1.2.b - Boton o input tipo boton sin nombre accesible.
+Ubicacion: #e-4-1-2-b y #e-4-1-2-b2.
+Explicacion: boton vacio e input type=button con value vacio.
+
+E61 - 4.1.2.c - Accesskey no unico.
+Ubicacion: enlaces "Soporte ficticio" y "Calendario demo".
+Explicacion: ambos usan accesskey="a".
+
+E62 - 4.1.3.a - Area dinamica sin aria-live.
+Ubicacion: #estado-dinamico.
+Explicacion: el script cambia el texto de una zona dinamica sin region aria-live.
+
+E63 - 1.2.2.a - Video sin track.
+Ubicacion: #e-1-2-2-a.
+Explicacion: video sin ningun track.
+
+E64 - 1.2.2.b - Video con tracks pero sin captions/subtitles.
+Ubicacion: #e-1-2-2-b.
+Explicacion: tiene track kind=metadata, pero no captions ni subtitles.
+
+E65 - 1.2.3.a - Video sin track de descriptions.
+Ubicacion: #e-1-2-2-a y #e-1-2-2-b.
+Explicacion: no hay track kind=descriptions.
+
+E66 - 1.2.5.a - Video sin audiodescripcion nivel AA.
+Ubicacion: #e-1-2-2-a y #e-1-2-2-b.
+Explicacion: no hay track kind=descriptions.
+
+E67 - 1.3.4.a - Viewport bloquea orientacion.
+Ubicacion: meta viewport y regla @viewport.
+Explicacion: se fuerza orientation=portrait.
+
+E68 - 1.4.1.b - Input color sin etiqueta accesible.
+Ubicacion: #e-1-4-1-b.
+Explicacion: input type=color sin label.
+
+E69 - 2.1.4.a - Accesskey con caracter alfanumerico.
+Ubicacion: enlaces con accesskey="a".
+Explicacion: atajo de un unico caracter alfanumerico.
+
+E70 - 2.4.3.b - Tabindex positivo.
+Ubicacion: enlace con tabindex="4".
+Explicacion: altera el orden natural del foco.
+
+E71 - 2.4.11.a - Position fixed/sticky con z-index mayor que 0.
+Ubicacion: .barra-fija.
+Explicacion: barra fija inferior con z-index: 5.
+
+E72 - 2.4.13.a - CSS elimina outline sin indicador visible sustituto.
+Ubicacion: reglas :focus.
+Explicacion: outline: none sin alternativa visual.
+
+E73 - 2.5.4.a - Script referencia APIs de orientacion del dispositivo.
+Ubicacion: funcion revisarOrientacion().
+Explicacion: se usan DeviceOrientationEvent y screen.orientation.
+
+E74 - 2.5.7.a - Elemento draggable sin alternativa de un solo puntero.
+Ubicacion: #e-2-5-7-a.
+Explicacion: elemento draggable sin boton alternativo.
+
+E75 - 3.3.1.a - aria-invalid=true sin descripcion de error valida.
+Ubicacion: #e-3-3-1-a.
+Explicacion: campo invalido sin aria-describedby ni aria-errormessage.
+
+E76 - 3.3.8.a - CAPTCHA detectado.
+Ubicacion: campo #captcha e imagen con alt "captcha".
+Explicacion: se incluye CAPTCHA sin alternativas accesibles adicionales.
+
+Contenido correcto incluido para control:
+- Seccion "Contenido correcto de control".
+- Imagen con alt descriptivo.
+- Enlace descriptivo.
+- Lista ordenada real.
+- Tabla con caption y th con scope.
+- Campo de email con label y autocomplete valido.
+- Boton con texto visible.
