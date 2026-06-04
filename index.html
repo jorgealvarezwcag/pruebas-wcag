@@ -1,147 +1,148 @@
 <!doctype html>
-<!-- Batería de prueba A/AA WCAG 2.2: contiene errores deliberados. No usar en producción. -->
-<html> <!-- CASE E041: falta lang para SC 3.1.1 -->
+<html data-case="E001">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=1280, initial-scale=1, maximum-scale=1, user-scalable=no"> <!-- CASE E018: bloqueo de zoom y anchura fija -->
-  <title>Untitled</title> <!-- CASE E027: título de página genérico -->
+  <meta name="viewport" content="width=1024, initial-scale=1, maximum-scale=1, user-scalable=no" data-case="E002">
+  <title data-case="E003">Untitled Document</title>
   <style>
-    /* CASE E016: contraste insuficiente en texto normal */
-    .low-contrast { color: #b8b8b8; background: #ffffff; }
-    /* CASE E019: imagen de texto usada para contenido que podría ser texto real */
-    .text-image { width: 420px; height: 86px; }
-    /* CASE E021: contraste insuficiente de componentes de interfaz */
-    .ghost-input { border: 1px solid #eeeeee; color: #999; background: #fff; }
-    /* CASE E022: el espaciado de texto queda recortado al aplicar ajustes de usuario */
-    .text-spacing-hostile { height: 42px; overflow: hidden; line-height: 1; letter-spacing: 0; width: 340px; }
-    /* CASE E023: tooltip solo con hover, no persistente ni descartable */
-    .hover-only .tip { display:none; position:absolute; background:#222; color:#fff; padding:8px; }
-    .hover-only:hover .tip { display:block; }
-    /* CASE E033: se elimina el indicador de foco */
-    *:focus { outline: 0 !important; box-shadow: none !important; }
-    /* CASE E034: cabecera fija puede tapar el foco */
-    .fixed-bar { position: fixed; top:0; left:0; right:0; z-index:99; height:72px; background:#111; color:white; }
-    main { margin-top: 90px; }
-    /* CASE E040: objetivos táctiles demasiado pequeños y próximos */
-    .tiny-target { width:18px; height:18px; padding:0; margin:1px; font-size:10px; }
-    /* CASE E038: elemento arrastrable sin alternativa de un solo puntero */
-    [draggable='true'] { cursor: grab; display:inline-block; padding:8px; border:1px solid #ccc; }
-    /* CASE E015: audio se reproduce visualmente indicado como automático */
-    .autoplay-note { color:#555; }
-    /* CASE E009: secuencia visual diferente de la secuencia DOM */
-    .steps { display:flex; gap:8px; } .steps .second { order:1; } .steps .first { order:2; }
-    /* CASE E013: color como único medio de identificación */
-    .color-only .required { color:red; } .color-only .ok { color:green; }
-    /* CASE E012: bloqueo por orientación */
-    .landscape-only { display:none; } @media (orientation: portrait) { .landscape-only { display:block; position:fixed; inset:0; background:#fff; z-index:200; padding:2rem; } }
-    /* CASE E026: animación automática no pausible */
-    .marquee { white-space: nowrap; animation: slide 4s linear infinite; } @keyframes slide { from { transform:translateX(0); } to { transform:translateX(-80%); } }
-    /* CASE E028: foco visual y lectura quedan alterados por tabindex positivo */
-    .tab-demo button { margin:4px; }
-    /* CASE E024: control personalizado no operable por teclado */
-    .fake-button { display:inline-block; padding:8px 12px; background:#ddd; }
+    body { margin:0; font-family: Arial, sans-serif; font-size:14px; } /* CASE:E004 */
+    a:focus, button:focus, input:focus, select:focus, [tabindex]:focus { outline:0 !important; box-shadow:none !important; } /* CASE:E005 */
+    .fixed-toolbar { position:fixed; top:0; left:0; right:0; height:72px; z-index:50; background:#111; color:#fff; } /* CASE:E006 */
+    .sticky-help { position:sticky; top:72px; z-index:40; background:#f5f5f5; padding:8px; } /* CASE:E007 */
+    main { margin-top:92px; width:1240px; padding:16px; } /* CASE:E008 */
+    .low-contrast { color:#9a9a9a; background:#ffffff; } /* CASE:E009 */
+    .color-only .estado-error { color:#d00000; } /* CASE:E010 */
+    .tiny-target { display:inline-block; width:18px; height:18px; line-height:18px; margin:1px; font-size:10px; } /* CASE:E011 */
+    .icon-low-contrast { border:1px solid #eeeeee; background:#ffffff; color:#eeeeee; } /* CASE:E012 */
+    .clip-text { width:280px; height:38px; overflow:hidden; line-height:14px; } /* CASE:E013 */
+    .visual-order { display:flex; } /* CASE:E014 */
+    .visual-order .first { order:2; } /* CASE:E014 */
+    .visual-order .second { order:1; } /* CASE:E014 */
+    .hover-card .panel { display:none; position:absolute; width:260px; background:#fff; border:1px solid #999; } /* CASE:E015 */
+    .hover-card:hover .panel, .hover-card:focus .panel { display:block; } /* CASE:E015 */
+    .portrait-only { display:block; } @media (orientation: landscape) { .portrait-only { display:none; } } /* CASE:E016 */
+    .moving-banner { animation: slide 6s linear infinite; white-space:nowrap; } /* CASE:E017 */
+    @keyframes slide { from { transform:translateX(100%); } to { transform:translateX(-100%); } } /* CASE:E017 */
+    .text-image { width:360px; height:80px; background:url('promo-texto.png') no-repeat; } /* CASE:E018 */
   </style>
 </head>
 <body>
-  <div class="fixed-bar">Barra fija de navegación que puede cubrir el foco de los enlaces inferiores</div>
-  <div class="landscape-only">Gire el dispositivo a horizontal para continuar. No se ofrece alternativa.</div>
-  <!-- No hay enlace de salto al contenido principal. CASE E027B se mide en 2.4.1 -->
-  <nav aria-label='principal'>
-    <a href='/inicio'>Inicio</a>
-    <a href='/servicios'>Servicios</a>
-    <a href='/contacto'>Contacto</a>
-    <a href='/ayuda'>Ayuda</a>
+<header class="fixed-toolbar">
+  <nav aria-label="Principal">
+    <a href="#contenido">Inicio</a> <a href="/ayuda">Ayuda</a> <a href="/tramites">Trámites</a>
   </nav>
-  <main id='contenido'>
-    <h1>Batería A y AA para validar cobertura WCAG 2.2</h1>
-    <p>Este documento contiene errores deliberados para probar detección automática, semiautomática y manual.</p>
-    <section aria-labelledby='s1'>
-      <h2 id='s1'>1. Contenido no textual y medios temporales</h2>
-      <img data-case="E001" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120'%3E%3Crect width='240' height='120' fill='%23eee'/%3E%3Ctext x='20' y='60'%3EOferta 50%25%3C/text%3E%3C/svg%3E">
-      <input data-case="E002" type="image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='32'%3E%3Ctext x='5' y='20'%3EBuscar%3C/text%3E%3C/svg%3E">
-      <map name="mapa-servicios"><area data-case="E003" shape="rect" coords="0,0,80,80" href="/servicio-premium"></map>
-      <img usemap="#mapa-servicios" alt="Mapa de servicios" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23ddd'/%3E%3C/svg%3E">
-      <img data-case="E004" class="text-image" alt="banner" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='86'%3E%3Crect width='420' height='86' fill='%23f1f1f1'/%3E%3Ctext x='20' y='50' font-size='28'%3EPlazo de solicitud: 15 de junio%3C/text%3E%3C/svg%3E">
-      <audio data-case="E005" controls src="media/audio-instrucciones.mp3"></audio>
-      <video data-case="E006" controls src="media/video-sin-audio.mp4"></video>
-      <video data-case="E007" controls src="media/formacion.mp4"><track kind="metadata" src="media/meta.vtt" srclang="es" label="Metadatos"></video>
-      <video data-case="E011" controls data-live="true" src="media/directo.m3u8"></video>
-      <audio data-case="E015" autoplay loop src="media/musica-fondo.mp3"></audio><p class="autoplay-note">Audio ambiental automático.</p>
-    </section>
-    <section aria-labelledby='s2'>
-      <h2 id='s2'>2. Estructura, relaciones y secuencia</h2>
-      <h4 data-case="E014">Encabezado saltado directamente desde h2 a h4</h4>
-      <p data-case="E017" class="fake-heading" style="font-size:24px;font-weight:bold">Texto visualmente encabezado marcado como párrafo</p>
-      <table data-case="E025"><tr><td>Concepto</td><td>Importe</td></tr><tr><td>Cuota</td><td>120 €</td></tr></table>
-      <div data-case="E009" class="steps"><span class="first">Paso 1: pagar</span><span class="second">Paso 2: revisar</span></div>
-      <p data-case="E050">Para continuar pulse el botón rojo situado a la derecha.</p>
-      <form data-case="E013" class="color-only"><p><span class="required">*</span> Nombre</p><input name="nombre-color"><p class="ok">Completado</p></form>
-      <form data-case="E051"><input name="nombre" autocomplete="off" placeholder="Nombre"><input name="email" autocomplete="nope" placeholder="Correo"><input name="postal" autocomplete="postal" placeholder="CP"></form>
-    </section>
-    <section aria-labelledby='s3'>
-      <h2 id='s3'>3. Percepción visual, contraste y adaptación</h2>
-      <p data-case="E016" class="low-contrast">Texto informativo con contraste insuficiente.</p>
-      <input data-case="E021" class="ghost-input" value="Borde casi invisible">
-      <p data-case="E022" class="text-spacing-hostile">Este bloque queda recortado si se aumenta el interlineado, el espaciado entre letras, palabras o párrafos conforme a las pruebas de espaciado de texto.</p>
-      <div data-case="E023" class="hover-only">Más información <span class="tip">Dato crítico que solo aparece al pasar el ratón.</span></div>
-      <div data-case="E020" class="layout-fixed" style="width:1320px;border:1px solid #ccc">Contenedor rígido de 1320 px que provoca desplazamiento horizontal.</div>
-    </section>
-    <section aria-labelledby='s4'>
-      <h2 id='s4'>4. Teclado, foco, gestos y entrada</h2>
-      <div data-case="E024" class="fake-button" onclick="alert('acción')">Abrir panel</div>
-      <dialog data-case="E030" open><p>Modal abierto sin salida por teclado documentada.</p><button onclick="this.closest('dialog').close()">Cerrar con ratón</button></dialog>
-      <button data-case="E031" accesskey="s">Guardar</button>
-      <div data-case="E028" class="tab-demo"><button tabindex="3">Primero visual</button><button tabindex="1">Segundo visual</button><button tabindex="2">Tercero visual</button></div>
-      <p><a data-case="E029" href="/facturas/2026">Leer más</a> <a href="/soporte">Leer más</a></p>
-      <button data-case="E032" class="bad-label" aria-label="Enviar consulta">Buscar</button>
-      <div data-case="E035" style="height:100px;overflow:auto"><a href="#final">Enlace ocultable por barra fija</a><p style="margin-top:180px" id="final">Destino bajo la barra fija.</p></div>
-      <canvas data-case="E036" width="300" height="120" aria-label="Firme dibujando una espiral con el dedo"></canvas>
-      <button data-case="E037" onmousedown="location.href='/comprar-ahora'">Comprar ahora</button>
-      <button data-case="E039" onclick="window.addEventListener('devicemotion',()=>location.href='/confirmar')">Confirmar agitando el móvil</button>
-      <div data-case="E038"><span draggable="true">Archivo A</span><span draggable="true">Archivo B</span></div>
-      <div data-case="E040"><button class="tiny-target">x</button><button class="tiny-target">?</button><button class="tiny-target">i</button></div>
-    </section>
-    <section aria-labelledby='s5'>
-      <h2 id='s5'>5. Tiempo, movimiento y navegación</h2>
-      <div data-case="E052" id="timeout">Su sesión caducará en 20 segundos. No hay control para ampliar o desactivar el límite.</div>
-      <div data-case="E026" class="marquee">Noticias automáticas en movimiento continuo sin botón de pausa ni detener.</div>
-      <template data-case="E053"><style>.flash { animation: flash 0.1s steps(1) infinite; }</style><div class="flash">Destello no ejecutado por seguridad</div></template>
-      <nav data-case="E054" aria-label="secundaria"><a href="/a">A</a><a href="/b">B</a><a href="/c">C</a><a href="/d">D</a></nav>
-      <h2 data-case="E055">Información</h2><button>Enviar</button><button>Enviar</button>
-    </section>
-    <section aria-labelledby='s6'>
-      <h2 id='s6'>6. Comprensibilidad, cambios de contexto y ayuda</h2>
-      <p data-case="E042">Conditions générales: veuillez consulter le contrat avant paiement.</p>
-      <input data-case="E043" onfocus="location.href='/sorpresa'" value="Al recibir foco redirige">
-      <select data-case="E044" onchange="location.href=this.value"><option value="/basico">Básico</option><option value="/premium">Premium</option></select>
-      <nav data-case="E045" aria-label="principal duplicada"><a href="/contacto">Contacto</a><a href="/inicio">Inicio</a><a href="/servicios">Servicios</a></nav>
-      <button data-case="E046" aria-label="Eliminar"><span aria-hidden="true">💾</span></button><button><span aria-hidden="true">💾</span> Guardar</button>
-      <form data-case="E047"><p>Ayuda: contacte por teléfono al final.</p><input placeholder="Correo"><button>Enviar</button></form><form><input placeholder="Pedido"><button>Enviar</button><p>Ayuda: escriba al correo indicado arriba.</p></form>
-    </section>
-    <section aria-labelledby='s7'>
-      <h2 id='s7'>7. Formularios, errores y autenticación</h2>
-      <form data-case="E048" novalidate><input name="dni" class="error"><span style="color:red">*</span><button>Continuar</button></form>
-      <form data-case="E049"><input placeholder="12345"><button>Enviar</button></form>
-      <form data-case="E056"><label>Código postal <input aria-invalid="true" value="ABC"></label><p>Valor incorrecto.</p></form>
-      <form data-case="E057"><h3>Transferencia bancaria</h3><input value="12500"><button onclick="alert('enviado')">Enviar transferencia</button></form>
-      <form data-case="E058"><label>Correo <input name="email1"></label><label>Repita el correo <input name="email2"></label><label>Teléfono <input name="phone1"></label><label>Repita el teléfono <input name="phone2"></label></form>
-      <form data-case="E059"><label>Contraseña <input type="password" onpaste="return false"></label><label>Escriba la tercera y quinta letra de su frase secreta <input></label><img src="captcha.png" alt="CAPTCHA: escriba las letras de la imagen"><input></form>
-      <div data-case="E060" role="checkbox" onclick="this.setAttribute('aria-checked', this.getAttribute('aria-checked')!=='true')">Acepto condiciones</div>
-      <button data-case="E061"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M2 2h16v16H2z"/></svg></button>
-      <div data-case="E062" id="status"></div><script>document.getElementById("status").textContent="Guardado correctamente";</script>
-    </section>
-    <section aria-labelledby='s8'>
-      <h2 id='s8'>8. Controles de falsos positivos y casos límite</h2>
-      <div data-case="E063"><span id="duplicado">Texto A</span><span id="duplicado">Texto B</span></div>
-      <p data-case="E064"><img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23ccc'/%3E%3C/svg%3E"> Imagen decorativa con alt vacío correcto; no debería reportarse como fallo.</p>
-      <a data-case="E065" href="/ayuda">Ayuda</a><a href="/ayuda">Ayuda</a>
-    </section>
-  </main>
-  <script>
-    // CASE E012SCRIPT: intento de bloqueo de orientación
-    if (screen.orientation && screen.orientation.lock) { try { screen.orientation.lock('landscape'); } catch(e) {} }
-    // CASE E052SCRIPT: temporizador sin opción de ampliación
-    setTimeout(function(){ document.getElementById('timeout').textContent='Sesión caducada'; }, 20000);
-  </script>
+</header>
+<div class="sticky-help">Atención: este bloque fijo puede tapar el foco cuando se navega por teclado.</div>
+<main id="contenido">
+  <section aria-labelledby="s-imagenes">
+    <h1 id="s-imagenes">Tramitación municipal</h1>
+    <img src="foto-edificio.jpg" data-case="E019">
+    <input type="image" src="buscar.png" data-case="E020">
+    <img src="plano-sede.png" usemap="#mapa-sede" data-case="E021">
+    <map name="mapa-sede"><area shape="rect" coords="0,0,80,80" href="/ventanilla" data-case="E022"></map>
+    <img src="grafico-deudas.png" alt="grafico-deudas.png" data-case="E023">
+    <img src="organigrama-complejo.png" alt="Organigrama" data-case="E024">
+    <img src="separador.svg" alt="" data-case="C001">
+  </section>
+  <section aria-labelledby="s-media">
+    <h2 id="s-media">Multimedia</h2>
+    <audio src="aviso-importante.mp3" autoplay loop data-case="E025"></audio>
+    <video controls width="420" data-case="E026"><source src="tutorial-solicitud.mp4" type="video/mp4"></video>
+    <video controls width="420" data-case="E027"><source src="demo-formulario.mp4" type="video/mp4"><track kind="metadata" src="demo.vtt" srclang="es" label="Datos"></video>
+    <video controls width="420" data-case="E028"><source src="emision-directo.mp4" type="video/mp4"></video>
+  </section>
+  <section aria-labelledby="s-estructura">
+    <h2 id="s-estructura">Datos y estructura</h2>
+    <h4 data-case="E029">Detalle del expediente</h4>
+    <table data-case="E030"><tr><td>Concepto</td><td>Importe</td></tr><tr><td>Tasa</td><td>45 €</td></tr></table>
+    <div class="visual-order" data-case="E031"><p class="first">Paso 1: confirme el pago.</p><p class="second">Paso 2: introduzca los datos personales.</p></div>
+    <p class="color-only" data-case="E032">Los campos en <span class="estado-error">rojo</span> son obligatorios.</p>
+    <p data-case="E033">Pulse el botón situado a la derecha para continuar.</p>
+    <form id="datos-personales">
+      <input id="nombre" name="nombre" placeholder="Nombre completo" autocomplete="nombre-completo" data-case="E034">
+      <input id="dni" name="dni" placeholder="DNI" data-case="E035">
+      <input id="correo" name="correo" placeholder="Correo electrónico" autocomplete="mail" data-case="E036">
+      <input id="telefono" name="telefono" autocomplete="tel" aria-label="Teléfono" data-case="C002">
+    </form>
+  </section>
+  <section aria-labelledby="s-visual">
+    <h2 id="s-visual">Contenido visual</h2>
+    <p class="low-contrast" data-case="E037">Información importante sobre plazos y obligaciones.</p>
+    <div class="text-image" role="img" aria-label="Oferta: descuento por pronto pago" data-case="E038"></div>
+    <button class="icon-low-contrast" data-case="E039">?</button>
+    <p class="clip-text" data-case="E040">Este párrafo tiene una altura fija y recorta el contenido cuando la persona usuaria aumenta el espaciado de texto, la altura de línea, el espaciado entre letras o el margen entre párrafos.</p>
+    <div class="hover-card" tabindex="0" data-case="E041">Ayuda contextual<span class="panel">Texto de ayuda que solo aparece al pasar el puntero o al enfocar, sin mecanismo de cierre, permanencia suficiente ni forma de descartarlo.</span></div>
+    <div class="portrait-only" data-case="E042">Este servicio solo se muestra en vertical. En horizontal desaparece.</div>
+  </section>
+  <section aria-labelledby="s-teclado">
+    <h2 id="s-teclado">Interacción</h2>
+    <div onclick="document.body.classList.toggle('activo')" data-case="E043">Activar servicio</div>
+    <button onkeydown="if(event.key==='Tab'){event.preventDefault();}" data-case="E044">Abrir panel bloqueante</button>
+    <button accesskey="s" data-case="E045">Guardar con atajo</button>
+    <a href="/paso3" tabindex="3" data-case="E046">Paso 3</a>
+    <a href="/paso1" tabindex="1" data-case="E047">Paso 1</a>
+    <a href="/paso2" tabindex="2" data-case="E048">Paso 2</a>
+    <a href="/documento-uno" data-case="E049">Más información</a>
+    <a href="/documento-dos" data-case="E050">Más información</a>
+    <button onmousedown="this.textContent='Enviado';" onmouseup="alert('Solicitud enviada')" data-case="E051">Enviar ahora</button>
+    <button aria-label="Borrar solicitud" data-case="E052">Continuar</button>
+    <div draggable="true" data-case="E053">Arrastre este trámite a la columna finalizado</div>
+    <canvas width="300" height="120" onpointermove="if(event.buttons){this.dataset.firma='ok'}" data-case="E054"></canvas>
+    <a href="/cerrar" class="tiny-target" data-case="E055">x</a><a href="/editar" class="tiny-target" data-case="E056">e</a>
+  </section>
+  <section aria-labelledby="s-tiempo">
+    <h2 id="s-tiempo">Tiempo y movimiento</h2>
+    <p data-case="E057">La sesión caduca en <span id="contador">30</span> segundos y no existe opción para ampliar el tiempo.</p>
+    <div class="moving-banner" data-case="E058">Noticias de servicio desplazándose automáticamente sin botón de pausa.</div>
+    <template data-case="E059"><style>.flash-risk { animation: flashRisk .1s infinite; } @keyframes flashRisk { 0%,49%{background:#fff} 50%,100%{background:#000} }</style></template>
+  </section>
+  <section aria-labelledby="s-navegacion">
+    <h2 id="s-navegacion">Navegación y ayuda</h2>
+    <p data-case="E060">No existe enlace para saltar bloques repetidos antes del menú superior.</p>
+    <h2 data-case="E061">Otros</h2>
+    <nav data-case="E062"><a href="/uno">Inicio</a><a href="/dos">Trámites</a><a href="/tres">Contacto</a></nav>
+    <nav data-case="E063"><a href="/dos">Trámites</a><a href="/uno">Inicio</a><a href="/tres">Contacto</a></nav>
+    <button aria-label="descargar" data-case="E064">?</button><button aria-label="borrar" data-case="E065">?</button>
+    <p class="ayuda-arriba" data-case="E066">Ayuda al principio en esta sección.</p>
+    <p style="margin-top:80px" data-case="E067">Ayuda al final en este otro proceso.</p>
+  </section>
+  <section aria-labelledby="s-contexto">
+    <h2 id="s-contexto">Cambios de contexto</h2>
+    <input onfocus="location.href='/cambio-por-foco'" value="Enfocar produce navegación" data-case="E068">
+    <select onchange="location.href=this.value" data-case="E069"><option value="/normal">Seleccione</option><option value="/pago">Pago</option></select>
+    <a href="https://ejemplo.invalid" target="_blank" data-case="E070">Consultar trámite externo</a>
+  </section>
+  <section aria-labelledby="s-idioma">
+    <h2 id="s-idioma">Idioma</h2>
+    <p data-case="E071">Your appointment has been cancelled because the payment was rejected.</p>
+  </section>
+  <section aria-labelledby="s-errores">
+    <h2 id="s-errores">Formularios y errores</h2>
+    <form id="pago">
+      <input name="importe" value="1000" aria-invalid="true" data-case="E072">
+      <p class="estado-error" data-case="E073">Error</p>
+      <input name="email1" placeholder="Correo" data-case="E074">
+      <input name="email2" placeholder="Repita el correo" data-case="E075">
+      <label for="cuenta">Cuenta destino</label><input id="cuenta" name="cuenta" value="ES00 0000 0000 0000" data-case="E076">
+      <button onclick="fetch('/transferir')" data-case="E077">Confirmar transferencia irreversible</button>
+      <p data-case="E078">Resuelva el CAPTCHA: <img src="captcha-texto.png" alt="CAPTCHA 7G4K"></p>
+      <input onpaste="return false" oncopy="return false" autocomplete="off" placeholder="Código recibido" data-case="E079">
+      <button type="submit" data-case="E080"></button>
+    </form>
+  </section>
+  <section aria-labelledby="s-aria">
+    <h2 id="s-aria">ARIA y estados</h2>
+    <div role="checkbox" tabindex="0" data-case="E081">Acepto condiciones</div>
+    <button onclick="document.getElementById('estado').textContent='Guardado'" data-case="E082">Guardar</button>
+    <div id="estado" data-case="E083"></div>
+    <button aria-label="Descargar justificante" data-case="C003">Descargar justificante</button>
+    <img src="decoracion.svg" alt="" role="presentation" data-case="C004">
+    <a href="https://ejemplo.invalid" target="_blank" title="abre en nueva pestaña" data-case="C005">Abrir normativa en nueva pestaña</a>
+  </section>
+</main>
+<script>
+  window.addEventListener('deviceorientation', function(e){ document.body.dataset.giro = e.alpha; }); /* CASE:E084 */
+  setInterval(function(){ var c=document.getElementById('contador'); if(c){ c.textContent = Math.max(0, parseInt(c.textContent,10)-1); } }, 1000); /* CASE:E057 */
+</script>
 </body>
 </html>
