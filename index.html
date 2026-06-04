@@ -1,148 +1,227 @@
 <!doctype html>
-<html data-case="E001">
+<html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=1024, initial-scale=1, maximum-scale=1, user-scalable=no" data-case="E002">
-  <title data-case="E003">Untitled Document</title>
+  <!-- B3-003: viewport que bloquea el zoom -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- B3-002: título genérico -->
+  <title>Untitled</title>
   <style>
-    body { margin:0; font-family: Arial, sans-serif; font-size:14px; } /* CASE:E004 */
-    a:focus, button:focus, input:focus, select:focus, [tabindex]:focus { outline:0 !important; box-shadow:none !important; } /* CASE:E005 */
-    .fixed-toolbar { position:fixed; top:0; left:0; right:0; height:72px; z-index:50; background:#111; color:#fff; } /* CASE:E006 */
-    .sticky-help { position:sticky; top:72px; z-index:40; background:#f5f5f5; padding:8px; } /* CASE:E007 */
-    main { margin-top:92px; width:1240px; padding:16px; } /* CASE:E008 */
-    .low-contrast { color:#9a9a9a; background:#ffffff; } /* CASE:E009 */
-    .color-only .estado-error { color:#d00000; } /* CASE:E010 */
-    .tiny-target { display:inline-block; width:18px; height:18px; line-height:18px; margin:1px; font-size:10px; } /* CASE:E011 */
-    .icon-low-contrast { border:1px solid #eeeeee; background:#ffffff; color:#eeeeee; } /* CASE:E012 */
-    .clip-text { width:280px; height:38px; overflow:hidden; line-height:14px; } /* CASE:E013 */
-    .visual-order { display:flex; } /* CASE:E014 */
-    .visual-order .first { order:2; } /* CASE:E014 */
-    .visual-order .second { order:1; } /* CASE:E014 */
-    .hover-card .panel { display:none; position:absolute; width:260px; background:#fff; border:1px solid #999; } /* CASE:E015 */
-    .hover-card:hover .panel, .hover-card:focus .panel { display:block; } /* CASE:E015 */
-    .portrait-only { display:block; } @media (orientation: landscape) { .portrait-only { display:none; } } /* CASE:E016 */
-    .moving-banner { animation: slide 6s linear infinite; white-space:nowrap; } /* CASE:E017 */
-    @keyframes slide { from { transform:translateX(100%); } to { transform:translateX(-100%); } } /* CASE:E017 */
-    .text-image { width:360px; height:80px; background:url('promo-texto.png') no-repeat; } /* CASE:E018 */
+  <!-- B3-004: tamaño de fuente absoluto -->
+    body { font-family: Arial, sans-serif; font-size: 13px; margin: 0; }
+  <!-- B3-005: foco eliminado -->
+    a:focus, button:focus, input:focus, select:focus, [tabindex]:focus { outline: 0; box-shadow: none; }
+  <!-- B3-071: foco visible insuficiente por color idéntico -->
+    .pseudo-foco:focus { border: 2px solid #ffffff; background: #ffffff; }
+  <!-- B3-006: cabecera fija que puede ocultar foco -->
+    .topbar { position: fixed; top: 0; left: 0; right: 0; height: 72px; z-index: 9999; background: #fff; border-bottom: 1px solid #eee; }
+  <!-- B3-072: banner fijo inferior que puede ocultar foco -->
+    .cookie { position: fixed; bottom: 0; left: 0; right: 0; height: 92px; z-index: 9998; background: #f7f7f7; }
+  <!-- B3-007: contenedor de ancho fijo -->
+    .page { width: 1240px; margin-top: 88px; padding: 16px; }
+  <!-- B3-008: contraste bajo en texto -->
+    .muted { color: #b8b8b8; background: #ffffff; }
+  <!-- B3-069: contraste bajo en enlaces -->
+    .low-link { color: #c7d7ff; background: #ffffff; }
+  <!-- B3-009: contraste no textual insuficiente -->
+    .custom-check { width: 22px; height: 22px; border: 1px solid #d9d9d9; display:inline-block; }
+  <!-- B3-010: espaciado de texto bloqueado por altura fija -->
+    .clipped-text { height: 30px; overflow: hidden; line-height: 14px; width: 260px; }
+  <!-- B3-011: contenido solo al pasar puntero -->
+    .hover-tip .tip { display:none; position:absolute; background:#fff; border:1px solid #ddd; padding:4px; } .hover-tip:hover .tip { display:block; }
+  <!-- B3-028: orden CSS distinto del DOM -->
+    .steps { display:flex; } .step-one { order: 3; } .step-two { order: 1; } .step-three { order: 2; }
+  <!-- B3-037: animación sin pausa -->
+    .ticker { animation: scroll 4s linear infinite; white-space: nowrap; } @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-200px); } }
+  <!-- B3-049: objetivo táctil pequeño -->
+    .tiny { width: 18px; height: 18px; display:inline-block; padding:0; margin:0; }
+  <!-- B3-073: botón de cierre diminuto -->
+    .close-mini { width: 16px; height: 16px; padding: 0; font-size: 10px; }
   </style>
 </head>
 <body>
-<header class="fixed-toolbar">
-  <nav aria-label="Principal">
-    <a href="#contenido">Inicio</a> <a href="/ayuda">Ayuda</a> <a href="/tramites">Trámites</a>
-  </nav>
-</header>
-<div class="sticky-help">Atención: este bloque fijo puede tapar el foco cuando se navega por teclado.</div>
-<main id="contenido">
-  <section aria-labelledby="s-imagenes">
-    <h1 id="s-imagenes">Tramitación municipal</h1>
-    <img src="foto-edificio.jpg" data-case="E019">
-    <input type="image" src="buscar.png" data-case="E020">
-    <img src="plano-sede.png" usemap="#mapa-sede" data-case="E021">
-    <map name="mapa-sede"><area shape="rect" coords="0,0,80,80" href="/ventanilla" data-case="E022"></map>
-    <img src="grafico-deudas.png" alt="grafico-deudas.png" data-case="E023">
-    <img src="organigrama-complejo.png" alt="Organigrama" data-case="E024">
-    <img src="separador.svg" alt="" data-case="C001">
-  </section>
-  <section aria-labelledby="s-media">
-    <h2 id="s-media">Multimedia</h2>
-    <audio src="aviso-importante.mp3" autoplay loop data-case="E025"></audio>
-    <video controls width="420" data-case="E026"><source src="tutorial-solicitud.mp4" type="video/mp4"></video>
-    <video controls width="420" data-case="E027"><source src="demo-formulario.mp4" type="video/mp4"><track kind="metadata" src="demo.vtt" srclang="es" label="Datos"></video>
-    <video controls width="420" data-case="E028"><source src="emision-directo.mp4" type="video/mp4"></video>
-  </section>
-  <section aria-labelledby="s-estructura">
-    <h2 id="s-estructura">Datos y estructura</h2>
-    <h4 data-case="E029">Detalle del expediente</h4>
-    <table data-case="E030"><tr><td>Concepto</td><td>Importe</td></tr><tr><td>Tasa</td><td>45 €</td></tr></table>
-    <div class="visual-order" data-case="E031"><p class="first">Paso 1: confirme el pago.</p><p class="second">Paso 2: introduzca los datos personales.</p></div>
-    <p class="color-only" data-case="E032">Los campos en <span class="estado-error">rojo</span> son obligatorios.</p>
-    <p data-case="E033">Pulse el botón situado a la derecha para continuar.</p>
-    <form id="datos-personales">
-      <input id="nombre" name="nombre" placeholder="Nombre completo" autocomplete="nombre-completo" data-case="E034">
-      <input id="dni" name="dni" placeholder="DNI" data-case="E035">
-      <input id="correo" name="correo" placeholder="Correo electrónico" autocomplete="mail" data-case="E036">
-      <input id="telefono" name="telefono" autocomplete="tel" aria-label="Teléfono" data-case="C002">
-    </form>
-  </section>
-  <section aria-labelledby="s-visual">
-    <h2 id="s-visual">Contenido visual</h2>
-    <p class="low-contrast" data-case="E037">Información importante sobre plazos y obligaciones.</p>
-    <div class="text-image" role="img" aria-label="Oferta: descuento por pronto pago" data-case="E038"></div>
-    <button class="icon-low-contrast" data-case="E039">?</button>
-    <p class="clip-text" data-case="E040">Este párrafo tiene una altura fija y recorta el contenido cuando la persona usuaria aumenta el espaciado de texto, la altura de línea, el espaciado entre letras o el margen entre párrafos.</p>
-    <div class="hover-card" tabindex="0" data-case="E041">Ayuda contextual<span class="panel">Texto de ayuda que solo aparece al pasar el puntero o al enfocar, sin mecanismo de cierre, permanencia suficiente ni forma de descartarlo.</span></div>
-    <div class="portrait-only" data-case="E042">Este servicio solo se muestra en vertical. En horizontal desaparece.</div>
-  </section>
-  <section aria-labelledby="s-teclado">
-    <h2 id="s-teclado">Interacción</h2>
-    <div onclick="document.body.classList.toggle('activo')" data-case="E043">Activar servicio</div>
-    <button onkeydown="if(event.key==='Tab'){event.preventDefault();}" data-case="E044">Abrir panel bloqueante</button>
-    <button accesskey="s" data-case="E045">Guardar con atajo</button>
-    <a href="/paso3" tabindex="3" data-case="E046">Paso 3</a>
-    <a href="/paso1" tabindex="1" data-case="E047">Paso 1</a>
-    <a href="/paso2" tabindex="2" data-case="E048">Paso 2</a>
-    <a href="/documento-uno" data-case="E049">Más información</a>
-    <a href="/documento-dos" data-case="E050">Más información</a>
-    <button onmousedown="this.textContent='Enviado';" onmouseup="alert('Solicitud enviada')" data-case="E051">Enviar ahora</button>
-    <button aria-label="Borrar solicitud" data-case="E052">Continuar</button>
-    <div draggable="true" data-case="E053">Arrastre este trámite a la columna finalizado</div>
-    <canvas width="300" height="120" onpointermove="if(event.buttons){this.dataset.firma='ok'}" data-case="E054"></canvas>
-    <a href="/cerrar" class="tiny-target" data-case="E055">x</a><a href="/editar" class="tiny-target" data-case="E056">e</a>
-  </section>
-  <section aria-labelledby="s-tiempo">
-    <h2 id="s-tiempo">Tiempo y movimiento</h2>
-    <p data-case="E057">La sesión caduca en <span id="contador">30</span> segundos y no existe opción para ampliar el tiempo.</p>
-    <div class="moving-banner" data-case="E058">Noticias de servicio desplazándose automáticamente sin botón de pausa.</div>
-    <template data-case="E059"><style>.flash-risk { animation: flashRisk .1s infinite; } @keyframes flashRisk { 0%,49%{background:#fff} 50%,100%{background:#000} }</style></template>
-  </section>
-  <section aria-labelledby="s-navegacion">
-    <h2 id="s-navegacion">Navegación y ayuda</h2>
-    <p data-case="E060">No existe enlace para saltar bloques repetidos antes del menú superior.</p>
-    <h2 data-case="E061">Otros</h2>
-    <nav data-case="E062"><a href="/uno">Inicio</a><a href="/dos">Trámites</a><a href="/tres">Contacto</a></nav>
-    <nav data-case="E063"><a href="/dos">Trámites</a><a href="/uno">Inicio</a><a href="/tres">Contacto</a></nav>
-    <button aria-label="descargar" data-case="E064">?</button><button aria-label="borrar" data-case="E065">?</button>
-    <p class="ayuda-arriba" data-case="E066">Ayuda al principio en esta sección.</p>
-    <p style="margin-top:80px" data-case="E067">Ayuda al final en este otro proceso.</p>
-  </section>
-  <section aria-labelledby="s-contexto">
-    <h2 id="s-contexto">Cambios de contexto</h2>
-    <input onfocus="location.href='/cambio-por-foco'" value="Enfocar produce navegación" data-case="E068">
-    <select onchange="location.href=this.value" data-case="E069"><option value="/normal">Seleccione</option><option value="/pago">Pago</option></select>
-    <a href="https://ejemplo.invalid" target="_blank" data-case="E070">Consultar trámite externo</a>
-  </section>
-  <section aria-labelledby="s-idioma">
-    <h2 id="s-idioma">Idioma</h2>
-    <p data-case="E071">Your appointment has been cancelled because the payment was rejected.</p>
-  </section>
-  <section aria-labelledby="s-errores">
-    <h2 id="s-errores">Formularios y errores</h2>
-    <form id="pago">
-      <input name="importe" value="1000" aria-invalid="true" data-case="E072">
-      <p class="estado-error" data-case="E073">Error</p>
-      <input name="email1" placeholder="Correo" data-case="E074">
-      <input name="email2" placeholder="Repita el correo" data-case="E075">
-      <label for="cuenta">Cuenta destino</label><input id="cuenta" name="cuenta" value="ES00 0000 0000 0000" data-case="E076">
-      <button onclick="fetch('/transferir')" data-case="E077">Confirmar transferencia irreversible</button>
-      <p data-case="E078">Resuelva el CAPTCHA: <img src="captcha-texto.png" alt="CAPTCHA 7G4K"></p>
-      <input onpaste="return false" oncopy="return false" autocomplete="off" placeholder="Código recibido" data-case="E079">
-      <button type="submit" data-case="E080"></button>
-    </form>
-  </section>
-  <section aria-labelledby="s-aria">
-    <h2 id="s-aria">ARIA y estados</h2>
-    <div role="checkbox" tabindex="0" data-case="E081">Acepto condiciones</div>
-    <button onclick="document.getElementById('estado').textContent='Guardado'" data-case="E082">Guardar</button>
-    <div id="estado" data-case="E083"></div>
-    <button aria-label="Descargar justificante" data-case="C003">Descargar justificante</button>
-    <img src="decoracion.svg" alt="" role="presentation" data-case="C004">
-    <a href="https://ejemplo.invalid" target="_blank" title="abre en nueva pestaña" data-case="C005">Abrir normativa en nueva pestaña</a>
-  </section>
-</main>
-<script>
-  window.addEventListener('deviceorientation', function(e){ document.body.dataset.giro = e.alpha; }); /* CASE:E084 */
-  setInterval(function(){ var c=document.getElementById('contador'); if(c){ c.textContent = Math.max(0, parseInt(c.textContent,10)-1); } }, 1000); /* CASE:E057 */
-</script>
+  <header class="topbar">
+    <nav>
+      <a href="/inicio">Inicio</a>
+      <a href="/tramites">Trámites</a>
+      <a href="/ayuda">Ayuda</a>
+    </nav>
+  </header>
+  <main id="contenido" class="page">
+    <h1>Portal de pruebas de accesibilidad</h1>
+  <!-- B3-039: sin enlace para saltar bloques repetidos -->
+    <p class="muted">La página empieza tras una navegación fija extensa y no ofrece un mecanismo para omitirla.</p>
+    <section aria-labelledby="imagenes">
+      <h2 id="imagenes">Contenido no textual</h2>
+  <!-- B3-012: imagen sin alt -->
+      <img src="grafico-ventas-q4.png">
+  <!-- B3-013: alt sospechoso con nombre de fichero -->
+      <img src="organigrama.png" alt="organigrama.png">
+  <!-- B3-014: input image sin alt -->
+      <form action="/buscar-imagen" method="post"><input type="image" src="boton-buscar.png"></form>
+  <!-- B3-015: área de mapa sin alt -->
+      <img src="mapa-sede.png" alt="Mapa de la sede" usemap="#mapa-sede"><map name="mapa-sede"><area shape="rect" coords="0,0,80,80" href="/planta1"></map>
+  <!-- B3-016: canvas sin alternativa -->
+      <canvas id="graficaCanvas" width="320" height="160"></canvas>
+  <!-- B3-066: svg con rol de imagen sin nombre accesible -->
+      <svg role="img" width="120" height="60"><rect width="120" height="60"></rect></svg>
+  <!-- B3-017: imagen de texto -->
+      <img src="telefono-soporte.png" alt="Llame al 900 000 000 para asistencia prioritaria">
+    </section>
+    <section aria-labelledby="media">
+      <h2 id="media">Multimedia</h2>
+  <!-- B3-018: audio pregrabado sin transcripción -->
+      <audio controls src="entrevista-direccion.mp3"></audio>
+  <!-- B3-019: audio automático sin control de pausa -->
+      <audio src="aviso-automatico.mp3" autoplay loop></audio>
+  <!-- B3-020: vídeo pregrabado sin pistas -->
+      <video controls src="demo-producto.mp4"></video>
+  <!-- B3-021: vídeo sin alternativa de medios ni audiodescripción -->
+      <video controls src="tour-oficina.mp4"><track kind="captions" src="tour.vtt" srclang="es" label="Español"></video>
+  <!-- B3-022: vídeo sin audiodescripción nivel AA -->
+      <video controls src="proceso-visual.mp4"><track kind="subtitles" src="proceso.vtt" srclang="es" label="Español"></video>
+  <!-- B3-023: directo sin subtítulos en directo -->
+      <video controls data-live="true" src="stream-reunion.m3u8"></video>
+    </section>
+    <section aria-labelledby="estructura">
+      <h2 id="estructura">Estructura e información</h2>
+  <!-- B3-024: salto de nivel en encabezados -->
+      <h4>Detalle operativo sin h3 previo</h4>
+  <!-- B3-027: lista visual sin semántica -->
+      <div class="lista-falsa"><div>• Paso uno</div><div>• Paso dos</div><div>• Paso tres</div></div>
+  <!-- B3-026: tabla de datos sin encabezados -->
+      <table><tr><td>Producto</td><td>Coste</td></tr><tr><td>Plan A</td><td>900 €</td></tr></table>
+  <!-- B3-067: fieldset sin legend -->
+      <fieldset><input type="radio" name="canal" value="email"> Correo <input type="radio" name="canal" value="sms"> SMS</fieldset>
+  <!-- B3-028: secuencia significativa alterada -->
+      <ol class="steps"><li class="step-one">1. Confirmar</li><li class="step-two">2. Introducir datos</li><li class="step-three">3. Revisar</li></ol>
+  <!-- B3-029: instrucciones por color y posición -->
+      <p>Pulse el botón verde situado a la derecha para continuar.</p><button style="background:green">Continuar</button><button style="background:gray">Cancelar</button>
+  <!-- B3-030: bloqueo por orientación -->
+      <p id="orientacion">Para usar esta sección gire el dispositivo a horizontal.</p>
+  <!-- B3-032: color como único medio -->
+      <p>Los expedientes en rojo están bloqueados y los verdes aprobados.</p><span style="color:red">EXP-22</span> <span style="color:green">EXP-23</span>
+    </section>
+    <section aria-labelledby="visual">
+      <h2 id="visual">Presentación visual</h2>
+      <p class="muted">Texto informativo con contraste deliberadamente bajo.</p>
+      <a class="low-link" href="/politica">Política de privacidad</a>
+      <span class="custom-check" aria-hidden="true"></span> Acepto condiciones
+      <p class="clipped-text">Este párrafo se corta si se aplica espaciado de texto aumentado, porque su caja tiene una altura fija y oculta el desbordamiento.</p>
+      <span class="hover-tip">Ayuda<span class="tip">Detalle que desaparece al mover el puntero y no se puede cerrar con teclado.</span></span>
+    </section>
+    <section aria-labelledby="teclado">
+      <h2 id="teclado">Operabilidad por teclado</h2>
+  <!-- B3-033: div clicable sin teclado -->
+      <div onclick="alert('acción')" class="card">Abrir expediente</div>
+  <!-- B3-077: menú simulado por ratón -->
+      <div class="fake-select" onmouseover="this.querySelector('ul').style.display='block'">Servicios<ul style="display:none"><li>Alta</li><li>Baja</li></ul></div>
+  <!-- B3-034: trampa de foco simulada -->
+      <div role="dialog" aria-modal="true" onkeydown="if(event.key==='Tab'){event.preventDefault()}"><button>Cerrar</button><input value="foco atrapado"></div>
+  <!-- B3-035: accesskey de carácter único -->
+      <button accesskey="s">Guardar solicitud</button>
+  <!-- B3-040: tabindex positivo -->
+      <a href="/tercero" tabindex="3">Tercero en foco forzado</a> <a href="/primero" tabindex="1">Primero forzado</a>
+    </section>
+    <section aria-labelledby="tiempo">
+      <h2 id="tiempo">Tiempo y movimiento</h2>
+  <!-- B3-036: temporizador sin ajuste -->
+      <p id="sesion" data-timeout="120">La sesión caducará automáticamente en 2 minutos sin opción de ampliar.</p>
+      <div class="ticker">Noticias corporativas en movimiento continuo sin pausa ni ocultación.</div>
+  <!-- B3-038: destello no ejecutable documentado -->
+      <template id="flash-test"><div style="animation: flashUnsafe .2s infinite">destellos</div></template>
+    </section>
+    <section aria-labelledby="navegacion">
+      <h2 id="navegacion">Navegación y foco</h2>
+  <!-- B3-041: mismo texto de enlace a destinos distintos -->
+      <a href="/producto/a">Más información</a> <a href="/legal">Más información</a>
+  <!-- B3-070: enlace iconográfico sin nombre -->
+      <a href="/configuracion"><span aria-hidden="true">⚙</span></a>
+  <!-- B3-042: única vía de localización -->
+      <p>No existe buscador, índice ni mapa del sitio; el contenido solo se alcanza siguiendo enlaces desde esta página.</p>
+  <!-- B3-043: encabezado y etiqueta ambigua -->
+      <h2>Datos</h2><label for="dato1">Dato</label><input id="dato1">
+    </section>
+    <section aria-labelledby="puntero">
+      <h2 id="puntero">Entrada de puntero</h2>
+  <!-- B3-044: gesto multipunto sin alternativa -->
+      <div id="zoomMapa" data-gesture="pinch-only">Amplíe el mapa con dos dedos para continuar.</div>
+  <!-- B3-045: acción en mousedown -->
+      <button onmousedown="document.body.dataset.comprado='true'">Comprar ahora</button>
+  <!-- B3-046: label visible no incluido en nombre accesible -->
+      <button aria-label="Enviar">Comprar</button>
+  <!-- B3-047: activación por movimiento -->
+      <script>window.addEventListener("devicemotion", function(){ document.body.classList.add("confirmado"); });</script>
+  <!-- B3-048: arrastre sin alternativa -->
+      <div draggable="true" class="tarjeta">Arrastre esta tarjeta a la columna aprobada</div>
+      <button class="tiny">?</button>
+      <button class="close-mini" aria-label="Cerrar aviso">x</button>
+    </section>
+    <section aria-labelledby="idioma-contexto">
+      <h2 id="idioma-contexto">Idioma y cambios de contexto</h2>
+  <!-- B3-050: cambio de idioma sin lang -->
+      <p>La política termina con la frase: veuillez confirmer votre identité.</p>
+  <!-- B3-051: cambio al recibir foco -->
+      <input onfocus="location.href='/salida-foco'" value="recibe foco y navega">
+  <!-- B3-052: cambio al modificar select -->
+      <select onchange="location.href=this.value"><option value="/uno">Opción 1</option><option value="/dos">Opción 2</option></select>
+  <!-- B3-053: navegación inconsistente -->
+      <nav aria-label="secundaria"><a href="/ayuda">Ayuda</a><a href="/inicio">Inicio</a><a href="/tramites">Trámites</a></nav>
+  <!-- B3-054: misma identificación para funciones distintas -->
+      <button aria-label="estrella">★</button><button aria-label="estrella">★</button>
+  <!-- B3-055: ayuda no coherente -->
+      <p>En esta pantalla la ayuda aparece solo como enlace final, no en la misma posición que en el resto del flujo.</p><a href="/soporte">Soporte</a>
+    </section>
+    <section aria-labelledby="formularios">
+      <h2 id="formularios">Formularios y errores</h2>
+      <form action="/alta" method="post">
+  <!-- B3-025: control sin etiqueta -->
+        <input type="text" name="nombre_sin_label">
+  <!-- B3-031: autocomplete inexistente en dato personal -->
+        <label for="tel">Teléfono</label><input id="tel" name="telefono" autocomplete="telefono-personal">
+  <!-- B3-075: autocomplete inválido en tarjeta -->
+        <label for="cc">Tarjeta</label><input id="cc" name="tarjeta" autocomplete="credit-number">
+  <!-- B3-057: placeholder como única etiqueta -->
+        <input name="codigo_postal" placeholder="Código postal">
+  <!-- B3-068: campo obligatorio indicado solo por asterisco -->
+        <label for="email">Correo *</label><input id="email" name="email">
+  <!-- B3-056: error identificado solo por color -->
+        <label for="nif">NIF</label><input id="nif" style="border:3px solid red"><span style="color:red">*</span>
+  <!-- B3-076: aria-invalid sin mensaje vinculado -->
+        <label for="iban">IBAN</label><input id="iban" aria-invalid="true">
+  <!-- B3-058: error sin sugerencia -->
+        <p id="errorcp">El código postal es incorrecto.</p>
+  <!-- B3-060: entrada redundante -->
+        <label for="email2">Repita el correo electrónico</label><input id="email2" name="email2">
+  <!-- B3-074: bloqueo de pegado -->
+        <label for="clave">Clave recibida</label><input id="clave" onpaste="return false">
+  <!-- B3-061: autenticación cognitiva sin alternativa -->
+        <label for="captcha">Escriba los caracteres distorsionados de la imagen</label><img src="captcha-b3.png" alt="captcha"><input id="captcha" name="captcha">
+  <!-- B3-059: operación financiera sin revisión -->
+        <button formaction="/transferir-ahora">Transferir 4.500 € sin revisión</button>
+      </form>
+    </section>
+    <section aria-labelledby="robusto">
+      <h2 id="robusto">Robustez y ARIA</h2>
+  <!-- B3-062: checkbox ARIA sin estado -->
+      <div role="checkbox" tabindex="0">Acepto</div>
+  <!-- B3-063: aria-labelledby roto -->
+      <input type="text" aria-labelledby="id-inexistente">
+  <!-- B3-064: botón sin nombre accesible -->
+      <button><span aria-hidden="true">▶</span></button>
+  <!-- B3-065: mensaje de estado sin aria-live -->
+      <div id="resultado-dinamico"></div><script>document.getElementById("resultado-dinamico").textContent = "Solicitud guardada";</script>
+    </section>
+    <section aria-labelledby="controles-correctos">
+      <h2 id="controles-correctos">Controles correctos para falsos positivos</h2>
+      <img src="separador.png" alt="" role="presentation">
+      <label for="ok-nombre">Nombre completo</label><input id="ok-nombre" autocomplete="name">
+      <button aria-label="Cerrar panel"><span aria-hidden="true">×</span></button>
+      <div role="status" aria-live="polite">Guardado correctamente</div>
+      <video controls src="video-ok.mp4"><track kind="captions" src="ok.vtt" srclang="es" label="Español"></video>
+      <a href="/zona-amplia" style="display:inline-block; min-width:44px; min-height:44px">Área amplia</a>
+    </section>
+  </main>
+  <div class="cookie"><button>Aceptar</button><a href="#contenido">Ir al contenido tapado por el banner</a></div>
 </body>
 </html>
