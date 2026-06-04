@@ -1,447 +1,147 @@
 <!doctype html>
-<html lang="en">
+<!-- Batería de prueba A/AA WCAG 2.2: contiene errores deliberados. No usar en producción. -->
+<html> <!-- CASE E041: falta lang para SC 3.1.1 -->
 <head>
   <meta charset="utf-8">
-  <title>Página</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=1280, initial-scale=1, maximum-scale=1, user-scalable=no"> <!-- CASE E018: bloqueo de zoom y anchura fija -->
+  <title>Untitled</title> <!-- CASE E027: título de página genérico -->
   <style>
-    /*
-      Demostración deliberadamente NO conforme con WCAG 2.2 nivel A/AA.
-      No debe utilizarse como plantilla de producción.
-    */
-    *:focus { outline: none !important; } /* 2.4.7 */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #777;
-    }
-    .cabecera-fija {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      height: 92px;
-      background: #222;
-      color: white;
-      padding: 8px 16px;
-    }
-    .cabecera-fija a { color: #aaa; margin-right: 18px; }
-    .ancho-fijo {
-      min-width: 1280px; /* 1.4.10 */
-      padding: 16px;
-    }
-    .texto-bajo-contraste {
-      color: #cfcfcf; /* 1.4.3 */
-      background: #fff;
-    }
-    .control-bajo-contraste {
-      border: 1px solid #dddddd; /* 1.4.11 */
-      color: #d8d8d8;
-      background: #f7f7f7;
-    }
-    .borde-input {
-      border: 1px solid #e5e5e5; /* 1.4.11 */
-      padding: 6px;
-    }
-    .contenedor-fijo {
-      height: 40px; /* 1.4.4 */
-      overflow: hidden;
-      width: 300px;
-      border: 1px solid #ccc;
-    }
-    .texto-recortado {
-      height: 1.1em; /* 1.4.12 */
-      overflow: hidden;
-      width: 260px;
-      border: 1px dashed #aaa;
-    }
-    .tooltip-inaccesible .tooltip {
-      display: none;
-      position: absolute;
-      background: #333;
-      color: #fff;
-      width: 220px;
-      padding: 8px;
-      margin-top: -44px;
-      margin-left: 100px;
-    }
-    .tooltip-inaccesible:hover .tooltip { display: block; } /* 1.4.13 */
-    .marquesina {
-      white-space: nowrap;
-      overflow: hidden;
-      width: 380px;
-      border: 1px solid #ccc;
-    }
-    .marquesina span {
-      display: inline-block;
-      animation: mover 6s linear infinite; /* 2.2.2 */
-    }
-    @keyframes mover {
-      from { transform: translateX(100%); }
-      to { transform: translateX(-100%); }
-    }
-    .carrusel-auto {
-      width: 280px;
-      height: 80px;
-      overflow: hidden;
-      border: 1px solid #ccc;
-    }
-    .carrusel-auto div {
-      animation: subir 5s linear infinite; /* 2.2.2 */
-    }
-    @keyframes subir {
-      from { transform: translateY(0); }
-      to { transform: translateY(-160px); }
-    }
-    .tabla-falsa {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      width: 520px;
-      border: 1px solid #ccc;
-    }
-    .tabla-falsa div {
-      padding: 6px;
-      border: 1px solid #ddd;
-    }
-    #secuencia-alterada {
-      display: flex;
-      flex-direction: column;
-      width: 360px;
-      border: 1px solid #ccc;
-    }
-    #secuencia-alterada .paso3 { order: 1; }
-    #secuencia-alterada .paso1 { order: 2; }
-    #secuencia-alterada .paso2 { order: 3; }
-    .bloqueo-orientacion {
-      padding: 16px;
-      border: 2px solid #b00;
-      background: #fee;
-    }
-    @media (orientation: portrait) {
-      main { display: none; }
-      .solo-horizontal::before {
-        content: "Gire el dispositivo para continuar.";
-        display: block;
-        padding: 40px;
-        background: #fff4f4;
-        color: #990000;
-      }
-    }
-    .error-color-only {
-      border: 2px solid red; /* 1.4.1 y 3.3.1 */
-    }
-    .icon-only {
-      width: 26px;
-      height: 26px;
-    }
-    .objetivo-pequeno {
-      width: 16px;
-      height: 16px;
-      padding: 0;
-      margin: 0;
-      font-size: 9px;
-    }
-    .zona-arrastre {
-      border: 1px solid #aaa;
-      width: 280px;
-      padding: 8px;
-    }
-    .zona-arrastre li {
-      cursor: grab;
-      border: 1px solid #ddd;
-      margin: 4px 0;
-      padding: 4px;
-    }
-    .titulo-vago { color: #444; }
-    .label-vaga { display: block; color: #555; }
-    .ayuda-inconsistente { float: right; }
-    .icono-estrella { font-size: 1.4rem; }
-    .texto-ingles-sin-lang { font-style: italic; }
-    #modal-trampa {
-      display: none;
-      position: fixed;
-      inset: 110px 30% auto 30%;
-      background: #fff;
-      border: 3px solid #000;
-      padding: 16px;
-      z-index: 99;
-    }
-    #modal-trampa.abierto { display: block; }
-    #objetivo-foco-oculto {
-      margin-top: 0;
-      padding-top: 4px;
-    }
-    #patron-destellos-no-ejecutable {
-      border: 2px dashed #b45309;
-      background: #fff7ed;
-      padding: 12px;
-    }
-    /*
-      Patrón peligroso NO EJECUTABLE por seguridad:
-      .flash-risk { animation: flash 0.1s infinite; }
-      @keyframes flash { 0% { background:#fff; } 50% { background:#000; } 100% { background:#fff; } }
-    */
+    /* CASE E016: contraste insuficiente en texto normal */
+    .low-contrast { color: #b8b8b8; background: #ffffff; }
+    /* CASE E019: imagen de texto usada para contenido que podría ser texto real */
+    .text-image { width: 420px; height: 86px; }
+    /* CASE E021: contraste insuficiente de componentes de interfaz */
+    .ghost-input { border: 1px solid #eeeeee; color: #999; background: #fff; }
+    /* CASE E022: el espaciado de texto queda recortado al aplicar ajustes de usuario */
+    .text-spacing-hostile { height: 42px; overflow: hidden; line-height: 1; letter-spacing: 0; width: 340px; }
+    /* CASE E023: tooltip solo con hover, no persistente ni descartable */
+    .hover-only .tip { display:none; position:absolute; background:#222; color:#fff; padding:8px; }
+    .hover-only:hover .tip { display:block; }
+    /* CASE E033: se elimina el indicador de foco */
+    *:focus { outline: 0 !important; box-shadow: none !important; }
+    /* CASE E034: cabecera fija puede tapar el foco */
+    .fixed-bar { position: fixed; top:0; left:0; right:0; z-index:99; height:72px; background:#111; color:white; }
+    main { margin-top: 90px; }
+    /* CASE E040: objetivos táctiles demasiado pequeños y próximos */
+    .tiny-target { width:18px; height:18px; padding:0; margin:1px; font-size:10px; }
+    /* CASE E038: elemento arrastrable sin alternativa de un solo puntero */
+    [draggable='true'] { cursor: grab; display:inline-block; padding:8px; border:1px solid #ccc; }
+    /* CASE E015: audio se reproduce visualmente indicado como automático */
+    .autoplay-note { color:#555; }
+    /* CASE E009: secuencia visual diferente de la secuencia DOM */
+    .steps { display:flex; gap:8px; } .steps .second { order:1; } .steps .first { order:2; }
+    /* CASE E013: color como único medio de identificación */
+    .color-only .required { color:red; } .color-only .ok { color:green; }
+    /* CASE E012: bloqueo por orientación */
+    .landscape-only { display:none; } @media (orientation: portrait) { .landscape-only { display:block; position:fixed; inset:0; background:#fff; z-index:200; padding:2rem; } }
+    /* CASE E026: animación automática no pausible */
+    .marquee { white-space: nowrap; animation: slide 4s linear infinite; } @keyframes slide { from { transform:translateX(0); } to { transform:translateX(-80%); } }
+    /* CASE E028: foco visual y lectura quedan alterados por tabindex positivo */
+    .tab-demo button { margin:4px; }
+    /* CASE E024: control personalizado no operable por teclado */
+    .fake-button { display:inline-block; padding:8px 12px; background:#ddd; }
   </style>
 </head>
-<body class="solo-horizontal">
-  <header class="cabecera-fija">
-    <strong>Portal de demostración con errores A/AA</strong>
-    <p>Documento deliberadamente no conforme. No usar en producción.</p>
-    <nav id="nav-superior" aria-label="Principal">
-      <a href="#inicio">Inicio</a>
-      <a href="#productos">Productos</a>
-      <a href="#pago">Pago</a>
-      <a href="#ayuda">Ayuda</a>
-      <a class="enlace-aqui" href="#condiciones">aquí</a>
-    </nav>
-  </header>
-
-  <!-- 2.4.1: no existe enlace de salto al contenido principal -->
-  <div class="ancho-fijo">
-    <main id="inicio">
-      <h1>Demostración de errores de accesibilidad</h1>
-      <p class="texto-bajo-contraste">Este texto tiene contraste insuficiente y sirve para comprobar errores de nivel AA.</p>
-
-      <section aria-labelledby="medios">
-        <h2 id="medios">Multimedia</h2>
-        <img id="logo-sin-alt" src="grafico-ventas.png">
-        <button class="icon-only">★</button>
-        <button class="icon-only">?</button>
-
-        <h3>Audio sin alternativa</h3>
-        <audio id="audio-sin-transcripcion" src="mensaje-direccion.mp3" controls></audio>
-
-        <h3>Audio automático sin control independiente</h3>
-        <audio id="audio-auto" src="musica-fondo.mp3" autoplay loop></audio>
-
-        <h3>Vídeo grabado sin subtítulos ni audiodescripción</h3>
-        <video id="video-grabado-sin-subtitulos" src="demo-producto.mp4" controls width="360"></video>
-
-        <h3>Vídeo solo imagen sin alternativa</h3>
-        <video id="video-solo-imagen" src="recorrido-oficina.mp4" controls width="360" muted></video>
-
-        <h3>Directo sin subtitulado</h3>
-        <div id="directo-sin-subtitulos" role="application">
-          Webinar en directo: el ponente explica instrucciones, pero no hay subtitulado en tiempo real.
-        </div>
-      </section>
-
-      <section aria-labelledby="estructura">
-        <h2 id="estructura">Estructura y relaciones</h2>
-        <div class="tabla-falsa" aria-label="Ventas trimestrales">
-          <div>Producto</div><div>Trimestre</div><div>Importe</div>
-          <div>Servicio A</div><div>T1</div><div>20.000 €</div>
-          <div>Servicio B</div><div>T2</div><div>35.000 €</div>
-        </div>
-
-        <div id="secuencia-alterada">
-          <div class="paso1">Paso 1: crear cuenta.</div>
-          <div class="paso2">Paso 2: validar correo.</div>
-          <div class="paso3">Paso 3: pagar la suscripción.</div>
-        </div>
-
-        <p id="instruccion-sensorial">Para continuar, pulse el botón rojo de la derecha.</p>
-        <button style="background: green;">No</button>
-        <button style="background: red; float:right;">Sí</button>
-
-        <div class="bloqueo-orientacion">Esta funcionalidad queda bloqueada en orientación vertical.</div>
-      </section>
-
-      <section aria-labelledby="formularios">
-        <h2 id="formularios" class="titulo-vago">Datos</h2>
-        <form id="formulario-errores">
-          <p class="texto-ingles-sin-lang">Please enter your personal details carefully.</p>
-
-          <label class="label-vaga">Campo</label>
-          <input id="nombre" name="nombre" class="borde-input" placeholder="Nombre">
-
-          <input id="email" name="email" class="error-color-only" placeholder="Correo electrónico">
-          <input id="telefono" name="telefono" class="borde-input" placeholder="Teléfono">
-          <input id="campo-email-sin-label" name="mail2" placeholder="Otro correo">
-
-          <label for="campo-codigo-sin-instrucciones">Código</label>
-          <input id="campo-codigo-sin-instrucciones" name="codigo">
-          <p id="mensaje-error-generico">Error</p>
-
-          <label for="foco-redirecciona">Campo que cambia el contexto al enfocar</label>
-          <input id="foco-redirecciona" onfocus="document.getElementById('modal-trampa').classList.add('abierto');document.getElementById('modal-input').focus();">
-
-          <label for="selector-autoenvio">Provincia</label>
-          <select id="selector-autoenvio" onchange="document.getElementById('estado-sin-live').textContent='Formulario enviado automáticamente';">
-            <option>Seleccione</option>
-            <option>Madrid</option>
-            <option>Barcelona</option>
-          </select>
-
-          <button id="boton-etiqueta-no-coincide" aria-label="Mandar">Enviar solicitud</button>
-        </form>
-      </section>
-
-      <section aria-labelledby="visual">
-        <h2 id="visual">Presentación visual</h2>
-        <div class="contenedor-fijo">
-          Este bloque tiene altura fija; al ampliar el texto al 200% se recortará contenido importante.
-        </div>
-        <p id="promo-imagen-texto">
-          <img src="oferta-texto-incrustado.png" alt="Oferta">
-        </p>
-        <p class="texto-recortado">
-          Texto que se recorta cuando se aplica mayor interlineado, espaciado entre letras o separación de párrafos.
-        </p>
-        <div class="tooltip-inaccesible">
-          Pase el puntero aquí para ver más información.
-          <span class="tooltip">Información adicional que no se puede mantener, cerrar ni alcanzar correctamente.</span>
-        </div>
-      </section>
-
-      <section aria-labelledby="operable">
-        <h2 id="operable">Interacción</h2>
-        <div id="solo-raton" onclick="document.getElementById('estado-sin-live').textContent='Acción activada solo con ratón';">
-          Control solo ratón
-        </div>
-
-        <button onclick="document.getElementById('modal-trampa').classList.add('abierto');document.getElementById('modal-input').focus();">Abrir modal problemático</button>
-        <div id="modal-trampa" role="dialog">
-          <p>Modal sin salida clara por teclado.</p>
-          <input id="modal-input" value="El foco vuelve aquí">
-        </div>
-
-        <div id="contador-sesion">La sesión caducará en <span id="segundos">30</span> segundos. No hay opción de ampliar tiempo.</div>
-
-        <div class="marquesina"><span>Mensaje comercial en movimiento continuo sin pausa ni parada.</span></div>
-        <div class="carrusel-auto">
-          <div>
-            <p>Oferta 1</p><p>Oferta 2</p><p>Oferta 3</p><p>Oferta 4</p>
-          </div>
-        </div>
-
-        <div id="patron-destellos-no-ejecutable">
-          Riesgo documentado de destellos rápidos. El patrón no se ejecuta por seguridad.
-        </div>
-
-        <a href="#objetivo-foco-oculto">Ir a sección que queda tapada por la cabecera fija</a>
-        <h3 id="objetivo-foco-oculto" tabindex="-1">Sección potencialmente oculta al recibir foco</h3>
-
-        <p id="gesto-complejo">Carrusel de tarjetas: deslice con dos dedos para avanzar. No hay botones alternativos.</p>
-
-        <button id="accion-mousedown" onmousedown="document.getElementById('estado-sin-live').textContent='Compra realizada sin cancelación';">
-          Comprar en mouse down
-        </button>
-
-        <ul id="lista-arrastre" class="zona-arrastre">
-          <li draggable="true">Tarea A</li>
-          <li draggable="true">Tarea B</li>
-          <li draggable="true">Tarea C</li>
-        </ul>
-
-        <div>
-          <button class="objetivo-pequeno">x</button>
-          <button class="objetivo-pequeno">x</button>
-          <button class="objetivo-pequeno">x</button>
-        </div>
-
-        <div>
-          <button tabindex="5">Primero visual</button>
-          <button tabindex="1">Segundo visual</button>
-          <button tabindex="3">Tercero visual</button>
-        </div>
-      </section>
-
-      <section id="productos" aria-labelledby="nav">
-        <h2 id="nav">Navegación y coherencia</h2>
-        <nav id="navegacion-unica" aria-label="Categorías">
-          <a href="#categoria-a">Categoría A</a>
-          <a href="#categoria-b">Categoría B</a>
-          <a href="#categoria-c">Categoría C</a>
-        </nav>
-        <p>No existe buscador, mapa del sitio ni índice alternativo.</p>
-        <p><a class="enlace-aqui" href="/documentos/factura.pdf">aquí</a></p>
-        <p><a class="enlace-aqui" href="/documentos/condiciones.pdf">aquí</a></p>
-
-        <p><span class="icono-estrella">★</span> Añadir a favoritos</p>
-        <p><span class="icono-estrella">★</span> Campo obligatorio</p>
-
-        <a class="ayuda-inconsistente" href="#ayuda">Soporte</a>
-        <p>En otra sección la ayuda cambia de ubicación y nombre.</p>
-      </section>
-
-      <section id="pago" aria-labelledby="pago-title">
-        <h2 id="pago-title">Pago</h2>
-        <form id="formulario-pago-sin-confirmacion">
-          <h3>Dirección de envío</h3>
-          <input name="envio1" placeholder="Calle">
-          <input name="envio2" placeholder="Código postal">
-
-          <h3 id="direccion-facturacion">Dirección de facturación</h3>
-          <input name="fact1" placeholder="Calle">
-          <input name="fact2" placeholder="Código postal">
-
-          <button type="button" onclick="document.getElementById('estado-sin-live').textContent='Pago enviado sin revisión';">Pagar ahora</button>
-        </form>
-      </section>
-
-      <section aria-labelledby="login">
-        <h2 id="login">Acceso</h2>
-        <form id="login-puzzle">
-          <label for="captcha-memoria">Escriba de memoria la cadena mostrada hace 20 segundos y calcule 17 × 8</label>
-          <input id="captcha-memoria">
-          <button>Entrar</button>
-        </form>
-      </section>
-
-      <section aria-labelledby="robusto">
-        <h2 id="robusto">Componentes personalizados</h2>
-        <div id="switch-falso" onclick="this.classList.toggle('activo')">Activar notificaciones</div>
-        <div id="desplegable-falso" onclick="this.nextElementSibling.hidden = !this.nextElementSibling.hidden">Seleccione una opción</div>
-        <div hidden>
-          <div>Opción 1</div>
-          <div>Opción 2</div>
-        </div>
-        <div id="estado-sin-live">Estado inicial.</div>
-      </section>
-    </main>
-
-    <footer>
-      <nav id="nav-pie" aria-label="Pie">
-        <a href="#ayuda">Ayuda</a>
-        <a href="#pago">Pago</a>
-        <a href="#productos">Productos</a>
-        <a href="#inicio">Inicio</a>
-      </nav>
-    </footer>
-  </div>
-
+<body>
+  <div class="fixed-bar">Barra fija de navegación que puede cubrir el foco de los enlaces inferiores</div>
+  <div class="landscape-only">Gire el dispositivo a horizontal para continuar. No se ofrece alternativa.</div>
+  <!-- No hay enlace de salto al contenido principal. CASE E027B se mide en 2.4.1 -->
+  <nav aria-label='principal'>
+    <a href='/inicio'>Inicio</a>
+    <a href='/servicios'>Servicios</a>
+    <a href='/contacto'>Contacto</a>
+    <a href='/ayuda'>Ayuda</a>
+  </nav>
+  <main id='contenido'>
+    <h1>Batería A y AA para validar cobertura WCAG 2.2</h1>
+    <p>Este documento contiene errores deliberados para probar detección automática, semiautomática y manual.</p>
+    <section aria-labelledby='s1'>
+      <h2 id='s1'>1. Contenido no textual y medios temporales</h2>
+      <img data-case="E001" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120'%3E%3Crect width='240' height='120' fill='%23eee'/%3E%3Ctext x='20' y='60'%3EOferta 50%25%3C/text%3E%3C/svg%3E">
+      <input data-case="E002" type="image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='32'%3E%3Ctext x='5' y='20'%3EBuscar%3C/text%3E%3C/svg%3E">
+      <map name="mapa-servicios"><area data-case="E003" shape="rect" coords="0,0,80,80" href="/servicio-premium"></map>
+      <img usemap="#mapa-servicios" alt="Mapa de servicios" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23ddd'/%3E%3C/svg%3E">
+      <img data-case="E004" class="text-image" alt="banner" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='86'%3E%3Crect width='420' height='86' fill='%23f1f1f1'/%3E%3Ctext x='20' y='50' font-size='28'%3EPlazo de solicitud: 15 de junio%3C/text%3E%3C/svg%3E">
+      <audio data-case="E005" controls src="media/audio-instrucciones.mp3"></audio>
+      <video data-case="E006" controls src="media/video-sin-audio.mp4"></video>
+      <video data-case="E007" controls src="media/formacion.mp4"><track kind="metadata" src="media/meta.vtt" srclang="es" label="Metadatos"></video>
+      <video data-case="E011" controls data-live="true" src="media/directo.m3u8"></video>
+      <audio data-case="E015" autoplay loop src="media/musica-fondo.mp3"></audio><p class="autoplay-note">Audio ambiental automático.</p>
+    </section>
+    <section aria-labelledby='s2'>
+      <h2 id='s2'>2. Estructura, relaciones y secuencia</h2>
+      <h4 data-case="E014">Encabezado saltado directamente desde h2 a h4</h4>
+      <p data-case="E017" class="fake-heading" style="font-size:24px;font-weight:bold">Texto visualmente encabezado marcado como párrafo</p>
+      <table data-case="E025"><tr><td>Concepto</td><td>Importe</td></tr><tr><td>Cuota</td><td>120 €</td></tr></table>
+      <div data-case="E009" class="steps"><span class="first">Paso 1: pagar</span><span class="second">Paso 2: revisar</span></div>
+      <p data-case="E050">Para continuar pulse el botón rojo situado a la derecha.</p>
+      <form data-case="E013" class="color-only"><p><span class="required">*</span> Nombre</p><input name="nombre-color"><p class="ok">Completado</p></form>
+      <form data-case="E051"><input name="nombre" autocomplete="off" placeholder="Nombre"><input name="email" autocomplete="nope" placeholder="Correo"><input name="postal" autocomplete="postal" placeholder="CP"></form>
+    </section>
+    <section aria-labelledby='s3'>
+      <h2 id='s3'>3. Percepción visual, contraste y adaptación</h2>
+      <p data-case="E016" class="low-contrast">Texto informativo con contraste insuficiente.</p>
+      <input data-case="E021" class="ghost-input" value="Borde casi invisible">
+      <p data-case="E022" class="text-spacing-hostile">Este bloque queda recortado si se aumenta el interlineado, el espaciado entre letras, palabras o párrafos conforme a las pruebas de espaciado de texto.</p>
+      <div data-case="E023" class="hover-only">Más información <span class="tip">Dato crítico que solo aparece al pasar el ratón.</span></div>
+      <div data-case="E020" class="layout-fixed" style="width:1320px;border:1px solid #ccc">Contenedor rígido de 1320 px que provoca desplazamiento horizontal.</div>
+    </section>
+    <section aria-labelledby='s4'>
+      <h2 id='s4'>4. Teclado, foco, gestos y entrada</h2>
+      <div data-case="E024" class="fake-button" onclick="alert('acción')">Abrir panel</div>
+      <dialog data-case="E030" open><p>Modal abierto sin salida por teclado documentada.</p><button onclick="this.closest('dialog').close()">Cerrar con ratón</button></dialog>
+      <button data-case="E031" accesskey="s">Guardar</button>
+      <div data-case="E028" class="tab-demo"><button tabindex="3">Primero visual</button><button tabindex="1">Segundo visual</button><button tabindex="2">Tercero visual</button></div>
+      <p><a data-case="E029" href="/facturas/2026">Leer más</a> <a href="/soporte">Leer más</a></p>
+      <button data-case="E032" class="bad-label" aria-label="Enviar consulta">Buscar</button>
+      <div data-case="E035" style="height:100px;overflow:auto"><a href="#final">Enlace ocultable por barra fija</a><p style="margin-top:180px" id="final">Destino bajo la barra fija.</p></div>
+      <canvas data-case="E036" width="300" height="120" aria-label="Firme dibujando una espiral con el dedo"></canvas>
+      <button data-case="E037" onmousedown="location.href='/comprar-ahora'">Comprar ahora</button>
+      <button data-case="E039" onclick="window.addEventListener('devicemotion',()=>location.href='/confirmar')">Confirmar agitando el móvil</button>
+      <div data-case="E038"><span draggable="true">Archivo A</span><span draggable="true">Archivo B</span></div>
+      <div data-case="E040"><button class="tiny-target">x</button><button class="tiny-target">?</button><button class="tiny-target">i</button></div>
+    </section>
+    <section aria-labelledby='s5'>
+      <h2 id='s5'>5. Tiempo, movimiento y navegación</h2>
+      <div data-case="E052" id="timeout">Su sesión caducará en 20 segundos. No hay control para ampliar o desactivar el límite.</div>
+      <div data-case="E026" class="marquee">Noticias automáticas en movimiento continuo sin botón de pausa ni detener.</div>
+      <template data-case="E053"><style>.flash { animation: flash 0.1s steps(1) infinite; }</style><div class="flash">Destello no ejecutado por seguridad</div></template>
+      <nav data-case="E054" aria-label="secundaria"><a href="/a">A</a><a href="/b">B</a><a href="/c">C</a><a href="/d">D</a></nav>
+      <h2 data-case="E055">Información</h2><button>Enviar</button><button>Enviar</button>
+    </section>
+    <section aria-labelledby='s6'>
+      <h2 id='s6'>6. Comprensibilidad, cambios de contexto y ayuda</h2>
+      <p data-case="E042">Conditions générales: veuillez consulter le contrat avant paiement.</p>
+      <input data-case="E043" onfocus="location.href='/sorpresa'" value="Al recibir foco redirige">
+      <select data-case="E044" onchange="location.href=this.value"><option value="/basico">Básico</option><option value="/premium">Premium</option></select>
+      <nav data-case="E045" aria-label="principal duplicada"><a href="/contacto">Contacto</a><a href="/inicio">Inicio</a><a href="/servicios">Servicios</a></nav>
+      <button data-case="E046" aria-label="Eliminar"><span aria-hidden="true">💾</span></button><button><span aria-hidden="true">💾</span> Guardar</button>
+      <form data-case="E047"><p>Ayuda: contacte por teléfono al final.</p><input placeholder="Correo"><button>Enviar</button></form><form><input placeholder="Pedido"><button>Enviar</button><p>Ayuda: escriba al correo indicado arriba.</p></form>
+    </section>
+    <section aria-labelledby='s7'>
+      <h2 id='s7'>7. Formularios, errores y autenticación</h2>
+      <form data-case="E048" novalidate><input name="dni" class="error"><span style="color:red">*</span><button>Continuar</button></form>
+      <form data-case="E049"><input placeholder="12345"><button>Enviar</button></form>
+      <form data-case="E056"><label>Código postal <input aria-invalid="true" value="ABC"></label><p>Valor incorrecto.</p></form>
+      <form data-case="E057"><h3>Transferencia bancaria</h3><input value="12500"><button onclick="alert('enviado')">Enviar transferencia</button></form>
+      <form data-case="E058"><label>Correo <input name="email1"></label><label>Repita el correo <input name="email2"></label><label>Teléfono <input name="phone1"></label><label>Repita el teléfono <input name="phone2"></label></form>
+      <form data-case="E059"><label>Contraseña <input type="password" onpaste="return false"></label><label>Escriba la tercera y quinta letra de su frase secreta <input></label><img src="captcha.png" alt="CAPTCHA: escriba las letras de la imagen"><input></form>
+      <div data-case="E060" role="checkbox" onclick="this.setAttribute('aria-checked', this.getAttribute('aria-checked')!=='true')">Acepto condiciones</div>
+      <button data-case="E061"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M2 2h16v16H2z"/></svg></button>
+      <div data-case="E062" id="status"></div><script>document.getElementById("status").textContent="Guardado correctamente";</script>
+    </section>
+    <section aria-labelledby='s8'>
+      <h2 id='s8'>8. Controles de falsos positivos y casos límite</h2>
+      <div data-case="E063"><span id="duplicado">Texto A</span><span id="duplicado">Texto B</span></div>
+      <p data-case="E064"><img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23ccc'/%3E%3C/svg%3E"> Imagen decorativa con alt vacío correcto; no debería reportarse como fallo.</p>
+      <a data-case="E065" href="/ayuda">Ayuda</a><a href="/ayuda">Ayuda</a>
+    </section>
+  </main>
   <script>
-    // 2.1.4: atajo global de una sola tecla sin desactivación ni reasignación.
-    document.addEventListener('keyup', function (event) {
-      if (event.key === 's') {
-        document.getElementById('estado-sin-live').textContent = 'Guardado automático mediante atajo global S';
-      }
-    });
-
-    // 2.1.2: ejemplo de foco redirigido dentro del modal sin Escape ni salida clara.
-    document.addEventListener('focusin', function (event) {
-      var modal = document.getElementById('modal-trampa');
-      if (modal.classList.contains('abierto') && !modal.contains(event.target)) {
-        document.getElementById('modal-input').focus();
-      }
-    });
-
-    // 2.2.1: temporizador sin mecanismo de extensión.
-    var segundos = 30;
-    setInterval(function () {
-      segundos -= 1;
-      var s = document.getElementById('segundos');
-      if (s && segundos >= 0) s.textContent = segundos;
-      if (segundos === 0) {
-        document.getElementById('estado-sin-live').textContent = 'Sesión caducada sin opción de extensión';
-      }
-    }, 1000);
-
-    // 2.5.4: activación por movimiento sin alternativa ni desactivación.
-    window.addEventListener('devicemotion', function () {
-      document.getElementById('estado-sin-live').textContent = 'Acción activada por movimiento del dispositivo';
-    });
+    // CASE E012SCRIPT: intento de bloqueo de orientación
+    if (screen.orientation && screen.orientation.lock) { try { screen.orientation.lock('landscape'); } catch(e) {} }
+    // CASE E052SCRIPT: temporizador sin opción de ampliación
+    setTimeout(function(){ document.getElementById('timeout').textContent='Sesión caducada'; }, 20000);
   </script>
 </body>
 </html>
