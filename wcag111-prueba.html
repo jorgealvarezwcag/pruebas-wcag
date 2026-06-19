@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Batería aislada WCAG 2.2 - Criterio 1.1.1 Contenido no textual</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: #17212b;
+      background: #f5f7f8;
+    }
+
+    a {
+      color: #005a77;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 0.2rem solid #b54708;
+      outline-offset: 0.2rem;
+    }
+
+    .skip-link {
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      padding: 0.75rem 1rem;
+      color: #ffffff;
+      background: #173f5f;
+      transform: translateY(-110%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    header,
+    main,
+    footer {
+      width: min(72rem, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    header {
+      padding-block: 2rem 1rem;
+    }
+
+    main {
+      display: grid;
+      gap: 1.5rem;
+      padding-block-end: 2rem;
+    }
+
+    section {
+      padding: 1.25rem;
+      border: 0.1rem solid #c6d2d8;
+      border-radius: 0.5rem;
+      background: #ffffff;
+    }
+
+    .case {
+      padding-block: 1rem;
+      border-block-start: 0.1rem solid #dbe3e7;
+    }
+
+    .case:first-of-type {
+      border-block-start: 0;
+    }
+
+    .case-title {
+      margin-block: 0 0.5rem;
+      font-weight: 700;
+    }
+
+    .demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    img,
+    object,
+    canvas,
+    svg {
+      max-width: 100%;
+      border: 0.1rem solid #667985;
+    }
+
+    .demo-image {
+      width: 12rem;
+      height: 6rem;
+    }
+
+    .small-icon {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    .css-information-only {
+      width: 5rem;
+      height: 5rem;
+      border: 0.1rem solid #667985;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23b42318' d='M50 5 96 90H4Z'/%3E%3Cpath fill='white' d='M46 32h8v32h-8zm0 40h8v8h-8z'/%3E%3C/svg%3E");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .css-decoration-only {
+      min-height: 3rem;
+      padding: 0.75rem;
+      color: #17212b;
+      background-color: #e7f1f5;
+      background-image: linear-gradient(135deg, transparent 75%, #94b8c8 75%);
+      background-size: 1rem 1rem;
+    }
+
+    .ascii-art {
+      overflow: auto;
+      padding: 1rem;
+      color: #17212b;
+      background: #f0f4f6;
+    }
+
+    .captcha-image {
+      width: 12rem;
+      height: 4rem;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 0.1rem;
+      height: 0.1rem;
+      padding: 0;
+      margin: -0.1rem;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    footer {
+      padding-block: 1rem 2rem;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <header>
+    <h1>Batería aislada WCAG 2.2: criterio 1.1.1</h1>
+    <p>Portal ficticio para comprobar exclusivamente patrones de contenido no textual.</p>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+    <section aria-labelledby="automaticos-title">
+      <h2 id="automaticos-title">Fallos automáticos claros</h2>
+      <p>Estos casos contienen patrones objetivos que TAWDIS debería poder localizar automáticamente.</p>
+
+      <article class="case" id="e111-01">
+        <h3 class="case-title">E111-01: imagen informativa sin atributo alt</h3>
+        <img class="demo-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 120'%3E%3Crect width='240' height='120' fill='%23005a77'/%3E%3Ccircle cx='60' cy='60' r='35' fill='%23ffffff'/%3E%3Cpath d='M120 30h90v18h-90zm0 36h70v18h-70z' fill='%23ffffff'/%3E%3C/svg%3E">
+      </article>
+
+      <article class="case" id="e111-02">
+        <h3 class="case-title">E111-02: botón de imagen sin atributo alt</h3>
+        <form action="#resultado" method="get">
+          <label for="consulta">Consulta ficticia</label>
+          <input id="consulta" name="consulta" type="text" value="accesibilidad">
+          <input id="boton-imagen-sin-alt" type="image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 48'%3E%3Crect width='120' height='48' rx='8' fill='%23005a77'/%3E%3Cpath d='m48 14 16 10-16 10z' fill='white'/%3E%3C/svg%3E">
+        </form>
+      </article>
+
+      <article class="case" id="e111-03">
+        <h3 class="case-title">E111-03: área de mapa de imagen sin atributo alt</h3>
+        <img class="demo-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 120'%3E%3Crect width='120' height='120' fill='%23005a77'/%3E%3Crect x='120' width='120' height='120' fill='%23b54708'/%3E%3C/svg%3E" alt="Mapa ficticio con dos zonas seleccionables" usemap="#mapa-prueba">
+        <map name="mapa-prueba">
+          <area id="area-sin-alt" shape="rect" coords="0,0,120,120" href="#zona-uno">
+          <area shape="rect" coords="120,0,240,120" href="#zona-dos" alt="Zona dos">
+        </map>
+      </article>
+
+      <article class="case" id="e111-04">
+        <h3 class="case-title">E111-04: elemento object sin alternativa textual</h3>
+        <object class="demo-image" type="image/svg+xml" data="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 120'%3E%3Crect width='240' height='120' fill='%23513c7a'/%3E%3Cpath d='M30 90 85 40l35 30 35-45 55 65z' fill='white'/%3E%3C/svg%3E"></object>
+      </article>
+
+      <article class="case" id="e111-05">
+        <h3 class="case-title">E111-05: SVG informativo sin nombre accesible</h3>
+        <svg id="svg-sin-nombre" class="small-icon" role="img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#b42318" d="M50 5 96 90H4Z"></path>
+          <path fill="#ffffff" d="M46 32h8v32h-8zm0 40h8v8h-8z"></path>
+        </svg>
+      </article>
+
+      <article class="case" id="e111-06">
+        <h3 class="case-title">E111-06: canvas informativo sin alternativa textual</h3>
+        <canvas id="canvas-sin-alternativa" width="240" height="120"></canvas>
+      </article>
+
+      <article class="case" id="e111-07">
+        <h3 class="case-title">E111-07: texto alternativo que es un nombre de archivo</h3>
+        <img class="demo-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 120'%3E%3Crect width='240' height='120' fill='%23005a77'/%3E%3Cpath d='m30 95 55-55 38 38 28-28 59 45z' fill='white'/%3E%3C/svg%3E" alt="grafico-final-2026.png">
+      </article>
+
+      <article class="case" id="e111-08">
+        <h3 class="case-title">E111-08: imagen decorativa con alternativa no nula</h3>
+        <img class="small-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%2394b8c8' d='M0 45h100v10H0z'/%3E%3C/svg%3E" alt="spacer">
+      </article>
+    </section>
+
+    <section aria-labelledby="manuales-title">
+      <h2 id="manuales-title">Avisos que requieren revisión manual</h2>
+      <p>TAWDIS debería localizar estos candidatos, pero no concluir automáticamente el incumplimiento sin contexto humano.</p>
+
+      <article class="case" id="r111-01">
+        <h3 class="case-title">R111-01: imagen con alt vacío que parece informativa</h3>
+        <p>Resultado visual de la operación ficticia:</p>
+        <img class="small-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2300783e'/%3E%3Cpath d='m25 52 16 16 35-38' fill='none' stroke='white' stroke-width='10'/%3E%3C/svg%3E" alt="">
+      </article>
+
+      <article class="case" id="r111-02">
+        <h3 class="case-title">R111-02: gráfico complejo con descripción corta insuficiente</h3>
+        <img class="demo-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 120'%3E%3Crect width='240' height='120' fill='white'/%3E%3Cpath d='M25 100V20M25 100h195' stroke='%2317212b' stroke-width='4'/%3E%3Cpath d='m35 90 45-30 35 15 45-50 50 25' fill='none' stroke='%23005a77' stroke-width='8'/%3E%3C/svg%3E" alt="Gráfico de evolución trimestral">
+      </article>
+
+      <article class="case" id="r111-03">
+        <h3 class="case-title">R111-03: CAPTCHA de imagen sin modalidad alternativa</h3>
+        <form action="#confirmacion" method="get">
+          <img class="captcha-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 80'%3E%3Crect width='240' height='80' fill='%23e7f1f5'/%3E%3Ctext x='25' y='55' font-size='45' font-family='sans-serif' fill='%2317212b'%3EA7K4P%3C/text%3E%3C/svg%3E" alt="CAPTCHA: introduzca los caracteres mostrados">
+          <label for="captcha-respuesta">Caracteres del CAPTCHA</label>
+          <input id="captcha-respuesta" name="captcha" type="text" autocomplete="off">
+          <button type="submit">Comprobar</button>
+        </form>
+      </article>
+
+      <article class="case" id="r111-04">
+        <h3 class="case-title">R111-04: posible información transmitida solo por imagen de fondo CSS</h3>
+        <p>Estado de la operación ficticia:</p>
+        <div class="css-information-only"></div>
+      </article>
+
+      <article class="case" id="r111-05">
+        <h3 class="case-title">R111-05: posible arte ASCII sin alternativa textual</h3>
+        <pre class="ascii-art">  /\_/\\
+ ( o.o )
+  &gt; ^ &lt;</pre>
+      </article>
+
+      <article class="case" id="r111-06">
+        <h3 class="case-title">R111-06: caracteres usados como texto de aspecto gráfico sin alternativa</h3>
+        <p class="text-lookalike">🅾🅵🅴🆁🆃🅰</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="controles-title">
+      <h2 id="controles-title">Controles correctos que no deben generar error</h2>
+
+      <article class="case" id="c111-01">
+        <h3 class="case-title">C111-01: imagen informativa con alternativa adecuada</h3>
+        <img class="demo-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 120'%3E%3Crect width='240' height='120' fill='%23005a77'/%3E%3Ccircle cx='60' cy='60' r='35' fill='white'/%3E%3C/svg%3E" alt="Perfil ficticio de una persona usuaria">
+      </article>
+
+      <article class="case" id="c111-02">
+        <h3 class="case-title">C111-02: imagen decorativa ignorada correctamente</h3>
+        <img class="small-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%2394b8c8' d='M0 45h100v10H0z'/%3E%3C/svg%3E" alt="" role="presentation">
+      </article>
+
+      <article class="case" id="c111-03">
+        <h3 class="case-title">C111-03: gráfico complejo con descripción extensa asociada</h3>
+        <img class="demo-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 120'%3E%3Crect width='240' height='120' fill='white'/%3E%3Cpath d='M25 100V20M25 100h195' stroke='%2317212b' stroke-width='4'/%3E%3Cpath d='m35 90 45-30 35 15 45-50 50 25' fill='none' stroke='%23005a77' stroke-width='8'/%3E%3C/svg%3E" alt="Evolución trimestral de incidencias" aria-describedby="descripcion-grafico-valido">
+        <p id="descripcion-grafico-valido">Las incidencias bajan de 40 a 25 en el segundo trimestre, suben a 30 en el tercero y terminan en 10 en el cuarto.</p>
+      </article>
+
+      <article class="case" id="c111-04">
+        <h3 class="case-title">C111-04: fondo CSS puramente decorativo</h3>
+        <p class="css-decoration-only">El texto contiene por sí mismo toda la información necesaria.</p>
+      </article>
+
+      <article class="case" id="c111-05">
+        <h3 class="case-title">C111-05: object con alternativa textual en su cuerpo</h3>
+        <object class="demo-image" type="image/svg+xml" data="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 120'%3E%3Crect width='240' height='120' fill='%23513c7a'/%3E%3C/svg%3E">Ilustración decorativa rectangular de color violeta.</object>
+      </article>
+
+      <article class="case" id="c111-06">
+        <h3 class="case-title">C111-06: arte ASCII con nombre accesible</h3>
+        <pre class="ascii-art" role="img" aria-label="Cara de gato dibujada con caracteres">  /\_/\\
+ ( o.o )
+  &gt; ^ &lt;</pre>
+      </article>
+
+      <article class="case" id="c111-07">
+        <h3 class="case-title">C111-07: botón de imagen con alternativa adecuada</h3>
+        <form action="#resultado-valido" method="get">
+          <label for="consulta-valida">Consulta ficticia válida</label>
+          <input id="consulta-valida" name="consulta-valida" type="text" value="WCAG">
+          <input type="image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 48'%3E%3Crect width='120' height='48' rx='8' fill='%23005a77'/%3E%3Cpath d='m48 14 16 10-16 10z' fill='white'/%3E%3C/svg%3E" alt="Enviar consulta">
+        </form>
+      </article>
+    </section>
+
+    <p id="resultado">Destino ficticio del formulario con error.</p>
+    <p id="confirmacion">Destino ficticio del CAPTCHA.</p>
+    <p id="resultado-valido">Destino ficticio del formulario válido.</p>
+    <p id="zona-uno">Destino de la zona uno.</p>
+    <p id="zona-dos">Destino de la zona dos.</p>
+  </main>
+
+  <footer>
+    <p>Documento ficticio creado únicamente para probar WCAG 2.2, criterio 1.1.1.</p>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById("canvas-sin-alternativa");
+    const context = canvas.getContext("2d");
+    context.fillStyle = "#b42318";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = "#ffffff";
+    context.font = "700 28px system-ui";
+    context.fillText("ALERTA", 65, 70);
+  </script>
+</body>
+</html>
