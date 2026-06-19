@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Batería aislada WCAG 2.2 - Criterio 4.1.2 Nombre, función y valor</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: #17212b;
+      background: #f5f7f8;
+    }
+
+    a {
+      color: #005a77;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    [tabindex]:focus-visible,
+    summary:focus-visible {
+      outline: 0.2rem solid #b54708;
+      outline-offset: 0.2rem;
+    }
+
+    .skip-link {
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      padding: 0.75rem 1rem;
+      color: #ffffff;
+      background: #173f5f;
+      transform: translateY(-110%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    header,
+    main,
+    footer {
+      width: min(74rem, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    header {
+      padding-block: 2rem 1rem;
+    }
+
+    main {
+      display: grid;
+      gap: 1.5rem;
+      padding-block-end: 2rem;
+    }
+
+    section {
+      padding: 1.25rem;
+      border: 0.1rem solid #c6d2d8;
+      border-radius: 0.5rem;
+      background: #ffffff;
+    }
+
+    .case {
+      padding-block: 1rem;
+      border-block-start: 0.1rem solid #dbe3e7;
+    }
+
+    .case:first-of-type {
+      border-block-start: 0;
+    }
+
+    .case-title {
+      margin-block: 0 0.5rem;
+      font-weight: 700;
+    }
+
+    .demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 0.35rem;
+      max-width: 34rem;
+      margin-block: 0.75rem;
+    }
+
+    button,
+    input,
+    [role="button"],
+    [role="checkbox"],
+    [role="slider"],
+    .fake-control {
+      min-height: 2.75rem;
+      padding: 0.55rem 0.75rem;
+      font: inherit;
+    }
+
+    [role="button"],
+    [role="checkbox"],
+    .fake-control {
+      display: inline-flex;
+      align-items: center;
+      border: 0.1rem solid #49616e;
+      border-radius: 0.3rem;
+      background: #edf3f5;
+      cursor: pointer;
+    }
+
+    [role="checkbox"]::before {
+      content: "□";
+      margin-inline-end: 0.45rem;
+    }
+
+    [role="checkbox"][aria-checked="true"]::before,
+    [role="checkbox"].visually-checked::before {
+      content: "☑";
+    }
+
+    .icon-button {
+      display: inline-flex;
+      align-items: center;
+      width: 3rem;
+      justify-content: center;
+    }
+
+    .slider-track {
+      position: relative;
+      width: 16rem;
+      height: 2.75rem;
+      border: 0.1rem solid #49616e;
+      border-radius: 1.5rem;
+      background: #edf3f5;
+    }
+
+    .slider-thumb {
+      position: absolute;
+      inset-block-start: 0.35rem;
+      inset-inline-start: 25%;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: #005a77;
+    }
+
+    .status-box {
+      min-height: 2.5rem;
+      margin-block: 0.75rem;
+      padding: 0.5rem;
+      border: 0.1rem solid #9babb3;
+      background: #f5f7f8;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 34rem;
+      min-height: 7rem;
+      border: 0.1rem solid #667985;
+    }
+
+    .panel[hidden] {
+      display: none;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 0.1rem;
+      height: 0.1rem;
+      padding: 0;
+      margin: -0.1rem;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    footer {
+      padding-block: 1rem 2rem;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <header>
+    <h1>Batería aislada WCAG 2.2: criterio 4.1.2</h1>
+    <p>Portal ficticio para comprobar nombres, funciones, estados, propiedades y valores.</p>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+    <section aria-labelledby="automaticos-title">
+      <h2 id="automaticos-title">Fallos automáticos claros</h2>
+      <p>Estos patrones pueden comprobarse directamente mediante el DOM y las reglas de WAI-ARIA.</p>
+
+      <article class="case" id="e412-01">
+        <h3 class="case-title">E412-01: botón sin nombre accesible</h3>
+        <button class="icon-button" type="button">
+          <span aria-hidden="true">×</span>
+        </button>
+      </article>
+
+      <article class="case" id="e412-02">
+        <h3 class="case-title">E412-02: enlace sin nombre accesible</h3>
+        <a class="icon-button" href="#destino-ficticio">
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
+
+      <article class="case" id="e412-03">
+        <h3 class="case-title">E412-03: campo de formulario sin nombre accesible</h3>
+        <div class="form-row">
+          <span>Referencia visual no asociada</span>
+          <input id="campo-sin-nombre" name="referencia" type="text">
+        </div>
+      </article>
+
+      <article class="case" id="e412-04">
+        <h3 class="case-title">E412-04: botón de imagen sin nombre accesible</h3>
+        <input type="image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 48'%3E%3Crect width='120' height='48' rx='8' fill='%23005a77'/%3E%3Cpath d='m48 14 16 10-16 10z' fill='white'/%3E%3C/svg%3E">
+      </article>
+
+      <article class="case" id="e412-05">
+        <h3 class="case-title">E412-05: control personalizado sin función programática</h3>
+        <div class="fake-control" tabindex="0" onclick="showMessage('mensaje-e412-05', 'Aviso ficticio abierto')" onkeydown="activateOnEnter(event, 'mensaje-e412-05', 'Aviso ficticio abierto')">Abrir aviso ficticio</div>
+        <p class="status-box" id="mensaje-e412-05">El aviso está cerrado.</p>
+      </article>
+
+      <article class="case" id="e412-06">
+        <h3 class="case-title">E412-06: valor de role inexistente</h3>
+        <div class="fake-control" role="boton" tabindex="0" onclick="showMessage('mensaje-e412-06', 'Solicitud ficticia confirmada')" onkeydown="activateOnEnter(event, 'mensaje-e412-06', 'Solicitud ficticia confirmada')">Confirmar solicitud</div>
+        <p class="status-box" id="mensaje-e412-06">Solicitud pendiente.</p>
+      </article>
+
+      <article class="case" id="e412-07">
+        <h3 class="case-title">E412-07: checkbox ARIA sin estado aria-checked</h3>
+        <span role="checkbox" tabindex="0" onclick="toggleVisualCheck(this)" onkeydown="toggleVisualCheckOnKey(event, this)">Recibir avisos ficticios</span>
+      </article>
+
+      <article class="case" id="e412-08">
+        <h3 class="case-title">E412-08: valor no válido de aria-checked</h3>
+        <span role="checkbox" tabindex="0" aria-checked="yes">Activar resumen semanal</span>
+      </article>
+
+      <article class="case" id="e412-09">
+        <h3 class="case-title">E412-09: aria-labelledby apunta a un ID inexistente</h3>
+        <button class="icon-button" type="button" aria-labelledby="nombre-boton-inexistente">
+          <span aria-hidden="true">?</span>
+        </button>
+      </article>
+
+      <article class="case" id="e412-10">
+        <h3 class="case-title">E412-10: elemento enfocable oculto para accesibilidad</h3>
+        <button type="button" aria-hidden="true">Acción ficticia oculta</button>
+      </article>
+
+      <article class="case" id="e412-11">
+        <h3 class="case-title">E412-11: iframe sin nombre accesible</h3>
+        <iframe srcdoc="<!doctype html><html lang='es'><head><meta charset='utf-8'><title>Contenido interno ficticio</title></head><body><p>Contenido interno de prueba.</p></body></html>"></iframe>
+      </article>
+
+      <article class="case" id="e412-12">
+        <h3 class="case-title">E412-12: atributo ARIA inexistente</h3>
+        <button type="button" aria-labl="Guardar solicitud">Guardar solicitud</button>
+      </article>
+
+      <article class="case" id="e412-13">
+        <h3 class="case-title">E412-13: propiedad ARIA no permitida para el rol</h3>
+        <button type="button" aria-checked="true">Activar filtro ficticio</button>
+      </article>
+
+      <article class="case" id="e412-14">
+        <h3 class="case-title">E412-14: slider ARIA sin valor requerido</h3>
+        <div class="slider-track" role="slider" tabindex="0" aria-label="Volumen ficticio">
+          <span class="slider-thumb" aria-hidden="true"></span>
+        </div>
+      </article>
+
+      <article class="case" id="e412-15">
+        <h3 class="case-title">E412-15: summary sin nombre accesible</h3>
+        <details>
+          <summary><span aria-hidden="true">+</span></summary>
+          <p>Información ficticia desplegable.</p>
+        </details>
+      </article>
+    </section>
+
+    <section aria-labelledby="dinamicos-title">
+      <h2 id="dinamicos-title">Fallos dinámicos que requieren interacción</h2>
+      <p>El estado inicial parece correcto, pero la información accesible no se actualiza tras usar el control.</p>
+
+      <article class="case" id="r412-01">
+        <h3 class="case-title">R412-01: acordeón que no actualiza aria-expanded</h3>
+        <button id="acordeon-roto" type="button" aria-expanded="false" aria-controls="panel-roto">Mostrar condiciones ficticias</button>
+        <div class="panel" id="panel-roto" hidden>
+          <p>Condiciones ficticias mostradas visualmente.</p>
+        </div>
+      </article>
+
+      <article class="case" id="r412-02">
+        <h3 class="case-title">R412-02: botón de alternancia que no actualiza aria-pressed</h3>
+        <button id="toggle-roto" type="button" aria-pressed="false">Activar modo ficticio</button>
+      </article>
+
+      <article class="case" id="r412-03">
+        <h3 class="case-title">R412-03: slider cuyo valor accesible no se actualiza</h3>
+        <div id="slider-roto" class="slider-track" role="slider" tabindex="0" aria-label="Prioridad ficticia" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25">
+          <span class="slider-thumb" aria-hidden="true"></span>
+        </div>
+        <p>Valor visual: <span id="valor-slider-roto">25</span></p>
+      </article>
+
+      <article class="case" id="r412-04">
+        <h3 class="case-title">R412-04: nombre accesible que no refleja el cambio de función</h3>
+        <button id="sonido-roto" type="button" aria-label="Activar sonido">Activar sonido</button>
+      </article>
+    </section>
+
+    <section aria-labelledby="controles-title">
+      <h2 id="controles-title">Controles correctos que no deben generar error</h2>
+
+      <article class="case" id="c412-01">
+        <h3 class="case-title">C412-01: botón nativo con nombre visible</h3>
+        <button type="button">Guardar borrador ficticio</button>
+      </article>
+
+      <article class="case" id="c412-02">
+        <h3 class="case-title">C412-02: enlace con nombre accesible</h3>
+        <a href="#destino-ficticio">Consultar destino ficticio</a>
+      </article>
+
+      <article class="case" id="c412-03">
+        <h3 class="case-title">C412-03: campo con label asociado</h3>
+        <div class="form-row">
+          <label for="referencia-valida">Referencia ficticia</label>
+          <input id="referencia-valida" name="referencia-valida" type="text">
+        </div>
+      </article>
+
+      <article class="case" id="c412-04">
+        <h3 class="case-title">C412-04: botón de imagen con alternativa</h3>
+        <input type="image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 48'%3E%3Crect width='120' height='48' rx='8' fill='%23005a77'/%3E%3Cpath d='m48 14 16 10-16 10z' fill='white'/%3E%3C/svg%3E" alt="Enviar solicitud ficticia">
+      </article>
+
+      <article class="case" id="c412-05">
+        <h3 class="case-title">C412-05: botón personalizado con nombre, rol y teclado</h3>
+        <div role="button" tabindex="0" onclick="showMessage('mensaje-boton-valido', 'Botón ficticio activado')" onkeydown="activateOnEnterOrSpace(event, 'mensaje-boton-valido', 'Botón ficticio activado')">Ejecutar acción ficticia</div>
+        <p class="status-box" id="mensaje-boton-valido">Acción pendiente.</p>
+      </article>
+
+      <article class="case" id="c412-06">
+        <h3 class="case-title">C412-06: checkbox personalizado con estado actualizado</h3>
+        <span id="checkbox-valido" role="checkbox" tabindex="0" aria-checked="false">Recibir confirmación ficticia</span>
+      </article>
+
+      <article class="case" id="c412-07">
+        <h3 class="case-title">C412-07: acordeón que actualiza su estado</h3>
+        <button id="acordeon-valido" type="button" aria-expanded="false" aria-controls="panel-valido">Mostrar información adicional</button>
+        <div class="panel" id="panel-valido" hidden>
+          <p>Información adicional ficticia.</p>
+        </div>
+      </article>
+
+      <article class="case" id="c412-08">
+        <h3 class="case-title">C412-08: slider con nombre, límites, valor y teclado</h3>
+        <div id="slider-valido" class="slider-track" role="slider" tabindex="0" aria-label="Nivel ficticio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" aria-valuetext="25 por ciento">
+          <span class="slider-thumb" aria-hidden="true"></span>
+        </div>
+      </article>
+
+      <article class="case" id="c412-09">
+        <h3 class="case-title">C412-09: iframe con title descriptivo</h3>
+        <iframe title="Información ficticia de ayuda" srcdoc="<!doctype html><html lang='es'><head><meta charset='utf-8'><title>Ayuda ficticia</title></head><body><p>Contenido interno de ayuda.</p></body></html>"></iframe>
+      </article>
+
+      <article class="case" id="c412-10">
+        <h3 class="case-title">C412-10: summary con nombre visible</h3>
+        <details>
+          <summary>Mostrar detalles ficticios</summary>
+          <p>Detalles correctamente identificados.</p>
+        </details>
+      </article>
+
+      <article class="case" id="c412-11">
+        <h3 class="case-title">C412-11: botón nombrado mediante aria-labelledby válido</h3>
+        <span id="nombre-boton-valido">Descargar justificante ficticio</span>
+        <button class="icon-button" type="button" aria-labelledby="nombre-boton-valido">
+          <span aria-hidden="true">↓</span>
+        </button>
+      </article>
+    </section>
+
+    <p id="destino-ficticio">Destino ficticio de los enlaces de prueba.</p>
+  </main>
+
+  <footer>
+    <p>Documento ficticio creado únicamente para probar WCAG 2.2, criterio 4.1.2.</p>
+  </footer>
+
+  <script>
+    function showMessage(id, message) {
+      document.getElementById(id).textContent = message;
+    }
+
+    function activateOnEnter(event, id, message) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        showMessage(id, message);
+      }
+    }
+
+    function activateOnEnterOrSpace(event, id, message) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        showMessage(id, message);
+      }
+    }
+
+    function toggleVisualCheck(element) {
+      element.classList.toggle("visually-checked");
+    }
+
+    function toggleVisualCheckOnKey(event, element) {
+      if (event.key === " ") {
+        event.preventDefault();
+        toggleVisualCheck(element);
+      }
+    }
+
+    function bindBrokenDynamicControls() {
+      const brokenAccordion = document.getElementById("acordeon-roto");
+      const brokenPanel = document.getElementById("panel-roto");
+      brokenAccordion.addEventListener("click", () => {
+        brokenPanel.hidden = !brokenPanel.hidden;
+      });
+
+      const brokenToggle = document.getElementById("toggle-roto");
+      brokenToggle.addEventListener("click", () => {
+        brokenToggle.textContent = brokenToggle.textContent.startsWith("Activar")
+          ? "Desactivar modo ficticio"
+          : "Activar modo ficticio";
+      });
+
+      const brokenSlider = document.getElementById("slider-roto");
+      const brokenSliderValue = document.getElementById("valor-slider-roto");
+      brokenSlider.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          brokenSliderValue.textContent = "50";
+          brokenSlider.querySelector(".slider-thumb").style.insetInlineStart = "50%";
+        }
+      });
+
+      const brokenSound = document.getElementById("sonido-roto");
+      brokenSound.addEventListener("click", () => {
+        brokenSound.textContent = brokenSound.textContent.startsWith("Activar")
+          ? "Desactivar sonido"
+          : "Activar sonido";
+      });
+    }
+
+    function bindValidControls() {
+      const validCheckbox = document.getElementById("checkbox-valido");
+      const toggleValidCheckbox = () => {
+        const checked = validCheckbox.getAttribute("aria-checked") === "true";
+        validCheckbox.setAttribute("aria-checked", String(!checked));
+      };
+      validCheckbox.addEventListener("click", toggleValidCheckbox);
+      validCheckbox.addEventListener("keydown", (event) => {
+        if (event.key === " ") {
+          event.preventDefault();
+          toggleValidCheckbox();
+        }
+      });
+
+      const validAccordion = document.getElementById("acordeon-valido");
+      const validPanel = document.getElementById("panel-valido");
+      validAccordion.addEventListener("click", () => {
+        const expanded = validAccordion.getAttribute("aria-expanded") === "true";
+        validAccordion.setAttribute("aria-expanded", String(!expanded));
+        validPanel.hidden = expanded;
+      });
+
+      const validSlider = document.getElementById("slider-valido");
+      validSlider.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") {
+          return;
+        }
+        event.preventDefault();
+        const current = Number(validSlider.getAttribute("aria-valuenow"));
+        const change = event.key === "ArrowRight" ? 5 : -5;
+        const next = Math.min(100, Math.max(0, current + change));
+        validSlider.setAttribute("aria-valuenow", String(next));
+        validSlider.setAttribute("aria-valuetext", `${next} por ciento`);
+        validSlider.querySelector(".slider-thumb").style.insetInlineStart = `${next}%`;
+      });
+    }
+
+    bindBrokenDynamicControls();
+    bindValidControls();
+  </script>
+</body>
+</html>
