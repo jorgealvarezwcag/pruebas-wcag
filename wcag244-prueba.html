@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Batería aislada WCAG 2.2 - Criterio 2.4.4 Propósito de los enlaces</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: #17212b;
+      background: #f5f7f8;
+    }
+
+    a {
+      color: #005a77;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 0.2rem solid #b54708;
+      outline-offset: 0.2rem;
+    }
+
+    .skip-link {
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      padding: 0.75rem 1rem;
+      color: #ffffff;
+      background: #173f5f;
+      transform: translateY(-110%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    header,
+    main,
+    footer {
+      width: min(74rem, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    header {
+      padding-block: 2rem 1rem;
+    }
+
+    main {
+      display: grid;
+      gap: 1.5rem;
+      padding-block-end: 2rem;
+    }
+
+    section {
+      padding: 1.25rem;
+      border: 0.1rem solid #c6d2d8;
+      border-radius: 0.5rem;
+      background: #ffffff;
+    }
+
+    .case {
+      padding-block: 1rem;
+      border-block-start: 0.1rem solid #dbe3e7;
+    }
+
+    .case:first-of-type {
+      border-block-start: 0;
+    }
+
+    .case-title {
+      margin-block: 0 0.5rem;
+      font-weight: 700;
+    }
+
+    .icon-link {
+      display: inline-flex;
+      width: 2.75rem;
+      min-height: 2.75rem;
+      align-items: center;
+      justify-content: center;
+      border: 0.1rem solid #49616e;
+      border-radius: 0.3rem;
+    }
+
+    .linked-image {
+      display: block;
+      width: 9rem;
+      height: 4rem;
+      border: 0.1rem solid #667985;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      padding: 1rem;
+      border: 0.1rem solid #9babb3;
+      border-radius: 0.4rem;
+    }
+
+    .visual-card-title {
+      margin-block-end: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      max-width: 44rem;
+      border-collapse: collapse;
+      margin-block: 0.75rem;
+    }
+
+    caption {
+      padding-block: 0.4rem;
+      font-weight: 700;
+      text-align: start;
+    }
+
+    th,
+    td {
+      padding: 0.55rem;
+      border: 0.1rem solid #667985;
+      text-align: start;
+    }
+
+    th {
+      background: #e7f1f5;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 0.1rem;
+      height: 0.1rem;
+      padding: 0;
+      margin: -0.1rem;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    footer {
+      padding-block: 1rem 2rem;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <header>
+    <h1>Batería aislada WCAG 2.2: criterio 2.4.4</h1>
+    <p>Portal ficticio para comprobar el propósito de los enlaces y su contexto programático.</p>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+    <section aria-labelledby="automaticos-title">
+      <h2 id="automaticos-title">Fallos automáticos claros</h2>
+      <p>Estos enlaces carecen objetivamente de nombre accesible o de alternativa textual.</p>
+
+      <article class="case" id="e244-01">
+        <h3 class="case-title">E244-01: enlace completamente vacío</h3>
+        <a class="icon-link" href="#destino-a"></a>
+      </article>
+
+      <article class="case" id="e244-02">
+        <h3 class="case-title">E244-02: enlace cuyo único contenido está oculto</h3>
+        <a class="icon-link" href="#destino-b"><span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="case" id="e244-03">
+        <h3 class="case-title">E244-03: imagen sin alt como único contenido del enlace</h3>
+        <a href="#destino-c">
+          <img class="linked-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 80'%3E%3Crect width='180' height='80' fill='%23005a77'/%3E%3Cpath d='m65 20 45 20-45 20z' fill='white'/%3E%3C/svg%3E">
+        </a>
+      </article>
+
+      <article class="case" id="e244-04">
+        <h3 class="case-title">E244-04: imagen con alt vacío como único contenido del enlace</h3>
+        <a href="#destino-d">
+          <img class="linked-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 80'%3E%3Crect width='180' height='80' fill='%23513c7a'/%3E%3Ccircle cx='90' cy='40' r='24' fill='white'/%3E%3C/svg%3E" alt="">
+        </a>
+      </article>
+
+      <article class="case" id="e244-05">
+        <h3 class="case-title">E244-05: área enlazada de un mapa sin texto alternativo</h3>
+        <img class="linked-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 80'%3E%3Crect width='90' height='80' fill='%23005a77'/%3E%3Crect x='90' width='90' height='80' fill='%23b54708'/%3E%3C/svg%3E" alt="Mapa ficticio con dos zonas" usemap="#mapa-enlaces">
+        <map name="mapa-enlaces">
+          <area id="area-244-sin-alt" shape="rect" coords="0,0,90,80" href="#destino-e">
+          <area shape="rect" coords="90,0,180,80" href="#destino-f" alt="Consultar información de la zona ficticia F">
+        </map>
+      </article>
+
+      <article class="case" id="e244-06">
+        <h3 class="case-title">E244-06: enlace con aria-labelledby roto y contenido oculto</h3>
+        <a class="icon-link" href="#destino-g" aria-labelledby="nombre-enlace-inexistente">
+          <span aria-hidden="true">?</span>
+        </a>
+      </article>
+
+      <article class="case" id="e244-07">
+        <h3 class="case-title">E244-07: SVG sin nombre como único contenido del enlace</h3>
+        <a class="icon-link" href="#destino-h">
+          <svg role="img" width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="42" fill="#005a77"></circle>
+            <path d="m42 28 30 22-30 22z" fill="#ffffff"></path>
+          </svg>
+        </a>
+      </article>
+    </section>
+
+    <section aria-labelledby="manuales-title">
+      <h2 id="manuales-title">Avisos que requieren revisión manual</h2>
+      <p>El enlace tiene nombre, pero una persona debe valorar si el texto y el contexto permiten conocer su propósito.</p>
+
+      <article class="case" id="r244-01">
+        <h3 class="case-title">R244-01: texto genérico sin contexto suficiente</h3>
+        <a href="#destino-i">Más información</a>
+      </article>
+
+      <article class="case" id="r244-02">
+        <h3 class="case-title">R244-02: contexto proporcionado solo por proximidad visual</h3>
+        <div class="visual-card-title">Informe ficticio de actividad mensual</div>
+        <div><a href="#destino-j">Descargar</a></div>
+      </article>
+
+      <article class="case" id="r244-03">
+        <h3 class="case-title">R244-03: enlaces iguales con destinos diferentes y contexto visual no semántico</h3>
+        <div class="cards">
+          <div class="card">
+            <div class="visual-card-title">Servicio ficticio Alfa</div>
+            <a href="#destino-k">Leer más</a>
+          </div>
+          <div class="card">
+            <div class="visual-card-title">Servicio ficticio Beta</div>
+            <a href="#destino-l">Leer más</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="case" id="r244-04">
+        <h3 class="case-title">R244-04: texto del enlace posiblemente contradictorio</h3>
+        <a href="#precios-ficticios">Consultar horarios ficticios</a>
+      </article>
+
+      <article class="case" id="r244-05">
+        <h3 class="case-title">R244-05: abreviatura cuyo propósito puede no ser comprensible</h3>
+        <a href="#destino-m">DOC. REF. 24-B</a>
+      </article>
+
+      <article class="case" id="r244-06">
+        <h3 class="case-title">R244-06: URL utilizada como texto del enlace</h3>
+        <a href="#destino-n">https://portal-ficticio.example/area/consulta?id=4872</a>
+      </article>
+
+      <article class="case" id="r244-07">
+        <h3 class="case-title">R244-07: title contradictorio con el texto visible</h3>
+        <a href="#destino-o" title="Eliminar el expediente ficticio">Consultar el expediente ficticio</a>
+      </article>
+
+      <article class="case" id="r244-08">
+        <h3 class="case-title">R244-08: acción genérica sin identificar el documento</h3>
+        <a href="#destino-p">Abrir</a>
+      </article>
+    </section>
+
+    <section aria-labelledby="controles-title">
+      <h2 id="controles-title">Controles correctos que no deben generar error</h2>
+
+      <article class="case" id="c244-01">
+        <h3 class="case-title">C244-01: texto descriptivo dentro del enlace</h3>
+        <a href="#destino-a">Consultar requisitos del trámite ficticio A</a>
+      </article>
+
+      <article class="case" id="c244-02">
+        <h3 class="case-title">C244-02: propósito aportado mediante aria-label</h3>
+        <a class="icon-link" href="#destino-b" aria-label="Consultar el expediente ficticio B">
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
+
+      <article class="case" id="c244-03">
+        <h3 class="case-title">C244-03: propósito formado mediante aria-labelledby</h3>
+        <p id="titulo-recurso-c">Guía ficticia de solicitudes</p>
+        <a id="enlace-recurso-c" href="#destino-c" aria-labelledby="accion-recurso-c titulo-recurso-c">
+          <span id="accion-recurso-c">Descargar</span>
+        </a>
+      </article>
+
+      <article class="case" id="c244-04">
+        <h3 class="case-title">C244-04: contexto disponible en el mismo párrafo</h3>
+        <p>Puede consultar los plazos de la convocatoria ficticia de junio. <a href="#destino-d">Más información</a>.</p>
+      </article>
+
+      <article class="case" id="c244-05">
+        <h3 class="case-title">C244-05: contexto disponible en el mismo elemento de lista</h3>
+        <ul>
+          <li>Formulario ficticio de inscripción: <a href="#destino-e">Descargar PDF</a></li>
+        </ul>
+      </article>
+
+      <article class="case" id="c244-06">
+        <h3 class="case-title">C244-06: propósito determinado mediante tabla y encabezados</h3>
+        <table>
+          <caption>Documentos ficticios disponibles</caption>
+          <thead>
+            <tr>
+              <th scope="col">Documento</th>
+              <th scope="col">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Memoria ficticia de 2026</th>
+              <td><a href="#destino-f">Descargar</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="case" id="c244-07">
+        <h3 class="case-title">C244-07: contexto proporcionado mediante lista anidada</h3>
+        <ul>
+          <li>Manual ficticio de accesibilidad
+            <ul>
+              <li><a href="#destino-g">Versión HTML</a></li>
+              <li><a href="#destino-h">Versión PDF</a></li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+      <article class="case" id="c244-08">
+        <h3 class="case-title">C244-08: parte descriptiva del enlace oculta visualmente</h3>
+        <a href="#destino-i">Leer más <span class="visually-hidden">sobre el servicio ficticio Gamma</span></a>
+      </article>
+
+      <article class="case" id="c244-09">
+        <h3 class="case-title">C244-09: title complementa un texto que ya identifica el recurso</h3>
+        <a href="#destino-j" title="Documento PDF, 850 KB">Memoria ficticia anual 2026</a>
+      </article>
+
+      <article class="case" id="c244-10">
+        <h3 class="case-title">C244-10: icono decorativo acompañado por texto de enlace</h3>
+        <a href="#destino-k">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#005a77" d="M42 10h16v48l18-18 11 11-37 37-37-37 11-11 18 18z"></path>
+          </svg>
+          Descargar certificado ficticio
+        </a>
+      </article>
+
+      <article class="case" id="c244-11">
+        <h3 class="case-title">C244-11: área de mapa con texto alternativo descriptivo</h3>
+        <img class="linked-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 80'%3E%3Crect width='180' height='80' fill='%2300783e'/%3E%3C/svg%3E" alt="Mapa ficticio de una zona seleccionable" usemap="#mapa-valido">
+        <map name="mapa-valido">
+          <area shape="rect" coords="0,0,180,80" href="#destino-l" alt="Consultar información de la zona ficticia válida">
+        </map>
+      </article>
+
+      <article class="case" id="c244-12">
+        <h3 class="case-title">C244-12: propósito deliberadamente ambiguo para todas las personas</h3>
+        <p>Juego ficticio de suspense: el destino debe permanecer oculto hasta elegir.</p>
+        <a href="#destino-l">Puerta número 1</a>
+      </article>
+    </section>
+
+    <section aria-labelledby="destinos-title">
+      <h2 id="destinos-title">Destinos ficticios</h2>
+      <p id="destino-a">Destino A: requisitos del trámite.</p>
+      <p id="destino-b">Destino B: expediente ficticio.</p>
+      <p id="destino-c">Destino C: guía de solicitudes.</p>
+      <p id="destino-d">Destino D: convocatoria de junio.</p>
+      <p id="destino-e">Destino E: formulario de inscripción.</p>
+      <p id="destino-f">Destino F: memoria ficticia.</p>
+      <p id="destino-g">Destino G: versión HTML.</p>
+      <p id="destino-h">Destino H: versión PDF.</p>
+      <p id="destino-i">Destino I: servicio Gamma.</p>
+      <p id="destino-j">Destino J: memoria anual.</p>
+      <p id="destino-k">Destino K: certificado ficticio.</p>
+      <p id="destino-l">Destino L: puerta de suspense.</p>
+      <p id="destino-m">Destino M: documento de referencia.</p>
+      <p id="destino-n">Destino N: área de consulta.</p>
+      <p id="destino-o">Destino O: consulta de expediente.</p>
+      <p id="destino-p">Destino P: documento sin identificar.</p>
+      <p id="precios-ficticios">Precios ficticios, no horarios.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Documento ficticio creado únicamente para probar WCAG 2.2, criterio 2.4.4.</p>
+  </footer>
+</body>
+</html>
