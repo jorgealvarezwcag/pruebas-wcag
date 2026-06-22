@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portal de Pruebas - Encabezados WCAG 1.3.1</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: #17212b;
+      background: #f3f6f7;
+    }
+
+    a {
+      color: #005a77;
+    }
+
+    a:focus-visible {
+      outline: 0.2rem solid #a33c00;
+      outline-offset: 0.2rem;
+    }
+
+    .skip-link {
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      padding: 0.75rem 1rem;
+      color: #ffffff;
+      background: #173f5f;
+      transform: translateY(-110%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    header,
+    main,
+    footer {
+      width: min(72rem, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    header {
+      padding-block: 2rem 1rem;
+    }
+
+    main {
+      display: grid;
+      gap: 1.5rem;
+      padding-block-end: 2rem;
+    }
+
+    section {
+      padding: 1.25rem;
+      border: 0.1rem solid #b9c9d0;
+      border-radius: 0.6rem;
+      background: #ffffff;
+    }
+
+    article {
+      padding-block: 1rem;
+      border-block-start: 0.1rem solid #dbe3e7;
+    }
+
+    article:first-of-type {
+      border-block-start: 0;
+    }
+
+    .case-title {
+      margin-block: 0 0.4rem;
+    }
+
+    .case-note {
+      margin-block: 0.25rem 0.75rem;
+      color: #354a55;
+    }
+
+    .visual-heading {
+      margin-block: 1rem 0.5rem;
+      font-size: 1.45rem;
+      font-weight: 700;
+    }
+
+    .visual-heading-large {
+      margin-block: 1rem 0.5rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .demo-panel {
+      padding: 0.8rem;
+      border-inline-start: 0.3rem solid #3b7185;
+      background: #edf5f7;
+    }
+
+    iframe {
+      width: 100%;
+      min-height: 10rem;
+      border: 0.1rem solid #667985;
+    }
+
+    footer {
+      padding-block: 1rem 2rem;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <header>
+    <h1>Portal de Pruebas: encabezados</h1>
+    <p>Batería ficticia y aislada para revisar WCAG 2.2, criterio 1.3.1.</p>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+    <section aria-labelledby="errores-title">
+      <h2 id="errores-title">Fallos automáticos claros</h2>
+      <p>Los siguientes encabezados pierden o declaran incorrectamente su semántica en el código.</p>
+
+      <article id="eh-01">
+        <h3 class="case-title">EH-01: encabezado nativo con rol presentacional</h3>
+        <p class="case-note">El h4 es visible, pero role="presentation" elimina su semántica.</p>
+        <h4 role="presentation">Resoluciones pendientes</h4>
+        <p>Información ficticia dependiente del encabezado anterior.</p>
+      </article>
+
+      <article id="eh-02">
+        <h3 class="case-title">EH-02: encabezado visible oculto a las ayudas técnicas</h3>
+        <p class="case-note">El atributo aria-hidden retira el encabezado del árbol de accesibilidad.</p>
+        <h4 aria-hidden="true">Solicitudes archivadas</h4>
+        <p>Información ficticia dependiente del encabezado anterior.</p>
+      </article>
+
+      <article id="eh-03">
+        <h3 class="case-title">EH-03: encabezado ARIA sin nivel</h3>
+        <p class="case-note">role="heading" requiere que el autor declare aria-level.</p>
+        <div role="heading">Comunicaciones recientes</div>
+        <p>El elemento tiene rol de encabezado, pero no informa de su nivel.</p>
+      </article>
+
+      <article id="eh-04">
+        <h3 class="case-title">EH-04: encabezado ARIA con nivel inválido</h3>
+        <p class="case-note">aria-level debe contener un entero positivo.</p>
+        <div role="heading" aria-level="alto">Notificaciones pendientes</div>
+        <p>El nivel declarado no puede interpretarse programáticamente.</p>
+      </article>
+
+      <article id="eh-05">
+        <h3 class="case-title">EH-05: texto del encabezado oculto a las ayudas técnicas</h3>
+        <p class="case-note">El elemento h4 se expone, pero todo su contenido visible está oculto mediante aria-hidden.</p>
+        <h4><span aria-hidden="true">Plazos de resolución</span></h4>
+        <p>La sección queda representada por un encabezado sin texto accesible.</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="revision-title">
+      <h2 id="revision-title">Casos que requieren revisión manual</h2>
+      <p>Estos patrones pueden localizarse automáticamente, pero no prueban por sí solos un incumplimiento.</p>
+
+      <article id="rh-01">
+        <h3 class="case-title">RH-01: texto con apariencia de encabezado</h3>
+        <p class="visual-heading">Documentación necesaria</p>
+        <p>Solo una persona puede confirmar si ese texto encabeza realmente esta información.</p>
+      </article>
+
+      <article id="rh-02">
+        <h3 class="case-title">RH-02: salto descendente de h3 a h5</h3>
+        <h5>Apartado con nivel intermedio omitido</h5>
+        <p>El salto de nivel es sospechoso, pero no constituye por sí mismo un fallo automático de WCAG 1.3.1.</p>
+      </article>
+
+      <article id="rh-03">
+        <h3 class="case-title">RH-03: encabezado vacío</h3>
+        <h4></h4>
+        <p>Debe avisarse para revisión, sin afirmar automáticamente que exista una relación informativa perdida.</p>
+      </article>
+
+      <article id="rh-04">
+        <h3 class="case-title">RH-04: nivel elegido aparentemente por tamaño</h3>
+        <h6 class="visual-heading-large">Resumen del expediente</h6>
+        <p>La combinación de nivel h6 y apariencia grande es un indicio, no una prueba concluyente.</p>
+      </article>
+
+      <article id="rh-05">
+        <h3 class="case-title">RH-05: segundo h1 dentro del documento</h3>
+        <h1>Área ficticia independiente</h1>
+        <p>Más de un h1 no incumple automáticamente WCAG; debe revisarse si representa correctamente la estructura.</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="validos-title">
+      <h2 id="validos-title">Estructuras válidas que no deben marcarse</h2>
+      <p>Estos controles buscan reproducir y acotar posibles falsos positivos del analizador.</p>
+
+      <article id="ch-01">
+        <h3 class="case-title">CH-01: primer h3 correcto después de un h2</h3>
+        <p>Es la misma secuencia h1, h2, h3 que TAWDIS marcó anteriormente en la batería general.</p>
+      </article>
+
+      <article id="ch-02">
+        <h3 class="case-title">CH-02: segundo h3 hermano del anterior</h3>
+        <p>Repetir h3 para apartados hermanos es correcto.</p>
+      </article>
+
+      <article id="ch-03">
+        <h3 class="case-title">CH-03: h4 correctamente subordinado</h3>
+        <h4>Detalle del trámite ficticio</h4>
+        <p>Este encabezado h4 depende del h3 que identifica el caso.</p>
+      </article>
+
+      <article id="ch-04">
+        <h3 class="case-title">CH-04: regreso de h4 a un nuevo h3</h3>
+        <p>Volver desde el h4 del caso anterior a este h3 cierra una subsección y es correcto.</p>
+      </article>
+
+      <article id="ch-05">
+        <h3 class="case-title">CH-05: encabezado ARIA con nivel válido</h3>
+        <div role="heading" aria-level="4">Detalle identificado mediante ARIA</div>
+        <p>El rol y el nivel se encuentran correctamente declarados.</p>
+      </article>
+
+      <article id="ch-06">
+        <h3 class="case-title">CH-06: encabezado que contiene un enlace</h3>
+        <h4><a href="#destino-valido">Consulta de resoluciones ficticias</a></h4>
+        <p>El texto del enlace proporciona contenido accesible al encabezado.</p>
+      </article>
+
+      <article id="ch-07">
+        <h3 class="case-title">CH-07: encabezado con icono decorativo</h3>
+        <h4><span aria-hidden="true">#</span> Estado de la solicitud</h4>
+        <p>El texto visible y accesible identifica correctamente la sección.</p>
+      </article>
+
+      <article id="ch-08">
+        <h3 class="case-title">CH-08: encabezado oculto junto con su contenido</h3>
+        <div hidden>
+          <h4>Sección temporalmente no disponible</h4>
+          <p>Este bloque completo no se presenta a ninguna persona usuaria.</p>
+        </div>
+        <p>Un encabezado dentro de contenido realmente oculto no debe contarse como encabezado vacío o visible.</p>
+      </article>
+
+      <article id="ch-09">
+        <h3 class="case-title">CH-09: h3 dentro de un article subordinado a un h2</h3>
+        <div class="demo-panel">
+          <p>La presencia del elemento article no reinicia la jerarquía ni obliga a utilizar otro h1.</p>
+        </div>
+      </article>
+
+      <article id="ch-10">
+        <h3 class="case-title">CH-10: documento independiente que comienza por h2</h3>
+        <p>La ausencia de h1 es una recomendación o aviso, no un incumplimiento automático de 1.3.1.</p>
+        <iframe
+          title="Documento ficticio sin encabezado h1"
+          srcdoc="<!doctype html><html lang='es'><head><meta charset='utf-8'><title>Documento ficticio sin h1</title></head><body><h2>Contenido principal del marco</h2><p>Texto ficticio.</p><h3>Detalle subordinado</h3><p>Más texto ficticio.</p></body></html>">
+        </iframe>
+      </article>
+
+      <article id="destino-valido">
+        <h3 class="case-title">Destino del enlace de prueba</h3>
+        <p>Contenido ficticio utilizado por CH-06.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>Portal ficticio creado exclusivamente para probar encabezados bajo WCAG 2.2.</p>
+  </footer>
+</body>
+</html>
