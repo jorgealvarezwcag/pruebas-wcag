@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portal de Pruebas - WCAG 1.3.1 Información y relaciones</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: #17212b;
+      background: #f3f6f7;
+    }
+
+    a {
+      color: #005a77;
+    }
+
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 0.2rem solid #a33c00;
+      outline-offset: 0.2rem;
+    }
+
+    .skip-link {
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      padding: 0.75rem 1rem;
+      color: #ffffff;
+      background: #173f5f;
+      transform: translateY(-110%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    header,
+    main,
+    footer {
+      width: min(74rem, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    header {
+      padding-block: 2rem 1rem;
+    }
+
+    main {
+      display: grid;
+      gap: 1.5rem;
+      padding-block-end: 2rem;
+    }
+
+    section {
+      padding: 1.25rem;
+      border: 0.1rem solid #b9c9d0;
+      border-radius: 0.6rem;
+      background: #ffffff;
+    }
+
+    .case {
+      padding-block: 1rem;
+      border-block-start: 0.1rem solid #dbe3e7;
+    }
+
+    .case:first-of-type {
+      border-block-start: 0;
+    }
+
+    .case-title {
+      margin-block: 0 0.4rem;
+    }
+
+    .case-note {
+      margin-block: 0.25rem 0.75rem;
+      color: #354a55;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 0.35rem;
+      max-width: 34rem;
+      margin-block: 0.75rem;
+    }
+
+    input,
+    select {
+      min-height: 2.75rem;
+      padding: 0.5rem;
+      font: inherit;
+    }
+
+    fieldset {
+      max-width: 34rem;
+      margin-block: 0.75rem;
+    }
+
+    table {
+      width: 100%;
+      max-width: 46rem;
+      margin-block: 0.75rem;
+      border-collapse: collapse;
+    }
+
+    caption {
+      padding-block: 0.4rem;
+      font-weight: 700;
+      text-align: start;
+    }
+
+    th,
+    td {
+      padding: 0.55rem;
+      border: 0.1rem solid #667985;
+      text-align: start;
+    }
+
+    th,
+    .visual-table-header td {
+      font-weight: 700;
+      background: #e7f1f5;
+    }
+
+    .visual-heading {
+      margin-block: 1rem 0.5rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .fake-list,
+    .fake-table {
+      padding: 0.75rem;
+      border: 0.1rem solid #b9c9d0;
+      background: #f5f7f8;
+      white-space: pre-wrap;
+    }
+
+    .required-by-css::after {
+      content: " (obligatorio)";
+      color: #8a251b;
+      font-weight: 700;
+    }
+
+    .emphasis-only {
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .aria-table {
+      display: grid;
+      max-width: 36rem;
+      border-block-start: 0.1rem solid #667985;
+      border-inline-start: 0.1rem solid #667985;
+    }
+
+    .aria-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+    }
+
+    .aria-row > span {
+      padding: 0.55rem;
+      border-block-end: 0.1rem solid #667985;
+      border-inline-end: 0.1rem solid #667985;
+    }
+
+    .aria-row:first-child {
+      font-weight: 700;
+      background: #e7f1f5;
+    }
+
+    footer {
+      padding-block: 1rem 2rem;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <header>
+    <h1>Portal de Pruebas: WCAG 1.3.1</h1>
+    <p>Página ficticia para comprobar información y relaciones programáticas.</p>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+    <section aria-labelledby="errores-title">
+      <h2 id="errores-title">Fallos automáticos claros</h2>
+      <p>Las relaciones de estos ejemplos están rotas o anuladas directamente en el código.</p>
+
+      <article class="case" id="e131-01">
+        <h3 class="case-title">E131-01: etiqueta asociada a un identificador inexistente</h3>
+        <p class="case-note">La etiqueta visible pretende identificar el campo, pero su atributo <code>for</code> no encuentra el control.</p>
+        <div class="form-row">
+          <label for="expediente-inexistente">Número de expediente ficticio</label>
+          <input id="expediente-real" name="expediente" type="text">
+        </div>
+      </article>
+
+      <article class="case" id="e131-02">
+        <h3 class="case-title">E131-02: nombre del grupo con referencia rota</h3>
+        <p id="canales-visibles">Canales de notificación</p>
+        <div role="group" aria-labelledby="canales-inexistentes">
+          <label><input name="canal" type="checkbox" value="correo"> Correo electrónico</label>
+          <label><input name="canal" type="checkbox" value="sms"> Mensaje SMS</label>
+        </div>
+      </article>
+
+      <article class="case" id="e131-03">
+        <h3 class="case-title">E131-03: texto de ayuda con referencia rota</h3>
+        <div class="form-row">
+          <label for="referencia-error">Referencia interna</label>
+          <input id="referencia-error" name="referencia" type="text" aria-describedby="ayuda-inexistente">
+          <span id="ayuda-visible">Use ocho caracteres ficticios.</span>
+        </div>
+      </article>
+
+      <article class="case" id="e131-04">
+        <h3 class="case-title">E131-04: tabla compleja con referencias de cabecera inexistentes</h3>
+        <table>
+          <caption>Solicitudes ficticias por oficina y trimestre</caption>
+          <tr>
+            <th id="oficina-error" rowspan="2">Oficina</th>
+            <th id="semestre-error" colspan="2">Primer semestre</th>
+          </tr>
+          <tr>
+            <th id="t1-error">T1</th>
+            <th id="t2-error">T2</th>
+          </tr>
+          <tr>
+            <th id="norte-error">Norte</th>
+            <td headers="norte-error semestre-error t1-error">18</td>
+            <td headers="oficina-ausente trimestre-ausente">22</td>
+          </tr>
+        </table>
+      </article>
+
+      <article class="case" id="e131-05">
+        <h3 class="case-title">E131-05: semántica de lista anulada</h3>
+        <ul role="presentation">
+          <li>Preparar la documentación</li>
+          <li>Revisar los datos</li>
+          <li>Enviar la solicitud</li>
+        </ul>
+      </article>
+
+      <article class="case" id="e131-06">
+        <h3 class="case-title">E131-06: semántica de encabezado anulada</h3>
+        <h4 role="presentation">Estado del expediente ficticio</h4>
+        <p>El contenido siguiente depende visualmente de ese encabezado.</p>
+      </article>
+
+      <article class="case" id="e131-07">
+        <h3 class="case-title">E131-07: contenido de una lista fuera de elementos li</h3>
+        <ul>
+          <li>Primer paso correctamente marcado</li>
+          <div>Segundo paso presentado dentro de la lista, pero sin elemento li</div>
+          <div>Tercer paso presentado dentro de la lista, pero sin elemento li</div>
+        </ul>
+      </article>
+
+      <article class="case" id="e131-08">
+        <h3 class="case-title">E131-08: tabla ARIA sin roles de celda ni encabezado</h3>
+        <div class="aria-table" role="table" aria-label="Plazos ficticios">
+          <div class="aria-row" role="row">
+            <span>Trámite</span>
+            <span>Plazo</span>
+          </div>
+          <div class="aria-row" role="row">
+            <span>Alta ficticia</span>
+            <span>Dos días</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section aria-labelledby="revision-title">
+      <h2 id="revision-title">Patrones para revisión manual</h2>
+      <p>Son candidatos detectables, pero la herramienta no debería declararlos incumplimientos sin interpretar su significado.</p>
+
+      <article class="case" id="r131-01">
+        <h3 class="case-title">R131-01: posible encabezado creado con estilos</h3>
+        <p class="visual-heading">Documentación necesaria</p>
+        <p>Documento identificativo y justificante ficticio.</p>
+      </article>
+
+      <article class="case" id="r131-02">
+        <h3 class="case-title">R131-02: posible lista no ordenada simulada</h3>
+        <p class="fake-list">- Solicitud ficticia
+- Documento identificativo
+- Justificante de pago</p>
+      </article>
+
+      <article class="case" id="r131-03">
+        <h3 class="case-title">R131-03: posible lista ordenada simulada</h3>
+        <p class="fake-list">1. Cumplimentar los datos
+2. Revisar la información
+3. Confirmar el envío</p>
+      </article>
+
+      <article class="case" id="r131-04">
+        <h3 class="case-title">R131-04: posible información tabular alineada con espacios</h3>
+        <pre class="fake-table">Servicio             Plazo
+Consulta básica      2 días
+Consulta ampliada    5 días</pre>
+      </article>
+
+      <article class="case" id="r131-05">
+        <h3 class="case-title">R131-05: posible grupo de radios sin nombre programático común</h3>
+        <p>Modalidad de entrega</p>
+        <label><input name="entrega" type="radio" value="digital"> Digital</label>
+        <label><input name="entrega" type="radio" value="postal"> Postal</label>
+      </article>
+
+      <article class="case" id="r131-06">
+        <h3 class="case-title">R131-06: posible agrupación de opciones sin optgroup</h3>
+        <div class="form-row">
+          <label for="oficina-revision">Oficina de tramitación</label>
+          <select id="oficina-revision" name="oficina-revision">
+            <option disabled>Zona norte</option>
+            <option>Oficina Norte 1</option>
+            <option>Oficina Norte 2</option>
+            <option disabled>Zona sur</option>
+            <option>Oficina Sur 1</option>
+          </select>
+        </div>
+      </article>
+
+      <article class="case" id="r131-07">
+        <h3 class="case-title">R131-07: posible énfasis transmitido solo visualmente</h3>
+        <p><span class="emphasis-only">Plazo improrrogable:</span> cinco días ficticios.</p>
+      </article>
+
+      <article class="case" id="r131-08">
+        <h3 class="case-title">R131-08: obligatoriedad presentada únicamente mediante CSS</h3>
+        <div class="form-row">
+          <label class="required-by-css" for="codigo-revision">Código de referencia</label>
+          <input id="codigo-revision" name="codigo-revision" type="text">
+        </div>
+      </article>
+    </section>
+
+    <section aria-labelledby="validos-title">
+      <h2 id="validos-title">Controles correctos</h2>
+      <p>Estos casos aportan información y relaciones programáticas válidas y no deben generar incidencias.</p>
+
+      <article class="case" id="c131-01">
+        <h3 class="case-title">C131-01: jerarquía de encabezados coherente</h3>
+        <h4>Documentación opcional</h4>
+        <p>El subtítulo utiliza un encabezado real.</p>
+      </article>
+
+      <article class="case" id="c131-02">
+        <h3 class="case-title">C131-02: listas correctamente marcadas</h3>
+        <ul>
+          <li>Primer elemento no ordenado</li>
+          <li>Segundo elemento no ordenado</li>
+        </ul>
+        <ol>
+          <li>Primer paso ordenado</li>
+          <li>Segundo paso ordenado</li>
+        </ol>
+        <dl>
+          <dt>Expediente</dt>
+          <dd>Conjunto ficticio de documentos.</dd>
+        </dl>
+      </article>
+
+      <article class="case" id="c131-03">
+        <h3 class="case-title">C131-03: tabla sencilla con cabeceras asociadas</h3>
+        <table>
+          <caption>Plazos ficticios por servicio</caption>
+          <thead>
+            <tr>
+              <th scope="col">Servicio</th>
+              <th scope="col">Plazo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Consulta básica</th>
+              <td>Dos días</td>
+            </tr>
+            <tr>
+              <th scope="row">Consulta ampliada</th>
+              <td>Cinco días</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="case" id="c131-04">
+        <h3 class="case-title">C131-04: tabla compleja con id y headers válidos</h3>
+        <table>
+          <caption>Resoluciones ficticias por sede y trimestre</caption>
+          <tr>
+            <th id="sede-valida" rowspan="2">Sede</th>
+            <th id="semestre-valido" colspan="2">Primer semestre</th>
+          </tr>
+          <tr>
+            <th id="t1-valido">T1</th>
+            <th id="t2-valido">T2</th>
+          </tr>
+          <tr>
+            <th id="centro-valido">Centro</th>
+            <td headers="centro-valido semestre-valido t1-valido">14</td>
+            <td headers="centro-valido semestre-valido t2-valido">19</td>
+          </tr>
+        </table>
+      </article>
+
+      <article class="case" id="c131-05">
+        <h3 class="case-title">C131-05: control con label asociado</h3>
+        <div class="form-row">
+          <label for="nombre-valido">Nombre completo</label>
+          <input id="nombre-valido" name="nombre-valido" type="text" autocomplete="name">
+        </div>
+      </article>
+
+      <article class="case" id="c131-06">
+        <h3 class="case-title">C131-06: grupo con fieldset y legend</h3>
+        <fieldset>
+          <legend>Modalidad de notificación</legend>
+          <label><input name="notificacion-valida" type="radio" value="correo"> Correo electrónico</label>
+          <label><input name="notificacion-valida" type="radio" value="postal"> Correo postal</label>
+        </fieldset>
+      </article>
+
+      <article class="case" id="c131-07">
+        <h3 class="case-title">C131-07: opciones agrupadas con optgroup</h3>
+        <div class="form-row">
+          <label for="oficina-valida">Oficina preferente</label>
+          <select id="oficina-valida" name="oficina-valida">
+            <optgroup label="Zona norte">
+              <option>Oficina Norte 1</option>
+              <option>Oficina Norte 2</option>
+            </optgroup>
+            <optgroup label="Zona sur">
+              <option>Oficina Sur 1</option>
+            </optgroup>
+          </select>
+        </div>
+      </article>
+
+      <article class="case" id="c131-08">
+        <h3 class="case-title">C131-08: ayuda asociada mediante aria-describedby</h3>
+        <div class="form-row">
+          <label for="referencia-valida">Referencia interna</label>
+          <input id="referencia-valida" name="referencia-valida" type="text" aria-describedby="ayuda-valida">
+          <span id="ayuda-valida">Use ocho caracteres ficticios.</span>
+        </div>
+      </article>
+
+      <article class="case" id="c131-09">
+        <h3 class="case-title">C131-09: énfasis identificado semánticamente</h3>
+        <p><strong>Plazo improrrogable:</strong> cinco días ficticios.</p>
+      </article>
+
+      <article class="case" id="c131-10">
+        <h3 class="case-title">C131-10: tabla ARIA con estructura completa</h3>
+        <div class="aria-table" role="table" aria-label="Importes ficticios">
+          <div class="aria-row" role="row">
+            <span role="columnheader">Concepto</span>
+            <span role="columnheader">Importe</span>
+          </div>
+          <div class="aria-row" role="row">
+            <span role="cell">Tasa ficticia</span>
+            <span role="cell">12 euros</span>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>Portal ficticio creado exclusivamente para validar WCAG 2.2, criterio 1.3.1.</p>
+  </footer>
+</body>
+</html>
