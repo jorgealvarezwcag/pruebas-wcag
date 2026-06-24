@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bateria WCAG 2.2 - 2.5.3, 1.3.5, 2.4.1, 2.4.3 y 3.3.2</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: system-ui, sans-serif;
+      line-height: 1.55;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: #16212b;
+      background: #f5f7f8;
+    }
+
+    a {
+      color: #005f7a;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 0.2rem solid #b54708;
+      outline-offset: 0.2rem;
+    }
+
+    .site-header,
+    .content,
+    .site-footer {
+      width: min(76rem, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      padding-block: 1.5rem 1rem;
+    }
+
+    .menu-repetido {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-block-start: 1rem;
+      padding: 1rem;
+      border: 0.1rem solid #b8cad3;
+      border-radius: 0.5rem;
+      background: #ffffff;
+    }
+
+    .content {
+      display: grid;
+      gap: 1.25rem;
+      padding-block: 1rem 2rem;
+    }
+
+    section,
+    .panel {
+      padding: 1.25rem;
+      border: 0.1rem solid #c6d2d8;
+      border-radius: 0.5rem;
+      background: #ffffff;
+    }
+
+    .case {
+      margin-block: 1rem;
+      padding: 1rem;
+      border-inline-start: 0.35rem solid #0b7285;
+      background: #eef8fa;
+    }
+
+    .case.error {
+      border-inline-start-color: #b42318;
+      background: #fff4f2;
+    }
+
+    .case.warning {
+      border-inline-start-color: #b54708;
+      background: #fff8eb;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.35rem;
+      max-width: 36rem;
+      margin-block: 0.85rem;
+    }
+
+    input,
+    select,
+    button {
+      min-height: 2.75rem;
+      padding: 0.55rem 0.75rem;
+      border: 0.1rem solid #8296a3;
+      border-radius: 0.35rem;
+      font: inherit;
+    }
+
+    button,
+    input[type="submit"] {
+      color: #ffffff;
+      background: #075985;
+      border-color: #075985;
+      cursor: pointer;
+    }
+
+    .visually-ordered {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .visual-card-order {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .visual-card-order a {
+      display: block;
+      min-width: 12rem;
+      padding: 0.75rem;
+      border: 0.1rem solid #8aa3af;
+      border-radius: 0.35rem;
+      background: #eef8fa;
+    }
+
+    .orden-1 {
+      order: 1;
+    }
+
+    .orden-2 {
+      order: 2;
+    }
+
+    .orden-3 {
+      order: 3;
+    }
+
+    .telefono-fragmentado input {
+      width: 6rem;
+    }
+
+    .correcto {
+      border-inline-start-color: #2f855a;
+      background: #f0fff4;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <p>Portal ficticio de pruebas WCAG 2.2</p>
+    <h1>Bateria combinada de criterios automatizables y avisos</h1>
+    <div class="menu-repetido">
+      <a href="#criterio-253">Etiqueta en el nombre</a>
+      <a href="#criterio-135">Proposito de entrada</a>
+      <a href="#criterio-241">Saltar bloques</a>
+      <a href="#criterio-243">Orden del foco</a>
+      <a href="#criterio-332">Etiquetas e instrucciones</a>
+      <a href="#panel-datos">Panel de datos</a>
+      <a href="#formulario-control">Formulario correcto</a>
+      <a href="#pie">Pie de pagina</a>
+    </div>
+  </header>
+
+  <div id="contenido-principal" class="content">
+    <section id="criterio-241">
+      <h2>SC 2.4.1 - Bypass Blocks</h2>
+      <p>Esta pagina incluye un bloque de navegacion repetido antes del contenido, pero no tiene enlace de salto, elemento main ni role="main".</p>
+      <div class="case error">
+        <p>El contenido principal empieza aqui, despues de todos los enlaces superiores, sin ningun mecanismo de salto programatico.</p>
+      </div>
+    </section>
+
+    <section id="criterio-253">
+      <h2>SC 2.5.3 - Label in Name</h2>
+      <p>Los controles siguientes tienen etiqueta visible, pero su nombre accesible no contiene ese texto visible.</p>
+
+      <div class="case error">
+        <p>Boton con texto visible "Guardar" y nombre accesible "Enviar solicitud".</p>
+        <button id="btn-guardar-mismatch" type="button" aria-label="Enviar solicitud">Guardar</button>
+      </div>
+
+      <div class="case error">
+        <p>Enlace con texto visible "Leer mas" y nombre accesible diferente.</p>
+        <a id="enlace-leer-mismatch" href="#panel-datos" aria-label="Abrir panel de estadisticas">Leer mas</a>
+      </div>
+
+      <div class="case error">
+        <p>Boton de envio cuyo valor visible no queda incluido en el nombre accesible.</p>
+        <form action="#" method="post">
+          <input id="submit-buscar-mismatch" type="submit" value="Buscar" aria-label="Aplicar filtro">
+        </form>
+      </div>
+
+      <div class="case error">
+        <p>Boton con texto visible "Cancelar" nombrado solo por un texto externo distinto.</p>
+        <span id="nombre-externo-cancelar">Cerrar cuadro de prueba</span>
+        <button id="btn-cancelar-labelledby-mismatch" type="button" aria-labelledby="nombre-externo-cancelar">Cancelar</button>
+      </div>
+
+      <div class="case correcto">
+        <p>Casos correctos para evitar falsos positivos.</p>
+        <button id="btn-guardar-correcto" type="button" aria-label="Guardar solicitud ficticia">Guardar</button>
+        <a id="enlace-leer-correcto" href="#panel-datos" aria-label="Leer mas sobre el panel de datos">Leer mas</a>
+      </div>
+    </section>
+
+    <section id="criterio-135">
+      <h2>SC 1.3.5 - Identify Input Purpose</h2>
+      <p>Los campos de datos personales deben exponer su proposito mediante tokens validos de autocomplete cuando proceda.</p>
+
+      <form action="#" method="post">
+        <div class="case error">
+          <div class="field">
+            <label for="nombre-autocomplete-invalido">Nombre</label>
+            <input id="nombre-autocomplete-invalido" name="nombre" autocomplete="nombre">
+          </div>
+        </div>
+
+        <div class="case error">
+          <div class="field">
+            <label for="telefono-autocomplete-invalido">Telefono movil</label>
+            <input id="telefono-autocomplete-invalido" name="telefono" type="tel" autocomplete="phone">
+          </div>
+        </div>
+
+        <div class="case warning">
+          <div class="field">
+            <label for="email-autocomplete-ausente">Correo electronico personal</label>
+            <input id="email-autocomplete-ausente" name="email_personal" type="email">
+          </div>
+        </div>
+
+        <div class="case warning">
+          <div class="field">
+            <label for="cp-autocomplete-ausente">Codigo postal</label>
+            <input id="cp-autocomplete-ausente" name="codigo_postal">
+          </div>
+        </div>
+
+        <div class="case correcto">
+          <p>Campos correctos con tokens validos.</p>
+          <div class="field">
+            <label for="nombre-correcto">Nombre</label>
+            <input id="nombre-correcto" name="given-name" autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="apellidos-correcto">Apellidos</label>
+            <input id="apellidos-correcto" name="family-name" autocomplete="family-name">
+          </div>
+          <div class="field">
+            <label for="email-correcto">Correo electronico</label>
+            <input id="email-correcto" name="email" type="email" autocomplete="email">
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section id="criterio-243">
+      <h2>SC 2.4.3 - Focus Order</h2>
+      <p>El orden de foco debe preservar el significado y la operabilidad.</p>
+
+      <div class="case error">
+        <p>Visualmente los pasos son 1, 2 y 3, pero tabindex fuerza el foco en el orden 2, 3 y 1.</p>
+        <div class="visually-ordered">
+          <button id="paso-1-tabindex-mal" type="button" tabindex="3">1. Elegir fecha</button>
+          <button id="paso-2-tabindex-mal" type="button" tabindex="1">2. Introducir datos</button>
+          <button id="paso-3-tabindex-mal" type="button" tabindex="2">3. Confirmar</button>
+        </div>
+      </div>
+
+      <div class="case warning">
+        <p>Visualmente aparecen como paso 1, 2 y 3 por CSS, pero el DOM y el foco recorren 3, 1 y 2.</p>
+        <div class="visual-card-order">
+          <a id="tarjeta-dom-tercero" class="orden-3" href="#paso-tres">Paso 3: Confirmar envio</a>
+          <a id="tarjeta-dom-primero" class="orden-1" href="#paso-uno">Paso 1: Identificar expediente</a>
+          <a id="tarjeta-dom-segundo" class="orden-2" href="#paso-dos">Paso 2: Revisar datos</a>
+        </div>
+      </div>
+
+      <div class="case warning">
+        <p>Un contenedor recibe foco y dentro contiene otro control enfocable, generando doble parada en el mismo componente visual.</p>
+        <div id="tarjeta-focus-duplicado" tabindex="0">
+          <button id="boton-focus-duplicado" type="button">Editar tarjeta</button>
+        </div>
+      </div>
+
+      <div class="case correcto">
+        <p>Orden correcto sin tabindex positivo.</p>
+        <button id="orden-correcto-1" type="button">1. Revisar</button>
+        <button id="orden-correcto-2" type="button">2. Guardar</button>
+        <button id="orden-correcto-3" type="button">3. Finalizar</button>
+      </div>
+    </section>
+
+    <section id="criterio-332">
+      <h2>SC 3.3.2 - Labels or Instructions</h2>
+      <p>Los campos de entrada deben presentar etiquetas o instrucciones suficientes para todas las personas usuarias.</p>
+
+      <form action="#" method="post">
+        <div class="case error">
+          <p>Campo con nombre accesible por ARIA, pero sin etiqueta visible para usuarios videntes.</p>
+          <input id="dni-sin-label-visible" name="dni" aria-label="DNI" required>
+        </div>
+
+        <div class="case warning">
+          <div class="field">
+            <label for="codigo-sin-instrucciones">Codigo de validacion</label>
+            <input id="codigo-sin-instrucciones" name="codigo_validacion" pattern="[A-Z]{3}-[0-9]{4}" required>
+          </div>
+        </div>
+
+        <div class="case error telefono-fragmentado">
+          <p>Telefono de contacto: los tres campos solo se separan con signos visuales, sin etiquetas visibles para cada parte.</p>
+          (<input id="telefono-prefijo-sin-label" name="prefijo" aria-label="Prefijo telefonico" maxlength="3">)
+          <input id="telefono-bloque1-sin-label" name="bloque1" aria-label="Primer bloque del telefono" maxlength="3">
+          -
+          <input id="telefono-bloque2-sin-label" name="bloque2" aria-label="Segundo bloque del telefono" maxlength="4">
+        </div>
+
+        <div class="case warning">
+          <p>El placeholder se usa como unica pista visual; desaparece al escribir y no sustituye una etiqueta persistente.</p>
+          <input id="expediente-placeholder-unico" name="expediente" aria-label="Numero de expediente" placeholder="Numero de expediente">
+        </div>
+
+        <div id="formulario-control" class="case correcto">
+          <p>Formulario correcto para comprobar que no se disparan falsos positivos.</p>
+          <div class="field">
+            <label for="nombre-control">Nombre <span aria-hidden="true">*</span></label>
+            <input id="nombre-control" name="nombre_control" autocomplete="given-name" required aria-describedby="ayuda-nombre-control">
+            <p id="ayuda-nombre-control">Campo obligatorio. Escriba solo su nombre, sin apellidos.</p>
+          </div>
+          <div class="field">
+            <label for="postal-control">Codigo postal</label>
+            <input id="postal-control" name="postal_control" autocomplete="postal-code" inputmode="numeric" aria-describedby="ayuda-postal-control">
+            <p id="ayuda-postal-control">Formato de cinco digitos.</p>
+          </div>
+          <button type="submit">Enviar formulario de prueba</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="panel-datos" class="panel">
+      <h2>Panel de datos ficticio</h2>
+      <p>Contenido de destino para enlaces internos de esta bateria.</p>
+      <div id="paso-uno" class="panel">Paso 1 ficticio.</div>
+      <div id="paso-dos" class="panel">Paso 2 ficticio.</div>
+      <div id="paso-tres" class="panel">Paso 3 ficticio.</div>
+    </section>
+  </div>
+
+  <footer id="pie" class="site-footer">
+    <p>Documento ficticio para pruebas de TAWDIS. No representa ningun servicio real.</p>
+  </footer>
+</body>
+</html>
