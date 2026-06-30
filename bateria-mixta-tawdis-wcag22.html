@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Portal ficticio de pruebas WCAG 2.2 - bateria mixta TAWDIS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      color: #222;
+      background: #f5f7f8;
+    }
+
+    header,
+    main,
+    footer {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      background: #fff;
+    }
+
+    header {
+      border-bottom: 4px solid #006b6b;
+    }
+
+    section {
+      margin: 2rem 0;
+      padding: 1rem;
+      border: 1px solid #c9dadd;
+      border-radius: 0.5rem;
+    }
+
+    .zona-prueba {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .tarjeta {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      background: #fafafa;
+    }
+
+    .icono {
+      width: 48px;
+      height: 48px;
+      background: #0b6b6b;
+      color: #fff;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      font-weight: bold;
+    }
+
+    [aria-checked] {
+      outline: 2px solid #7048a8;
+    }
+
+    [aria-expanded] {
+      border-left: 4px solid #7048a8;
+    }
+
+    .enlace-accion svg {
+      width: 1em;
+      height: 1em;
+    }
+
+    .solo-visual {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .lista-visual span {
+      display: list-item;
+      margin-left: 1.2rem;
+    }
+
+    .caja-scroll {
+      width: 18rem;
+      height: 5rem;
+      overflow: auto;
+      border: 1px solid #888;
+      padding: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Portal ficticio de pruebas WCAG 2.2</h1>
+    <p>Pagina sintetica para validar mejoras automaticas de TAWDIS. Todo el contenido es ficticio.</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="intro-correcta">
+      <h2 id="intro-correcta">Bloque correcto de control</h2>
+      <p>Este bloque incluye contenido bien construido para comprobar que no se generan falsos positivos.</p>
+      <img src="https://via.placeholder.com/160x90.png?text=Grafico+accesible" alt="Grafico ficticio de operaciones completadas">
+      <p><a href="#destino-correcto">Ir al destino correcto</a></p>
+      <p id="destino-correcto" tabindex="-1">Destino correcto del enlace interno.</p>
+      <label for="campo-correcto">Nombre ficticio</label>
+      <input id="campo-correcto" name="nombre" autocomplete="name">
+    </section>
+
+    <section aria-labelledby="criterio-111">
+      <h2 id="criterio-111">Pruebas del criterio 1.1.1 - Contenido no textual</h2>
+      <div class="zona-prueba">
+        <div class="tarjeta">
+          <h3>Imagen sin texto alternativo</h3>
+          <img src="https://via.placeholder.com/180x100.png?text=Sin+alt">
+        </div>
+
+        <div class="tarjeta">
+          <h3>Texto alternativo sospechoso</h3>
+          <img src="https://via.placeholder.com/180x100.png?text=Archivo" alt="imagen-final-2026.png">
+        </div>
+
+        <div class="tarjeta">
+          <h3>Boton de imagen sin alternativa</h3>
+          <form action="#" method="post">
+            <input type="image" src="https://via.placeholder.com/120x40.png?text=Enviar">
+          </form>
+        </div>
+
+        <div class="tarjeta">
+          <h3>Mapa de imagen con area sin alternativa</h3>
+          <img src="https://via.placeholder.com/260x120.png?text=Mapa" usemap="#mapa-ficticio" alt="Mapa ficticio de secciones">
+          <map name="mapa-ficticio">
+            <area shape="rect" coords="0,0,120,120" href="#zona-sin-alt">
+            <area shape="rect" coords="130,0,260,120" href="#zona-con-alt" alt="Zona ficticia accesible">
+          </map>
+        </div>
+
+        <div class="tarjeta">
+          <h3>Objeto sin alternativa textual</h3>
+          <object data="documento-ficticio.pdf" type="application/pdf" width="220" height="120"></object>
+        </div>
+
+        <div class="tarjeta">
+          <h3>SVG con rol de imagen sin nombre</h3>
+          <svg role="img" width="80" height="80" viewBox="0 0 80 80" aria-hidden="false">
+            <circle cx="40" cy="40" r="30" fill="#006b6b"></circle>
+          </svg>
+        </div>
+
+        <div class="tarjeta">
+          <h3>Canvas sin contenido alternativo</h3>
+          <canvas width="220" height="80"></canvas>
+        </div>
+
+        <div class="tarjeta">
+          <h3>Imagen con alt vacio que debe revisarse</h3>
+          <img src="https://via.placeholder.com/180x100.png?text=Organigrama" alt="">
+        </div>
+
+        <div class="tarjeta">
+          <h3>Imagen compleja que puede requerir descripcion larga</h3>
+          <img src="https://via.placeholder.com/300x160.png?text=Infografia+compleja" alt="Infografia de resultados ficticios">
+        </div>
+
+        <div class="tarjeta">
+          <h3>CAPTCHA ficticio</h3>
+          <img src="https://via.placeholder.com/180x70.png?text=8K2P" alt="captcha">
+          <label for="captcha-respuesta">Escriba el codigo de la imagen</label>
+          <input id="captcha-respuesta" name="captcha">
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="criterio-131">
+      <h2 id="criterio-131">Pruebas del criterio 1.3.1 - Informacion y relaciones</h2>
+
+      <article class="tarjeta" aria-labelledby="encabezado-correcto">
+        <h3 id="encabezado-correcto">Secuencia correcta h3</h3>
+        <h4>Subseccion correcta h4</h4>
+        <p>Este patron no deberia generar error por salto de encabezado.</p>
+      </article>
+
+      <article class="tarjeta">
+        <h3>Salto real de encabezado</h3>
+        <h5>Subseccion que salta de h3 a h5</h5>
+        <p>Este salto debe revisarse porque omite h4.</p>
+      </article>
+
+      <article class="tarjeta">
+        <h3 role="presentation">Encabezado visible con semantica eliminada</h3>
+        <p>Visualmente parece encabezado, pero se elimina del arbol de accesibilidad.</p>
+      </article>
+
+      <article class="tarjeta">
+        <h3></h3>
+        <p>Encabezado vacio sin texto en su interior.</p>
+      </article>
+
+      <article class="tarjeta">
+        <p class="solo-visual">Texto grande que actua como encabezado visual</p>
+        <p>La relacion estructural no queda determinada semanticamente.</p>
+      </article>
+
+      <article class="tarjeta">
+        <h3>Tabla de datos sin encabezados</h3>
+        <table>
+          <tr>
+            <td>Producto ficticio</td>
+            <td>Estado</td>
+          </tr>
+          <tr>
+            <td>Solicitud A</td>
+            <td>Pendiente</td>
+          </tr>
+        </table>
+      </article>
+
+      <article class="tarjeta">
+        <h3>Tabla de maquetacion con semantica de datos</h3>
+        <table summary="Tabla usada para colocar visualmente tarjetas">
+          <tr>
+            <th>Bloque izquierdo</th>
+            <td>Contenido decorativo</td>
+          </tr>
+        </table>
+      </article>
+
+      <article class="tarjeta">
+        <h3>Cabecera de tabla con referencia rota</h3>
+        <table>
+          <tr>
+            <th id="th-valido">Campo</th>
+            <th id="th-estado">Estado</th>
+          </tr>
+          <tr>
+            <td headers="th-inexistente">Nombre</td>
+            <td headers="th-estado">Activo</td>
+          </tr>
+        </table>
+      </article>
+
+      <article class="tarjeta">
+        <h3>Lista visual sin semantica</h3>
+        <p>1. Alta ficticia</p>
+        <p>2. Revision ficticia</p>
+        <p>3. Cierre ficticio</p>
+      </article>
+
+      <article class="tarjeta">
+        <h3>Lista con hijos visibles incorrectos</h3>
+        <ul>
+          <span>Elemento visual A</span>
+          <span>Elemento visual B</span>
+        </ul>
+      </article>
+
+      <article class="tarjeta">
+        <h3>Lista con semantica eliminada</h3>
+        <ul role="presentation">
+          <li>Opcion ficticia sin semantica de lista</li>
+        </ul>
+      </article>
+
+      <article class="tarjeta">
+        <h3>Select con grupos visuales sin optgroup</h3>
+        <label for="select-producto">Producto</label>
+        <select id="select-producto" name="producto">
+          <option>-- Fondos --</option>
+          <option>Fondo ficticio A</option>
+          <option>-- Seguros --</option>
+          <option>Seguro ficticio B</option>
+        </select>
+      </article>
+
+      <article class="tarjeta">
+        <h3>Grupo de radios sin fieldset ni legend</h3>
+        <p>Preferencia de contacto</p>
+        <label><input type="radio" name="contacto" value="email"> Email</label>
+        <label><input type="radio" name="contacto" value="telefono"> Telefono</label>
+      </article>
+
+      <article class="tarjeta">
+        <h3>Control de formulario sin etiqueta</h3>
+        <input id="telefono-sin-nombre" name="telefono" type="tel">
+      </article>
+
+      <article class="tarjeta">
+        <h3>Etiqueta con for roto</h3>
+        <label for="campo-inexistente">Codigo de expediente</label>
+        <input id="codigo-real" name="codigo">
+      </article>
+
+      <article class="tarjeta">
+        <h3>Referencia aria-labelledby rota</h3>
+        <input id="campo-aria-roto" name="expediente" aria-labelledby="etiqueta-no-existe">
+      </article>
+    </section>
+
+    <section aria-labelledby="criterios-idioma-titulo">
+      <h2 id="criterios-idioma-titulo">Pruebas de idioma y titulo - 3.1.1, 3.1.2 y 2.4.2</h2>
+      <p>El documento principal esta bien declarado en espanol, pero estos fragmentos simulan cambios de idioma mal marcados.</p>
+      <p lang="en_US">This fictional paragraph uses an invalid language tag.</p>
+      <p><span lang="fr" xml:lang="en">Bonjour, dossier fictif.</span></p>
+      <iframe title="" srcdoc="<!doctype html><html lang='zz-invalido'><head><title></title></head><body><p>Documento interno ficticio.</p></body></html>"></iframe>
+      <iframe title="Documento con titulo por defecto" srcdoc="<!doctype html><html lang='es'><head><title>Untitled</title></head><body><p>Documento interno ficticio.</p></body></html>"></iframe>
+    </section>
+
+    <section aria-labelledby="criterio-244">
+      <h2 id="criterio-244">Pruebas del criterio 2.4.4 - Proposito de los enlaces</h2>
+      <p><a href="#enlace-vacio"></a></p>
+      <p><a href="#solo-icono-oculto"><span aria-hidden="true">PDF</span></a></p>
+      <p><a href="#imagen-sin-alt"><img src="https://via.placeholder.com/24.png?text=I"></a></p>
+      <p><a href="#imagen-alt-vacio"><img src="https://via.placeholder.com/24.png?text=I" alt=""></a></p>
+      <p><a href="#aria-rota-enlace" aria-labelledby="texto-enlace-no-existe"><span aria-hidden="true">Abrir</span></a></p>
+      <p>
+        <a href="#svg-sin-nombre">
+          <svg role="img" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M4 4h16v16H4z"></path>
+          </svg>
+        </a>
+      </p>
+      <p><a class="enlace-accion" href="#enlace-correcto-svg"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M4 12h16"></path></svg> Descargar justificante ficticio</a></p>
+      <p><a href="#enlace-icono-correcto" aria-label="Abrir detalle ficticio"><span aria-hidden="true">+</span></a></p>
+    </section>
+
+    <section aria-labelledby="criterio-412">
+      <h2 id="criterio-412">Pruebas del criterio 4.1.2 - Nombre, funcion y valor</h2>
+      <div class="zona-prueba">
+        <button type="button"></button>
+        <button type="button" aria-labl="Guardar solicitud">Guardar solicitud</button>
+        <button type="button" role="boton">Accion con rol invalido</button>
+        <div role="checkbox" tabindex="0">Acepto condiciones ficticias</div>
+        <div role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="10">Nivel ficticio</div>
+        <div role="checkbox" tabindex="0" aria-checked="yes">Valor ARIA invalido</div>
+        <button type="button" aria-checked="true">Boton con propiedad no permitida</button>
+        <button type="button" aria-labelledby="id-no-existe"></button>
+        <button type="button" aria-hidden="true">Boton oculto pero enfocable</button>
+        <iframe srcdoc="<!doctype html><html lang='es'><head><title>Marco sin nombre externo</title></head><body><button aria-label='Boton interno valido'>+</button></body></html>"></iframe>
+      </div>
+      <pre><code>Texto de ejemplo que menciona aria-checked y aria-expanded, pero no debe tratarse como atributo real del DOM.</code></pre>
+    </section>
+
+    <section aria-labelledby="criterios-navegacion">
+      <h2 id="criterios-navegacion">Pruebas de navegacion y foco - 2.4.1 y 2.4.3</h2>
+      <p>Esta pagina tiene main, pero no tiene enlace de salto al contenido. Debe generar aviso si TAWDIS espera mecanismo de salto.</p>
+      <div class="zona-prueba">
+        <button type="button" tabindex="3">Tercer foco artificial</button>
+        <a href="#tabindex-positivo" tabindex="1">Primer foco artificial</a>
+        <input id="tabindex-positivo" tabindex="2" value="Segundo foco artificial">
+        <div class="tarjeta" tabindex="0">
+          <button type="button">Boton dentro de contenedor enfocable</button>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="criterios-formularios">
+      <h2 id="criterios-formularios">Pruebas de formularios - 1.3.5, 2.5.3 y 3.3.2</h2>
+      <form action="#" method="post">
+        <div class="zona-prueba">
+          <div class="tarjeta">
+            <label for="email-invalido">Correo electronico</label>
+            <input id="email-invalido" name="email" autocomplete="correo">
+          </div>
+
+          <div class="tarjeta">
+            <label for="nombre-sin-autocomplete">Nombre</label>
+            <input id="nombre-sin-autocomplete" name="nombre">
+          </div>
+
+          <div class="tarjeta">
+            <button type="button" aria-label="Enviar solicitud">Guardar</button>
+          </div>
+
+          <div class="tarjeta">
+            <label for="buscar">Buscar expediente</label>
+            <input id="buscar" name="buscar" aria-label="Localizar registro">
+          </div>
+
+          <div class="tarjeta">
+            <label for="telefono-1">Telefono</label>
+            <input id="telefono-1" name="tel1" size="3" maxlength="3">
+            <input id="telefono-2" name="tel2" size="3" maxlength="3">
+            <input id="telefono-3" name="tel3" size="3" maxlength="3">
+          </div>
+
+          <div class="tarjeta">
+            <input id="dni-solo-placeholder" name="dni" placeholder="DNI">
+          </div>
+
+          <div class="tarjeta">
+            <label for="importe">Importe</label>
+            <input id="importe" name="importe" pattern="[0-9]+">
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section aria-labelledby="criterios-correctos-extra">
+      <h2 id="criterios-correctos-extra">Patrones correctos adicionales</h2>
+      <nav aria-label="Navegacion ficticia secundaria">
+        <ul>
+          <li><a href="#criterio-111">Contenido no textual</a></li>
+          <li><a href="#criterio-131">Informacion y relaciones</a></li>
+          <li><a href="#criterio-412">Nombre, funcion y valor</a></li>
+        </ul>
+      </nav>
+      <table>
+        <caption>Tabla correcta de expedientes ficticios</caption>
+        <tr>
+          <th scope="col">Expediente</th>
+          <th scope="col">Estado</th>
+        </tr>
+        <tr>
+          <td>EXP-001</td>
+          <td>Completado</td>
+        </tr>
+      </table>
+      <fieldset>
+        <legend>Preferencia correcta</legend>
+        <label><input type="radio" name="preferencia-correcta" value="si"> Si</label>
+        <label><input type="radio" name="preferencia-correcta" value="no"> No</label>
+      </fieldset>
+    </section>
+  </main>
+
+  <footer>
+    <p>Portal ficticio de pruebas. No contiene datos reales.</p>
+  </footer>
+</body>
+</html>
