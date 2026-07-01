@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Super bateria final WCAG 2.2 - Portal ficticio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      color: #222;
+      background: #f5f7f8;
+    }
+
+    a.skip-link {
+      position: absolute;
+      left: -999px;
+      top: 0;
+      background: #fff;
+      color: #004b4b;
+      padding: 0.5rem;
+    }
+
+    a.skip-link:focus {
+      left: 1rem;
+      z-index: 10;
+    }
+
+    header,
+    main,
+    footer {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      background: #fff;
+    }
+
+    section {
+      margin: 2rem 0;
+      padding: 1rem;
+      border: 1px solid #c9dadd;
+      border-radius: 0.5rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .card {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      background: #fafafa;
+    }
+
+    .low-contrast {
+      color: #b9b9b9;
+      background: #ffffff;
+    }
+
+    .fixed-reflow-box {
+      width: 1280px;
+      border: 1px solid #555;
+      padding: 1rem;
+      background: #fff;
+    }
+
+    .bad-spacing {
+      line-height: 12px;
+      letter-spacing: -1px;
+    }
+
+    .no-outline *:focus {
+      outline: none;
+    }
+
+    .tiny-target {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      text-align: center;
+      border: 1px solid #0b6b6b;
+      font-size: 10px;
+    }
+
+    [aria-checked] {
+      outline: 1px solid #7048a8;
+    }
+
+    .visual-heading {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <header>
+    <h1>Portal ficticio de bateria final WCAG 2.2</h1>
+    <p>Pagina de pruebas con contenido correcto y errores intencionados para validacion final de TAWDIS.</p>
+  </header>
+
+  <main id="contenido-principal">
+    <section aria-labelledby="control-correcto">
+      <h2 id="control-correcto">Bloque correcto de control</h2>
+      <p>Este bloque contiene patrones correctos que no deberian generar incidencias.</p>
+      <img src="https://via.placeholder.com/160x90.png?text=Grafico+correcto" alt="Grafico ficticio de operaciones completadas">
+      <p><a href="#destino-correcto">Ir al destino correcto</a></p>
+      <p id="destino-correcto" tabindex="-1">Destino correcto del enlace interno.</p>
+      <label for="nombre-correcto">Nombre ficticio</label>
+      <input id="nombre-correcto" name="nombre" autocomplete="name">
+      <table>
+        <caption>Tabla correcta de expedientes ficticios</caption>
+        <tr>
+          <th scope="col">Expediente</th>
+          <th scope="col">Estado</th>
+        </tr>
+        <tr>
+          <td>EXP-001</td>
+          <td>Completado</td>
+        </tr>
+      </table>
+      <fieldset>
+        <legend>Preferencia correcta</legend>
+        <label><input type="radio" name="pref-correcta" value="si"> Si</label>
+        <label><input type="radio" name="pref-correcta" value="no"> No</label>
+      </fieldset>
+    </section>
+
+    <section aria-labelledby="criterio-111">
+      <h2 id="criterio-111">1.1.1 Contenido no textual</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Imagen sin texto alternativo</h3>
+          <img src="https://via.placeholder.com/180x100.png?text=Sin+alt">
+        </div>
+
+        <div class="card">
+          <h3>Texto alternativo sospechoso</h3>
+          <img src="https://via.placeholder.com/180x100.png?text=Archivo" alt="foto-final-2026.png">
+        </div>
+
+        <div class="card">
+          <h3>Boton de imagen sin alternativa</h3>
+          <form action="#" method="post">
+            <input type="image" src="https://via.placeholder.com/120x40.png?text=Enviar">
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Mapa de imagen con area sin alternativa</h3>
+          <img src="https://via.placeholder.com/260x120.png?text=Mapa" usemap="#mapa-final" alt="Mapa ficticio de areas">
+          <map name="mapa-final">
+            <area shape="rect" coords="0,0,120,120" href="#area-sin-alt">
+            <area shape="rect" coords="130,0,260,120" href="#area-correcta" alt="Area correcta del mapa">
+          </map>
+        </div>
+
+        <div class="card">
+          <h3>Objeto sin alternativa textual</h3>
+          <object data="documento-ficticio.pdf" type="application/pdf" width="220" height="120"></object>
+        </div>
+
+        <div class="card">
+          <h3>SVG con rol de imagen sin nombre</h3>
+          <svg role="img" width="80" height="80" viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="30" fill="#006b6b"></circle>
+          </svg>
+        </div>
+
+        <div class="card">
+          <h3>Canvas visible sin respaldo</h3>
+          <canvas width="220" height="80"></canvas>
+        </div>
+
+        <div class="card">
+          <h3>Imagen con alt vacio a revisar</h3>
+          <img src="https://via.placeholder.com/180x100.png?text=Organigrama" alt="">
+        </div>
+
+        <div class="card">
+          <h3>Imagen compleja con posible descripcion larga</h3>
+          <img src="https://via.placeholder.com/300x160.png?text=Infografia+compleja" alt="Infografia de resultados ficticios">
+        </div>
+
+        <div class="card">
+          <h3>CAPTCHA ficticio</h3>
+          <img src="https://via.placeholder.com/180x70.png?text=8K2P" alt="captcha">
+          <label for="captcha-respuesta">Escriba el codigo de la imagen</label>
+          <input id="captcha-respuesta" name="captcha">
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="multimedia">
+      <h2 id="multimedia">1.2 Multimedia pregrabada</h2>
+      <video controls width="320">
+        <source src="video-ficticio.mp4" type="video/mp4">
+      </video>
+      <audio controls src="audio-ficticio.mp3"></audio>
+    </section>
+
+    <section aria-labelledby="criterio-131">
+      <h2 id="criterio-131">1.3.1 Informacion y relaciones</h2>
+
+      <article class="card">
+        <h3>Secuencia correcta h3</h3>
+        <h4>Subseccion correcta h4</h4>
+        <p>Este patron correcto no debe marcar salto de encabezado.</p>
+      </article>
+
+      <article class="card">
+        <h3>Salto real de encabezado</h3>
+        <h5>Subseccion que salta de h3 a h5</h5>
+      </article>
+
+      <article class="card">
+        <h3 role="presentation">Encabezado visible sin semantica</h3>
+        <p>El encabezado se ve, pero se elimina del arbol de accesibilidad.</p>
+      </article>
+
+      <article class="card">
+        <h3></h3>
+        <p>Encabezado vacio sin texto.</p>
+      </article>
+
+      <article class="card">
+        <p class="visual-heading">Texto grande usado como encabezado visual</p>
+        <p>La estructura no queda determinada semanticamente.</p>
+      </article>
+
+      <article class="card">
+        <h3>Tabla de datos sin encabezados</h3>
+        <table>
+          <tr>
+            <td>Producto ficticio</td>
+            <td>Estado</td>
+          </tr>
+          <tr>
+            <td>Solicitud A</td>
+            <td>Pendiente</td>
+          </tr>
+        </table>
+      </article>
+
+      <article class="card">
+        <h3>Tabla de maquetacion con semantica de datos</h3>
+        <table summary="Tabla usada para colocar visualmente tarjetas">
+          <tr>
+            <th>Bloque izquierdo</th>
+            <td>Contenido decorativo</td>
+          </tr>
+        </table>
+      </article>
+
+      <article class="card">
+        <h3>Cabecera de tabla con referencia rota</h3>
+        <table>
+          <tr>
+            <th id="th-nombre">Campo</th>
+            <th id="th-estado">Estado</th>
+          </tr>
+          <tr>
+            <td headers="th-inexistente">Nombre</td>
+            <td headers="th-estado">Activo</td>
+          </tr>
+        </table>
+      </article>
+
+      <article class="card">
+        <h3>Lista ordenada simulada</h3>
+        <p>1. Alta ficticia</p>
+        <p>2. Revision ficticia</p>
+        <p>3. Cierre ficticio</p>
+      </article>
+
+      <article class="card">
+        <h3>Lista con hijos visibles que no son li</h3>
+        <ul>
+          <span>Elemento visual A</span>
+          <span>Elemento visual B</span>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Lista con semantica eliminada</h3>
+        <ul role="presentation">
+          <li>Opcion ficticia</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Select con grupos visuales sin optgroup</h3>
+        <label for="producto-sin-optgroup">Producto</label>
+        <select id="producto-sin-optgroup" name="producto">
+          <option>-- Fondos --</option>
+          <option>Fondo ficticio A</option>
+          <option>-- Seguros --</option>
+          <option>Seguro ficticio B</option>
+        </select>
+      </article>
+
+      <article class="card">
+        <h3>Grupo de radios sin fieldset ni legend</h3>
+        <p>Preferencia de contacto</p>
+        <label><input type="radio" name="contacto" value="email"> Email</label>
+        <label><input type="radio" name="contacto" value="telefono"> Telefono</label>
+      </article>
+
+      <article class="card">
+        <h3>Control de formulario sin etiqueta</h3>
+        <input id="telefono-sin-nombre" name="telefono" type="tel">
+      </article>
+
+      <article class="card">
+        <h3>Etiqueta con for roto</h3>
+        <label for="campo-inexistente">Codigo de expediente</label>
+        <input id="codigo-real" name="codigo">
+      </article>
+
+      <article class="card">
+        <h3>Referencia aria-labelledby rota</h3>
+        <input id="campo-aria-roto" name="expediente" aria-labelledby="etiqueta-no-existe">
+      </article>
+    </section>
+
+    <section aria-labelledby="criterio-135">
+      <h2 id="criterio-135">1.3.5 Identificar el proposito de entrada</h2>
+      <label for="email-invalido">Correo electronico</label>
+      <input id="email-invalido" name="email" autocomplete="correo">
+
+      <label for="nombre-sin-autocomplete">Nombre</label>
+      <input id="nombre-sin-autocomplete" name="nombre">
+    </section>
+
+    <section aria-labelledby="visual">
+      <h2 id="visual">1.4 Presentacion visual</h2>
+      <p class="low-contrast">Texto con contraste insuficiente.</p>
+      <div class="fixed-reflow-box">Caja de anchura fija que puede impedir reflow en pantallas estrechas.</div>
+      <p class="bad-spacing">Parrafo con interlineado y espaciado fijo que puede interferir con ajustes personalizados.</p>
+      <div class="no-outline">
+        <a href="#foco-sin-outline">Enlace sin indicador visible de foco</a>
+      </div>
+    </section>
+
+    <section aria-labelledby="operable">
+      <h2 id="operable">2 Operable</h2>
+      <div class="card" onclick="alert('Accion ficticia')">Elemento clicable solo con raton</div>
+      <p><a href="#atajo-a" accesskey="a">Acceso rapido A</a></p>
+      <p><button type="button" accesskey="a">Otro acceso rapido A</button></p>
+      <button type="button" tabindex="3">Tercer foco artificial</button>
+      <a href="#tabindex-positivo" tabindex="1">Primer foco artificial</a>
+      <input id="tabindex-positivo" tabindex="2" value="Segundo foco artificial">
+      <div class="card" tabindex="0">
+        <button type="button">Boton dentro de contenedor enfocable</button>
+      </div>
+      <p><a class="tiny-target" href="#objetivo-pequeno">x</a></p>
+    </section>
+
+    <section aria-labelledby="criterio-244">
+      <h2 id="criterio-244">2.4.4 Proposito de los enlaces</h2>
+      <p><a href="#enlace-vacio"></a></p>
+      <p><a href="#solo-icono-oculto"><span aria-hidden="true">PDF</span></a></p>
+      <p><a href="#imagen-sin-alt"><img src="https://via.placeholder.com/24.png?text=I"></a></p>
+      <p><a href="#imagen-alt-vacio"><img src="https://via.placeholder.com/24.png?text=I" alt=""></a></p>
+      <p><a href="#aria-rota-enlace" aria-labelledby="texto-enlace-no-existe"><span aria-hidden="true">Abrir</span></a></p>
+      <p>
+        <a href="#svg-sin-nombre">
+          <svg role="img" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M4 4h16v16H4z"></path>
+          </svg>
+        </a>
+      </p>
+      <p><a href="#enlace-correcto-svg"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="16" height="16"><path d="M4 12h16"></path></svg> Descargar justificante ficticio</a></p>
+      <p><a href="#enlace-icono-correcto" aria-label="Abrir detalle ficticio"><span aria-hidden="true">+</span></a></p>
+      <p><a href="https://ejemplo.invalid/ficha-a">Leer mas</a></p>
+      <p><a href="https://ejemplo.invalid/ficha-b">Leer mas</a></p>
+    </section>
+
+    <section aria-labelledby="idioma-titulo">
+      <h2 id="idioma-titulo">3 Comprensible: idioma, cambios y formularios</h2>
+      <p lang="en_US">This fictional paragraph uses an invalid language tag.</p>
+      <p><span lang="fr" xml:lang="en">Bonjour, dossier fictif.</span></p>
+      <form action="#" method="post">
+        <label for="buscar">Buscar expediente</label>
+        <input id="buscar" name="buscar" aria-label="Localizar registro">
+
+        <button type="button" aria-label="Enviar solicitud">Guardar</button>
+
+        <label for="telefono-1">Telefono</label>
+        <input id="telefono-1" name="tel1" size="3" maxlength="3">
+        <input id="telefono-2" name="tel2" size="3" maxlength="3">
+        <input id="telefono-3" name="tel3" size="3" maxlength="3">
+
+        <input id="dni-placeholder" name="dni" placeholder="DNI">
+
+        <label for="importe">Importe</label>
+        <input id="importe" name="importe" pattern="[0-9]+">
+
+        <label for="cambio-contexto">Selector que cambia al elegir</label>
+        <select id="cambio-contexto" onchange="window.location.href='#cambio-automatico'">
+          <option>Seleccione destino</option>
+          <option>Destino ficticio</option>
+        </select>
+      </form>
+
+      <iframe title="" srcdoc="<!doctype html><html lang='zz-invalido'><head><title></title><meta http-equiv='refresh' content='0;url=about:blank'></head><body><p>Documento interno ficticio.</p></body></html>"></iframe>
+      <iframe title="Documento interno con titulo por defecto" srcdoc="<!doctype html><html lang='es'><head><title>Untitled</title></head><body><p>Documento interno ficticio.</p></body></html>"></iframe>
+    </section>
+
+    <section aria-labelledby="criterio-412">
+      <h2 id="criterio-412">4.1.2 Nombre, funcion y valor</h2>
+      <div class="grid">
+        <button type="button"></button>
+        <button type="button" aria-labl="Guardar solicitud">Guardar solicitud</button>
+        <button type="button" role="boton">Accion con rol invalido</button>
+        <div role="checkbox" tabindex="0">Acepto condiciones ficticias</div>
+        <div role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="10">Nivel ficticio</div>
+        <div role="checkbox" tabindex="0" aria-checked="yes">Valor ARIA invalido</div>
+        <button type="button" aria-checked="true">Boton con propiedad no permitida</button>
+        <button type="button" aria-labelledby="id-no-existe"></button>
+        <button type="button" aria-hidden="true">Boton oculto pero enfocable</button>
+      </div>
+      <pre><code>Texto de ejemplo que menciona aria-checked y aria-expanded, pero no debe tratarse como atributo real del DOM.</code></pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>Portal ficticio de pruebas. No contiene datos reales.</p>
+  </footer>
+</body>
+</html>
